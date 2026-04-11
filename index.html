@@ -1,196 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Your Name // Audio Dev</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "Courier New", monospace;
-      background: radial-gradient(circle at top, #0a0a0f, #000000);
-      color: #00ffcc;
-    }
+<style>
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at top, #0a0f2c, #000);
+    color: #cfd8ff;
+}
 
-    a {
-      color: #ff00ff;
-      text-decoration: none;
-    }
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 15px;
+    background: rgba(0,0,50,0.5);
+    backdrop-filter: blur(10px);
+}
 
-    a:hover {
-      text-decoration: underline;
-      color: #00ffff;
-    }
+nav a {
+    color: #8aa0ff;
+    text-decoration: none;
+}
 
-    .container {
-      width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
+header {
+    text-align: center;
+    padding: 80px 20px;
+}
 
-    .header {
-      border: 1px solid #00ffcc;
-      padding: 20px;
-      margin-bottom: 20px;
-      background: rgba(0,0,0,0.6);
-      box-shadow: 0 0 15px #00ffcc;
-    }
+section {
+    padding: 60px 20px;
+    max-width: 1300px;
+    margin: auto;
+}
 
-    .title {
-      font-size: 32px;
-      color: #00ffff;
-    }
+.selector {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .subtitle {
-      color: #ff00ff;
-      font-size: 14px;
-    }
+.arrow {
+    font-size: 30px;
+    cursor: pointer;
+    padding: 20px;
+    color: #6f8cff;
+    user-select: none;
+}
 
-    .section {
-      border: 1px solid #333;
-      padding: 15px;
-      margin-bottom: 20px;
-      background: rgba(10,10,20,0.8);
-      box-shadow: 0 0 10px #222;
-    }
+.arrow:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #4f6cff;
+}
 
-    .section h2 {
-      margin-top: 0;
-      color: #00ffff;
-      border-bottom: 1px solid #00ffcc;
-      padding-bottom: 5px;
-    }
+.card {
+    width: 600px;
+    background: rgba(20, 30, 80, 0.3);
+    border: 1px solid rgba(100,100,255,0.3);
+    border-radius: 20px;
+    padding: 30px;
+    backdrop-filter: blur(8px);
+    text-align: center;
+}
 
-    .project {
-      margin-bottom: 15px;
-      padding: 10px;
-      border: 1px dashed #444;
-    }
+h2 { color: #8aa0ff; }
 
-    .project-title {
-      font-size: 18px;
-      color: #ffffff;
-    }
+.skills span {
+    display: inline-block;
+    margin: 5px;
+    padding: 8px 12px;
+    border: 1px solid #4f6cff;
+    border-radius: 10px;
+}
 
-    .footer {
-      text-align: center;
-      font-size: 12px;
-      color: #555;
-      margin-top: 30px;
-    }
-
-    .blink {
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-
-    .player {
-      background: black;
-      border: 1px solid #00ffcc;
-      padding: 10px;
-      margin-top: 10px;
-    }
-
-  </style>
+footer {
+    text-align: center;
+    padding: 30px;
+}
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<nav>
+    <a href="#home">Home</a>
+    <a href="#projects">Projects</a>
+    <a href="#plugins">Plugins</a>
+</nav>
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="title">> YOUR_NAME.exe<span class="blink">_</span></div>
-    <div class="subtitle">
-      Audio Plugin Developer // DSP // Creative Coding
+<header id="home">
+    <h1>May Tiger</h1>
+    <p>C++ Audio Software Engineer</p>
+</header>
+
+<section id="projects">
+    <h2>Project</h2>
+    <div class="selector">
+        <div class="arrow" onclick="prev('project')">◀</div>
+        <div class="card" id="projectDisplay"></div>
+        <div class="arrow" onclick="next('project')">▶</div>
     </div>
-  </div>
+</section>
 
-  <!-- ABOUT -->
-  <div class="section">
-    <h2>about_me.txt</h2>
-    <p>
-      I build audio plugins, experiment with DSP, and create weird digital sound tools.
-      Currently exploring synthesis, effects, and interactive audio systems.
-    </p>
-  </div>
-
-  <!-- AUDIO PLUGINS -->
-  <div class="section">
-    <h2>audio_plugins/</h2>
-
-    <div class="project">
-      <div class="project-title">> Plugin_Name_01</div>
-      <p>Short description of what it does.</p>
-
-      <!-- AUDIO DEMO -->
-      <div class="player">
-        <audio controls>
-          <source src="demo1.mp3" type="audio/mpeg">
-        </audio>
-      </div>
-
-      <p>
-        <a href="#">[Download VST3]</a> |
-        <a href="#">[GitHub]</a>
-      </p>
+<section id="plugins">
+    <h2>Plugin</h2>
+    <div class="selector">
+        <div class="arrow" onclick="prev('plugin')">◀</div>
+        <div class="card" id="pluginDisplay"></div>
+        <div class="arrow" onclick="next('plugin')">▶</div>
     </div>
+</section>
 
-    <div class="project">
-      <div class="project-title">> Plugin_Name_02</div>
-      <p>Short description of what it does.</p>
-
-      <div class="player">
-        <audio controls>
-          <source src="demo2.mp3" type="audio/mpeg">
-        </audio>
-      </div>
-
-      <p>
-        <a href="#">[Download VST3]</a> |
-        <a href="#">[GitHub]</a>
-      </p>
+<section>
+    <h2>Skills</h2>
+    <div class="skills">
+        <span>C++</span>
+        <span>JUCE</span>
+        <span>DSP</span>
+        <span>Embedded Linux</span>
     </div>
+</section>
 
-  </div>
+<footer>© 2026</footer>
 
-  <!-- PROJECTS -->
-  <div class="section">
-    <h2>projects/</h2>
+<script>
+const projects = [
+  {
+    title: "PhaseForge Engine",
+    desc: "Real-time C++ audio engine with ultra-low latency.",
+    tech: "C++, JUCE, DSP"
+  }
+];
 
-    <div class="project">
-      <div class="project-title">> University_Project_01</div>
-      <p>Brief explanation of the problem and solution.</p>
-      <a href="#">[View Project]</a>
-    </div>
+const plugins = [
+  {
+    title: "NX Reverb",
+    desc: "Algorithmic reverb with diffusion network.",
+    tech: "VST3, DSP"
+  }
+];
 
-    <div class="project">
-      <div class="project-title">> Fun_Project_01</div>
-      <p>Something experimental or creative.</p>
-      <a href="#">[View Project]</a>
-    </div>
+let index = { project: 0, plugin: 0 };
 
-  </div>
+function render(type) {
+  const data = type === 'project' ? projects : plugins;
+  const el = document.getElementById(type + 'Display');
+  const item = data[index[type]];
 
-  <!-- CONTACT -->
-  <div class="section">
-    <h2>contact.sys</h2>
-    <p>
-      Email: your@email.com<br>
-      GitHub: <a href="#">your github link</a><br>
-      LinkedIn: <a href="#">your linkedin</a>
-    </p>
-  </div>
+  el.innerHTML = `
+    <h3>${item.title}</h3>
+    <p>${item.desc}</p>
+    <p><b>${item.tech}</b></p>
+  `;
+}
 
-  <!-- FOOTER -->
-  <div class="footer">
-    © 2001-2026 Your_Name Industries™
-  </div>
+function next(type) {
+  const data = type === 'project' ? projects : plugins;
+  index[type] = (index[type] + 1) % data.length;
+  render(type);
+}
 
-</div>
+function prev(type) {
+  const data = type === 'project' ? projects : plugins;
+  index[type] = (index[type] - 1 + data.length) % data.length;
+  render(type);
+}
+
+render('project');
+render('plugin');
+</script>
 
 </body>
 </html>
