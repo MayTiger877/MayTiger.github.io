@@ -1,17 +1,196 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Your Name - Portfolio</title>
   <meta charset="UTF-8">
-</head>
-<body>
-  <h1>Your Name</h1>
-  <p>Audio Developer | DSP | Creative Coding</p>
+  <title>Your Name // Audio Dev</title>
 
-  <h2>Projects</h2>
-  <ul>
-    <li>My Synth Plugin</li>
-    <li>University DSP Project</li>
-  </ul>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Courier New", monospace;
+      background: radial-gradient(circle at top, #0a0a0f, #000000);
+      color: #00ffcc;
+    }
+
+    a {
+      color: #ff00ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #00ffff;
+    }
+
+    .container {
+      width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .header {
+      border: 1px solid #00ffcc;
+      padding: 20px;
+      margin-bottom: 20px;
+      background: rgba(0,0,0,0.6);
+      box-shadow: 0 0 15px #00ffcc;
+    }
+
+    .title {
+      font-size: 32px;
+      color: #00ffff;
+    }
+
+    .subtitle {
+      color: #ff00ff;
+      font-size: 14px;
+    }
+
+    .section {
+      border: 1px solid #333;
+      padding: 15px;
+      margin-bottom: 20px;
+      background: rgba(10,10,20,0.8);
+      box-shadow: 0 0 10px #222;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      color: #00ffff;
+      border-bottom: 1px solid #00ffcc;
+      padding-bottom: 5px;
+    }
+
+    .project {
+      margin-bottom: 15px;
+      padding: 10px;
+      border: 1px dashed #444;
+    }
+
+    .project-title {
+      font-size: 18px;
+      color: #ffffff;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #555;
+      margin-top: 30px;
+    }
+
+    .blink {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .player {
+      background: black;
+      border: 1px solid #00ffcc;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="title">> YOUR_NAME.exe<span class="blink">_</span></div>
+    <div class="subtitle">
+      Audio Plugin Developer // DSP // Creative Coding
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="section">
+    <h2>about_me.txt</h2>
+    <p>
+      I build audio plugins, experiment with DSP, and create weird digital sound tools.
+      Currently exploring synthesis, effects, and interactive audio systems.
+    </p>
+  </div>
+
+  <!-- AUDIO PLUGINS -->
+  <div class="section">
+    <h2>audio_plugins/</h2>
+
+    <div class="project">
+      <div class="project-title">> Plugin_Name_01</div>
+      <p>Short description of what it does.</p>
+
+      <!-- AUDIO DEMO -->
+      <div class="player">
+        <audio controls>
+          <source src="demo1.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+      <p>
+        <a href="#">[Download VST3]</a> |
+        <a href="#">[GitHub]</a>
+      </p>
+    </div>
+
+    <div class="project">
+      <div class="project-title">> Plugin_Name_02</div>
+      <p>Short description of what it does.</p>
+
+      <div class="player">
+        <audio controls>
+          <source src="demo2.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+      <p>
+        <a href="#">[Download VST3]</a> |
+        <a href="#">[GitHub]</a>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="section">
+    <h2>projects/</h2>
+
+    <div class="project">
+      <div class="project-title">> University_Project_01</div>
+      <p>Brief explanation of the problem and solution.</p>
+      <a href="#">[View Project]</a>
+    </div>
+
+    <div class="project">
+      <div class="project-title">> Fun_Project_01</div>
+      <p>Something experimental or creative.</p>
+      <a href="#">[View Project]</a>
+    </div>
+
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section">
+    <h2>contact.sys</h2>
+    <p>
+      Email: your@email.com<br>
+      GitHub: <a href="#">your github link</a><br>
+      LinkedIn: <a href="#">your linkedin</a>
+    </p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    © 2001-2026 Your_Name Industries™
+  </div>
+
+</div>
+
 </body>
 </html>
