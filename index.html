@@ -5,174 +5,124 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio</title>
 
-<style>
-body {
-    margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    background: radial-gradient(circle at top, #0a0f2c, #000);
-    color: #cfd8ff;
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 15px;
-    background: rgba(0,0,50,0.5);
-    backdrop-filter: blur(10px);
-}
-
-nav a {
-    color: #8aa0ff;
-    text-decoration: none;
-}
-
-header {
-    text-align: center;
-    padding: 80px 20px;
-}
-
-section {
-    padding: 60px 20px;
-    max-width: 1300px;
-    margin: auto;
-}
-
-.selector {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.arrow {
-    font-size: 30px;
-    cursor: pointer;
-    padding: 20px;
-    color: #6f8cff;
-    user-select: none;
-}
-
-.arrow:hover {
-    color: #fff;
-    text-shadow: 0 0 10px #4f6cff;
-}
-
-.card {
-    width: 600px;
-    background: rgba(20, 30, 80, 0.3);
-    border: 1px solid rgba(100,100,255,0.3);
-    border-radius: 20px;
-    padding: 30px;
-    backdrop-filter: blur(8px);
-    text-align: center;
-}
-
-h2 { color: #8aa0ff; }
-
-.skills span {
-    display: inline-block;
-    margin: 5px;
-    padding: 8px 12px;
-    border: 1px solid #4f6cff;
-    border-radius: 10px;
-}
-
-footer {
-    text-align: center;
-    padding: 30px;
-}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<nav>
-    <a href="#home">Home</a>
-    <a href="#projects">Projects</a>
-    <a href="#plugins">Plugins</a>
-</nav>
+<section id="about" class="active">
+    <header>
+        <h1>May Tiger</h1>
+        <p>C++ Audio Software Engineer</p>
+    </header>
 
-<header id="home">
-    <h1>May Tiger</h1>
-    <p>C++ Audio Software Engineer</p>
-</header>
+    <div class="menu">
+        <a onclick="showSection('projects')">Projects</a>
+        <a onclick="showSection('plugins')">Plugins</a>
+        <a onclick="showSection('music')">Music</a>
+    </div>
+
+    <div class="about-text">
+        <p>
+        Audio-focused software engineer specializing in C++, DSP, and real-time systems. Experienced in building JUCE-based plugins, embedded Linux systems, and machine learning audio tools.
+        </p>
+    </div>
+</section>
 
 <section id="projects">
+    <div class="back-btn" onclick="showSection('about')">← Back</div>
     <h2>Project</h2>
-    <div class="selector">
-        <div class="arrow" onclick="prev('project')">◀</div>
-        <div class="card" id="projectDisplay"></div>
-        <div class="arrow" onclick="next('project')">▶</div>
+
+    <div class="list-item">
+        <img src="images/dereverb.png" class="item-img">
+        <div class="item-content">
+            <h3>Deep Learning Dereverberation Tool</h3>
+            <p>Neural-network-based audio dereverberation system that removes room reflections and enhances speech clarity.</p>
+            <p><b>Python, PyTorch, DSP</b></p>
+        </div>
     </div>
 </section>
 
 <section id="plugins">
-    <h2>Plugin</h2>
-    <div class="selector">
-        <div class="arrow" onclick="prev('plugin')">◀</div>
-        <div class="card" id="pluginDisplay"></div>
-        <div class="arrow" onclick="next('plugin')">▶</div>
+    <div class="back-btn" onclick="showSection('about')">← Back</div>
+    <h2>Plugins</h2>
+
+    <div class="list-item">
+        <img src="images/ballpit.png" class="item-img">
+        <div class="item-content">
+            <h3>BallPit</h3>
+            <p>Physics-driven MIDI generator plugin creating bouncing-ball sequences.</p>
+            <p><b>VST3, JUCE, MIDI</b></p>
+            <a href="plugins/BallPit-Windows.vst3.zip" download class="download-btn">⬇ Windows</a>
+            <a href="plugins/BallPit-Mac.vst3.zip" download class="download-btn">⬇ Mac</a>
+        </div>
+    </div>
+
+    <div class="list-item">
+        <img src="images/exodus.png" class="item-img">
+        <div class="item-content">
+            <h3>Exodus Delay</h3>
+            <p>Creative delay plugin with rhythmic modulation and spatial effects.</p>
+            <p><b>VST3, DSP</b></p>
+            <a href="plugins/ExodusDelay-Windows.vst3.zip" download class="download-btn">⬇ Windows</a>
+            <a href="plugins/ExodusDelay-Mac.vst3.zip" download class="download-btn">⬇ Mac</a>
+        </div>
     </div>
 </section>
 
-<section>
-    <h2>Skills</h2>
-    <div class="skills">
-        <span>C++</span>
-        <span>JUCE</span>
-        <span>DSP</span>
-        <span>Embedded Linux</span>
+<section id="music">
+    <div class="back-btn" onclick="showSection('about')">← Back</div>
+    <h2>Music</h2>
+
+    <div class="list-item">
+        <img src="images/track1.png" class="item-img">
+        <div class="item-content">
+            <h3>Track Name</h3>
+            <audio controls>
+                <source src="music/track1.mp3" type="audio/mpeg">
+            </audio>
+            <p>
+                <a href="#" target="_blank">Spotify</a> |
+                <a href="#" target="_blank">SoundCloud</a>
+            </p>
+        </div>
     </div>
 </section>
 
 <footer>© 2026</footer>
 
+<script src="script.js"></script>
 <script>
-const projects = [
-  {
-    title: "PhaseForge Engine",
-    desc: "Real-time C++ audio engine with ultra-low latency.",
-    tech: "C++, JUCE, DSP"
-  }
-];
+// PS2-style keyboard navigation
+const sections = ['about', 'projects', 'plugins', 'music'];
+let currentIndex = 0;
 
-const plugins = [
-  {
-    title: "NX Reverb",
-    desc: "Algorithmic reverb with diffusion network.",
-    tech: "VST3, DSP"
-  }
-];
-
-let index = { project: 0, plugin: 0 };
-
-function render(type) {
-  const data = type === 'project' ? projects : plugins;
-  const el = document.getElementById(type + 'Display');
-  const item = data[index[type]];
-
-  el.innerHTML = `
-    <h3>${item.title}</h3>
-    <p>${item.desc}</p>
-    <p><b>${item.tech}</b></p>
-  `;
+function showSection(id)
+{
+    document.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+    currentIndex = sections.indexOf(id);
 }
 
-function next(type) {
-  const data = type === 'project' ? projects : plugins;
-  index[type] = (index[type] + 1) % data.length;
-  render(type);
-}
+document.addEventListener('keydown', (e) =>
+{
+    if (e.key === 'ArrowDown')
+    {
+        currentIndex = (currentIndex + 1) % sections.length;
+        showSection(sections[currentIndex]);
+    }
 
-function prev(type) {
-  const data = type === 'project' ? projects : plugins;
-  index[type] = (index[type] - 1 + data.length) % data.length;
-  render(type);
-}
+    if (e.key === 'ArrowUp')
+    {
+        currentIndex = (currentIndex - 1 + sections.length) % sections.length;
+        showSection(sections[currentIndex]);
+    }
 
-render('project');
-render('plugin');
+    if (e.key === 'Enter')
+    {
+        showSection(sections[currentIndex]);
+    }
+});
 </script>
 
 </body>

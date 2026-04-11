@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at top, #0a0f2c, #000);
+    color: #cfd8ff;
+}
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+section {
+    padding: 35px 20px;
+    max-width: 1300px;
+    margin: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+section.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+#about { display: block; }
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.menu a {
+    font-size: 1.5em;
+    color: #8aa0ff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    border: 1px solid #4f6cff;
+    box-shadow: 0 0 10px #4f6cff;
+}
+
+.list-item {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.item-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.item-content {
+    flex: 1;
+}
+
+.download-btn {
+    display:inline-block;
+    margin:5px;
+    padding:8px 14px;
+    border:1px solid #4f6cff;
+    border-radius:8px;
+    color:#8aa0ff;
+    text-decoration:none;
+}
+
+.back-btn {
+    display:inline-block;
+    margin-bottom:20px;
+    color:#8aa0ff;
+    cursor:pointer;
+}
+
+.about-text {
+    margin-top:30px;
+    max-width:700px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+h2 { color: #8aa0ff; }
+
+footer {
+    text-align: center;
+    padding: 30px;
+}
