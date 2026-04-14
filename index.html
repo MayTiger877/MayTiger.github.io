@@ -6,9 +6,47 @@
 <title>Portfolio</title>
 
 <link rel="stylesheet" href="styles.css">
+
+<style>
+/* Top-left back button */
+.back-btn {
+    position: fixed;
+    top: 15px;
+    left: 20px;
+    z-index: 1000;
+}
+
+/* Section color themes */
+section.projects { color: #9bb1ff; }
+section.plugins { color: #8affc1; }
+section.music { color: #ff9bf2; }
+
+section.projects h2 { color: #6f8cff; }
+section.plugins h2 { color: #4fff9b; }
+section.music h2 { color: #ff6fd8; }
+
+/* PS2 glow feedback */
+.flash {
+    animation: flashAnim 0.2s ease;
+}
+
+@keyframes flashAnim {
+    0% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.02); filter: brightness(1.5); }
+    100% { transform: scale(1); filter: brightness(1); }
+}
+
+.menu a.active {
+    text-shadow: 0 0 10px #6f8cff;
+}
+</style>
+
 </head>
 
 <body>
+
+<!-- sound effect -->
+<audio id="navSound" src="sounds/nav.wav" preload="auto"></audio>
 
 <section id="about" class="active">
     <header>
@@ -17,9 +55,9 @@
     </header>
 
     <div class="menu">
-        <a onclick="showSection('projects')">Projects</a>
-        <a onclick="showSection('plugins')">Plugins</a>
-        <a onclick="showSection('music')">Music</a>
+        <a id="btn-projects" onclick="navigate('projects')">Projects</a>
+        <a id="btn-plugins" onclick="navigate('plugins')">Plugins</a>
+        <a id="btn-music" onclick="navigate('music')">Music</a>
     </div>
 
     <div class="about-text">
@@ -29,8 +67,8 @@
     </div>
 </section>
 
-<section id="projects">
-    <div class="back-btn" onclick="showSection('about')">← Back</div>
+<section id="projects" class="projects">
+    <div class="back-btn" onclick="navigate('about')">← Back</div>
     <h2>Project</h2>
 
     <div class="list-item">
@@ -43,8 +81,8 @@
     </div>
 </section>
 
-<section id="plugins">
-    <div class="back-btn" onclick="showSection('about')">← Back</div>
+<section id="plugins" class="plugins">
+    <div class="back-btn" onclick="navigate('about')">← Back</div>
     <h2>Plugins</h2>
 
     <div class="list-item">
@@ -70,8 +108,8 @@
     </div>
 </section>
 
-<section id="music">
-    <div class="back-btn" onclick="showSection('about')">← Back</div>
+<section id="music" class="music">
+    <div class="back-btn" onclick="navigate('about')">← Back</div>
     <h2>Music</h2>
 
     <div class="list-item">
@@ -93,34 +131,66 @@
 
 <script src="script.js"></script>
 <script>
-// PS2-style keyboard navigation
 const sections = ['about', 'projects', 'plugins', 'music'];
 let currentIndex = 0;
 
+function playSound() {
+    const s = document.getElementById('navSound');
+    if (s) { s.currentTime = 0; s.play(); }
+}
+
+function flash() {
+    const sec = document.querySelector('section[style*="block"]') || document.getElementById(sections[currentIndex]);
+    if (!sec) return;
+    sec.classList.add('flash');
+    setTimeout(() => sec.classList.remove('flash'), 200);
+}
+
+function navigate(id) {
+    playSound();
+    showSection(id);
+    flash();
+}
+
 function showSection(id)
 {
-    document.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
+    document.querySelectorAll('section').forEach(sec =>
+    {
+        sec.style.display = 'none';
+    });
+
+    const active = document.getElementById(id);
+    active.style.display = 'block';
+
+    // ensure back button always visible
+    const backBtn = active.querySelector('.back-btn');
+    if (backBtn)
+    {
+        backBtn.style.display = 'block';
+    }
+
     currentIndex = sections.indexOf(id);
 }
+
+// keyboard navigation
 
 document.addEventListener('keydown', (e) =>
 {
     if (e.key === 'ArrowDown')
     {
         currentIndex = (currentIndex + 1) % sections.length;
-        showSection(sections[currentIndex]);
+        navigate(sections[currentIndex]);
     }
 
     if (e.key === 'ArrowUp')
     {
         currentIndex = (currentIndex - 1 + sections.length) % sections.length;
-        showSection(sections[currentIndex]);
+        navigate(sections[currentIndex]);
     }
 
     if (e.key === 'Enter')
     {
-        showSection(sections[currentIndex]);
+        navigate(sections[currentIndex]);
     }
 });
 </script>
