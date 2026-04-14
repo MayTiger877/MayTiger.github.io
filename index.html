@@ -6,48 +6,13 @@
 <title>Portfolio</title>
 
 <link rel="stylesheet" href="styles.css">
-
-<style>
-/* Top-left back button */
-.back-btn {
-    position: fixed;
-    top: 15px;
-    left: 20px;
-    z-index: 1000;
-}
-
-/* Section color themes */
-section.projects { color: #9bb1ff; }
-section.plugins { color: #8affc1; }
-section.music { color: #ff9bf2; }
-
-section.projects h2 { color: #6f8cff; }
-section.plugins h2 { color: #4fff9b; }
-section.music h2 { color: #ff6fd8; }
-
-/* PS2 glow feedback */
-.flash {
-    animation: flashAnim 0.2s ease;
-}
-
-@keyframes flashAnim {
-    0% { transform: scale(1); filter: brightness(1); }
-    50% { transform: scale(1.02); filter: brightness(1.5); }
-    100% { transform: scale(1); filter: brightness(1); }
-}
-
-.menu a.active {
-    text-shadow: 0 0 10px #6f8cff;
-}
-</style>
-
 </head>
 
 <body>
 
-<!-- sound effect -->
 <audio id="navSound" src="sounds/nav.wav" preload="auto"></audio>
 
+<!-- ABOUT (MAIN MENU) -->
 <section id="about" class="active">
     <header>
         <h1>May Tiger</h1>
@@ -55,145 +20,78 @@ section.music h2 { color: #ff6fd8; }
     </header>
 
     <div class="menu">
-        <a id="btn-projects" onclick="navigate('projects')">Projects</a>
-        <a id="btn-plugins" onclick="navigate('plugins')">Plugins</a>
-        <a id="btn-music" onclick="navigate('music')">Music</a>
+        <a id="btn-projects">Projects</a>
+        <a id="btn-plugins">Plugins</a>
+        <a id="btn-music">Music</a>
     </div>
 
     <div class="about-text">
-        <p>
-        Audio-focused software engineer specializing in C++, DSP, and real-time systems. Experienced in building JUCE-based plugins, embedded Linux systems, and machine learning audio tools.
-        </p>
+        Audio-focused software engineer specializing in C++, DSP, JUCE, and real-time systems.
     </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects" class="projects">
     <div class="back-btn" onclick="navigate('about')">← Back</div>
+
     <h2>Project</h2>
 
     <div class="list-item">
         <img src="images/dereverb.png" class="item-img">
-        <div class="item-content">
+        <div>
             <h3>Deep Learning Dereverberation Tool</h3>
-            <p>Neural-network-based audio dereverberation system that removes room reflections and enhances speech clarity.</p>
+            <p>Neural network system for removing reverberation and enhancing speech clarity.</p>
             <p><b>Python, PyTorch, DSP</b></p>
         </div>
     </div>
 </section>
 
+<!-- PLUGINS -->
 <section id="plugins" class="plugins">
     <div class="back-btn" onclick="navigate('about')">← Back</div>
+
     <h2>Plugins</h2>
 
     <div class="list-item">
         <img src="images/ballpit.png" class="item-img">
-        <div class="item-content">
+        <div>
             <h3>BallPit</h3>
-            <p>Physics-driven MIDI generator plugin creating bouncing-ball sequences.</p>
-            <p><b>VST3, JUCE, MIDI</b></p>
-            <a href="plugins/BallPit-Windows.vst3.zip" download class="download-btn">⬇ Windows</a>
-            <a href="plugins/BallPit-Mac.vst3.zip" download class="download-btn">⬇ Mac</a>
+            <p>Physics-based MIDI generator using bouncing ball simulation.</p>
+            <p><b>JUCE, VST3</b></p>
+            <a href="plugins/BallPit-Windows.vst3.zip" download class="download-btn">Windows</a>
+            <a href="plugins/BallPit-Mac.vst3.zip" download class="download-btn">Mac</a>
         </div>
     </div>
 
     <div class="list-item">
         <img src="images/exodus.png" class="item-img">
-        <div class="item-content">
+        <div>
             <h3>Exodus Delay</h3>
-            <p>Creative delay plugin with rhythmic modulation and spatial effects.</p>
-            <p><b>VST3, DSP</b></p>
-            <a href="plugins/ExodusDelay-Windows.vst3.zip" download class="download-btn">⬇ Windows</a>
-            <a href="plugins/ExodusDelay-Mac.vst3.zip" download class="download-btn">⬇ Mac</a>
+            <p>Creative delay with rhythmic modulation.</p>
+            <p><b>DSP, VST3</b></p>
+            <a href="plugins/ExodusDelay-Windows.vst3.zip" download class="download-btn">Windows</a>
+            <a href="plugins/ExodusDelay-Mac.vst3.zip" download class="download-btn">Mac</a>
         </div>
     </div>
 </section>
 
+<!-- MUSIC -->
 <section id="music" class="music">
     <div class="back-btn" onclick="navigate('about')">← Back</div>
+
     <h2>Music</h2>
 
     <div class="list-item">
         <img src="images/track1.png" class="item-img">
-        <div class="item-content">
+        <div>
             <h3>Track Name</h3>
             <audio controls>
-                <source src="music/track1.mp3" type="audio/mpeg">
+                <source src="music/track1.mp3">
             </audio>
-            <p>
-                <a href="#" target="_blank">Spotify</a> |
-                <a href="#" target="_blank">SoundCloud</a>
-            </p>
         </div>
     </div>
 </section>
 
-<footer>© 2026</footer>
-
 <script src="script.js"></script>
-<script>
-const sections = ['about', 'projects', 'plugins', 'music'];
-let currentIndex = 0;
-
-function playSound() {
-    const s = document.getElementById('navSound');
-    if (s) { s.currentTime = 0; s.play(); }
-}
-
-function flash() {
-    const sec = document.querySelector('section[style*="block"]') || document.getElementById(sections[currentIndex]);
-    if (!sec) return;
-    sec.classList.add('flash');
-    setTimeout(() => sec.classList.remove('flash'), 200);
-}
-
-function navigate(id) {
-    playSound();
-    showSection(id);
-    flash();
-}
-
-function showSection(id)
-{
-    document.querySelectorAll('section').forEach(sec =>
-    {
-        sec.style.display = 'none';
-    });
-
-    const active = document.getElementById(id);
-    active.style.display = 'block';
-
-    // ensure back button always visible
-    const backBtn = active.querySelector('.back-btn');
-    if (backBtn)
-    {
-        backBtn.style.display = 'block';
-    }
-
-    currentIndex = sections.indexOf(id);
-}
-
-// keyboard navigation
-
-document.addEventListener('keydown', (e) =>
-{
-    if (e.key === 'ArrowDown')
-    {
-        currentIndex = (currentIndex + 1) % sections.length;
-        navigate(sections[currentIndex]);
-    }
-
-    if (e.key === 'ArrowUp')
-    {
-        currentIndex = (currentIndex - 1 + sections.length) % sections.length;
-        navigate(sections[currentIndex]);
-    }
-
-    if (e.key === 'Enter')
-    {
-        navigate(sections[currentIndex]);
-    }
-});
-</script>
-
 </body>
 </html>
