@@ -7,18 +7,14 @@ body {
 
 /* Sections */
 section {
-    max-width: 1200px;
+    display: none;
+    max-width: auto;
     margin: auto;
     padding: 40px 20px;
-
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
 }
 
 section.active {
-    opacity: 1;
-    pointer-events: auto;
+    display: block;
 }
 
 /* Header */
@@ -32,6 +28,7 @@ header {
     flex-direction: column;
     align-items: center;
     margin-top: 40px;
+    margin-bottom: 60px;
     gap: 15px;
 }
 
@@ -41,9 +38,9 @@ header {
     transition: 0.2s;
 }
 
-.menu a.active {
+.menu a:hover {
     color: white;
-    text-shadow: 0 0 15px #4f6cff;
+    text-shadow: 0 0 10px #4f6cff;
     transform: scale(1.1);
 }
 
@@ -60,11 +57,17 @@ header {
     border-radius: 10px;
 }
 
+.item-bigimg {
+    width: 240px;
+    height: 240px;
+    border-radius: 10px;
+}
+
 /* Download */
 .download-btn {
     margin: 5px;
     padding: 6px 12px;
-    border: 1px solid #4f6cff;
+    border: 2px solid #4f6cff;
     border-radius: 8px;
     color: #8aa0ff;
     text-decoration: none;
@@ -82,6 +85,7 @@ header {
     cursor: pointer;
     background: rgba(0,0,50,0.5);
     transition: 0.2s;
+    color: #8aa0ff;
 }
 
 .back-btn:hover {
@@ -91,6 +95,101 @@ header {
 }
 
 /* Section colors */
+.about { color: #c5bf69; }
 .projects { color: #9bb1ff; }
 .plugins { color: #8affc1; }
 .music { color: #ff9bf2; }
+
+/* ===== LOADER ===== */
+#loader {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top, #0a0f2c, #000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+
+    overflow: hidden;
+
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+#loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Scanlines */
+#loader::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+    from { transform: translateY(0); }
+    to { transform: translateY(3px); }
+}
+
+/* Content */
+.loader-content {
+    text-align: center;
+    z-index: 2;
+}
+
+.loader-text {
+    font-size: 1.5em;
+    color: #8aa0ff;
+    margin-bottom: 20px;
+}
+
+/* Progress bar */
+.progress-bar {
+    width: 250px;
+    height: 6px;
+    border: 1px solid #4f6cff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: #4f6cff;
+    box-shadow: 0 0 10px #4f6cff;
+    animation: loadBar 0.8s linear forwards;
+}
+
+@keyframes loadBar {
+    from { width: 0%; }
+    to { width: 100%; }
+}
+
+.music-links {
+    margin-top: 10px;
+    display: flex;
+    gap: 15px;
+}
+
+.music-icon {
+    width: 500px;
+    height: 350px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+/* Hover glow (PS2 style) */
+.music-icon:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 3px #9bfc92);
+}

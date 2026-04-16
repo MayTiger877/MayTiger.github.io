@@ -1,15 +1,19 @@
-const menuItems = ['projects', 'plugins', 'music'];
+const menuItems = ['about', 'projects', 'plugins', 'music'];
 let menuIndex = 0;
 
+// ---------- SOUND ----------
 function playSound()
 {
     const s = document.getElementById('navSound');
-    if (s) {
+    if (s)
+    {
         s.currentTime = 0;
+        s.volume = 0.5;
         s.play();
     }
 }
 
+// ---------- NAVIGATION ----------
 function showSection(id)
 {
     document.querySelectorAll('section').forEach(sec =>
@@ -17,6 +21,7 @@ function showSection(id)
     );
 
     document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
 }
 
 function navigate(id)
@@ -25,6 +30,7 @@ function navigate(id)
     showSection(id);
 }
 
+// ---------- MENU UI ----------
 function updateMenu()
 {
     menuItems.forEach((id, i) =>
@@ -39,30 +45,89 @@ function updateMenu()
     });
 }
 
-document.addEventListener('keydown', (e) =>
+// ---------- CLICK HANDLERS ----------
+function setupClicks()
 {
-    const isMenu = document.getElementById('about').classList.contains('active');
+    document.getElementById('btn-about').addEventListener('click', () => navigate('about'));
+    document.getElementById('btn-projects').addEventListener('click', () => navigate('projects'));
+    document.getElementById('btn-plugins').addEventListener('click', () => navigate('plugins'));
+    document.getElementById('btn-music').addEventListener('click', () => navigate('music'));
+}
 
-    if (!isMenu) return;
+// // ---------- KEYBOARD ----------
+// document.addEventListener('keydown', (e) =>
+// {
+//     const isMenu = document.getElementById('home').classList.contains('active');
 
-    if (e.key === 'ArrowDown')
-    {
-        menuIndex = (menuIndex + 1) % menuItems.length;
-        updateMenu();
-        playSound();
-    }
+//     if (!isMenu) return;
 
-    if (e.key === 'ArrowUp')
-    {
-        menuIndex = (menuIndex - 1 + menuItems.length) % menuItems.length;
-        updateMenu();
-        playSound();
-    }
+//     if (e.key === 'ArrowDown')
+//     {
+//         menuIndex = (menuIndex + 1) % menuItems.length;
+//         updateMenu();
+//         playSound();
+//     }
 
-    if (e.key === 'Enter')
-    {
-        navigate(menuItems[menuIndex]);
-    }
+//     if (e.key === 'ArrowUp')
+//     {
+//         menuIndex = (menuIndex - 1 + menuItems.length) % menuItems.length;
+//         updateMenu();
+//         playSound();
+//     }
+
+//     if (e.key === 'Enter')
+//     {
+//         navigate(menuItems[menuIndex]);
+//     }
+// });
+
+// ---------- INIT ----------
+document.addEventListener('DOMContentLoaded', () =>
+{
+    setupClicks();
+    updateMenu();
 });
 
-updateMenu();
+// ---------- LOADER ----------
+document.addEventListener('DOMContentLoaded', () =>
+{
+    const loader = document.getElementById('loader');
+    const bootSound = document.getElementById('bootSound');
+    const bgMusic = document.getElementById('bgMusic');
+
+    if (!sessionStorage.getItem('loaded'))
+    {
+        sessionStorage.setItem('loaded', 'true');
+
+        // play boot sound
+        if (bootSound)
+        {
+            bootSound.volume = 0.4;
+            bootSound.play().catch(() => {});
+        }
+
+        setTimeout(() =>
+        {
+            loader.classList.add('hidden');
+
+            // start background loop AFTER loader
+            if (bgMusic)
+            {
+                bgMusic.volume = 0.2;
+                bgMusic.play().catch(() => {});
+            }
+
+        }, 800);
+    }
+    else
+    {
+        loader.style.display = 'none';
+
+        // start bg music immediately if returning
+        if (bgMusic)
+        {
+            bgMusic.volume = 0.2;
+            bgMusic.play().catch(() => {});
+        }
+    }
+});
