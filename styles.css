@@ -167,6 +167,10 @@ header {
     width: 0%;
     background: #4f6cff;
     box-shadow: 0 0 10px #4f6cff;
+}
+
+/* only animate when active */
+.progress-fill.active {
     animation: loadBar 0.8s linear forwards;
 }
 
@@ -179,11 +183,13 @@ header {
     margin-top: 10px;
     display: flex;
     gap: 15px;
+    align-items: center;
+    justify-content: center;
 }
 
 .music-icon {
-    width: 500px;
-    height: 350px;
+    width: 240px;
+    height: 165px;
     transition: 0.2s;
     cursor: pointer;
 }
@@ -192,4 +198,34 @@ header {
 .music-icon:hover {
     transform: scale(1.1);
     filter: drop-shadow(0 0 3px #9bfc92);
+}
+
+/* ===== START SCREEN ===== */
+#start-screen {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top, #0a0f2c, #000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100000;
+}
+
+.start-text {
+    font-size: 1.6em;
+    color: #8aa0ff;
+    letter-spacing: 2px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.plugin-video {
+    width: 600px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

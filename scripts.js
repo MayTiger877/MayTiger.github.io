@@ -86,23 +86,41 @@ document.addEventListener('DOMContentLoaded', () =>
 {
     setupClicks();
     updateMenu();
+    setupVideoAudioSync();
 });
 
 // ---------- LOADER ----------
 document.addEventListener('DOMContentLoaded', () =>
 {
+    const startScreen = document.getElementById('start-screen');
     const loader = document.getElementById('loader');
+
     const bootSound = document.getElementById('bootSound');
     const bgMusic = document.getElementById('bgMusic');
 
-    if (!sessionStorage.getItem('loaded'))
+    const progress = document.querySelector('.progress-fill');
+
+    function startExperience()
     {
-        sessionStorage.setItem('loaded', 'true');
+        document.removeEventListener('keydown', startExperience);
+        document.removeEventListener('click', startExperience);
+
+        startScreen.style.display = 'none';
+
+        
+        // RESET progress (important)
+        if (progress)
+        {
+            progress.classList.remove('active');
+            void progress.offsetWidth; // force reflow
+            setTimeout(() => progress.classList.add('active'), 50);
+            // progress.classList.add('active');
+        }
 
         // play boot sound
         if (bootSound)
         {
-            bootSound.volume = 0.4;
+            bootSound.volume = 0.3;
             bootSound.play().catch(() => {});
         }
 
@@ -110,24 +128,71 @@ document.addEventListener('DOMContentLoaded', () =>
         {
             loader.classList.add('hidden');
 
-            // start background loop AFTER loader
             if (bgMusic)
             {
-                bgMusic.volume = 0.2;
+                bgMusic.volume = 0.1;
                 bgMusic.play().catch(() => {});
             }
 
         }, 800);
-    }
-    else
-    {
-        loader.style.display = 'none';
 
-        // start bg music immediately if returning
-        if (bgMusic)
+        const video = document.querySelector('.plugin-video');
+
+        if (video)
         {
-            bgMusic.volume = 0.2;
-            bgMusic.play().catch(() => {});
+            video.muted = false;
+            video.volume = 1;
+        
+            // force browser to "unlock" video audio
+            video.play().then(() =>
+            {
+                video.pause(); // pause immediately so user can press play later
+                video.currentTime = 0;
+            }).catch(() => {});
         }
     }
+
+    // wait for ANY interaction
+    document.addEventListener('keydown', startExperience);
+    document.addEventListener('click', startExperience);
 });
+
+document.addEventListener('click', enableAudio, { once: true });
+document.addEventListener('keydown', enableAudio, { once: true });
+
+function enableAudio()
+{
+    const bgMusic = document.getElementById('bgMusic');
+
+    if (bgMusic)
+    {
+        bgMusic.volume = 0.2;
+        bgMusic.play().catch(() => {});
+    }
+}
+
+function setupVideoAudioSync()
+{
+    const video = document.querySelector('.plugin-video');
+    const bgMusic = document.getElementById('bgMusic');
+
+    if (!video || !bgMusic) return;
+
+    // When video starts playing → pause music
+    video.addEventListener('play', () =>
+    {
+        bgMusic.pause();
+    });
+
+    // When video is paused → resume music
+    video.addEventListener('pause', () =>
+    {
+        bgMusic.play().catch(() => {});
+    });
+
+    // When video ends → resume music
+    video.addEventListener('ended', () =>
+    {
+        bgMusic.play().catch(() => {});
+    });
+}
