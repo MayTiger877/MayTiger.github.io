@@ -236,3 +236,90 @@ header {
     margin-top: 20px;
     margin-bottom: 20px;
 }
+/* ===================== SECONDARY MENU LISTS ===================== */
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+    max-width: 680px;
+}
+
+.menu-list-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 18px;
+    border: 1px solid rgba(79, 108, 255, 0.3);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.2s;
+    background: rgba(0, 0, 60, 0.3);
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-list-item:hover {
+    background: rgba(79, 108, 255, 0.15);
+    border-color: #4f6cff;
+    transform: translateX(6px);
+}
+
+.menu-list-item:hover .arrow {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+.menu-list-text h3 {
+    margin: 0 0 4px 0;
+    font-size: 1em;
+}
+
+.menu-list-text p {
+    margin: 0;
+    font-size: 0.8em;
+    opacity: 0.6;
+}
+
+.arrow {
+    margin-left: auto;
+    font-size: 1.6em;
+    opacity: 0.3;
+    transition: 0.2s;
+    flex-shrink: 0;
+}
+
+/* ===================== INDIVIDUAL PAGES ===================== */
+.project-page,
+.plugin-page {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.project-page h2,
+.plugin-page h2 {
+    margin-bottom: 6px;
+}
+
+.tech-tags {
+    font-size: 0.85em;
+    opacity: 0.6;
+    margin: 0 0 20px 0;
+    letter-spacing: 0.05em;
+}
+
+.plugin-video {
+    width: 100%;
+    max-width: 680px;
+    border-radius: 10px;
+    margin: 20px 0;
+    display: block;
+}
+
+.download-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
