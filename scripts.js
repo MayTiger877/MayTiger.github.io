@@ -8,7 +8,7 @@ function playSound()
     if (s)
     {
         s.currentTime = 0;
-        s.volume = 0.5;
+        s.volume = 0.4;
         s.play();
     }
 }
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () =>
 
             if (bgMusic)
             {
-                bgMusic.volume = 0.1;
+                bgMusic.volume = 0.4;
                 bgMusic.play().catch(() => {});
             }
 
@@ -166,7 +166,7 @@ function enableAudio()
 
     if (bgMusic)
     {
-        bgMusic.volume = 0.2;
+        bgMusic.volume = 0.4;
         bgMusic.play().catch(() => {});
     }
 }
