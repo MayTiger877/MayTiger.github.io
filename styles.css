@@ -194,17 +194,27 @@ header {
     justify-content: center;
 }
 
-.music-icon {
-    width: 240px;
-    height: 165px;
+.music-icon_spotify {
+    width: 250px;
+    height: 200px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.music-icon_soundcloud {
+    width: 200px;
+    height: 125px;
     transition: 0.2s;
     cursor: pointer;
 }
 
 /* Hover glow (PS2 style) */
-.music-icon:hover {
+.music-icon_soundcloud:hover {
     transform: scale(1.1);
-    filter: drop-shadow(0 0 3px #9bfc92);
+    filter: drop-shadow(0 0 3px #df8926);
+}
+.music-icon_spotify:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px #57ca6a);
 }
 
 /* ===== START SCREEN ===== */
@@ -334,4 +344,172 @@ header {
     gap: 12px;
     flex-wrap: wrap;
     margin-top: 16px;
+}
+/* ===================== PS2 AUDIO PLAYER ===================== */
+.ps2-player {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    background: linear-gradient(160deg, #07093a 0%, #020418 100%);
+    border: 1px solid #2a3aaa;
+    border-radius: 10px;
+    padding: 16px 18px 14px;
+    margin: 12px 0 24px;
+    overflow: hidden;
+    box-shadow: 0 0 24px rgba(79, 108, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.ps2-scanlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px, transparent 2px,
+        rgba(0, 0, 0, 0.18) 2px, rgba(0, 0, 0, 0.18) 3px
+    );
+    border-radius: 10px;
+}
+
+.ps2-player-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ps2-player-label {
+    font-size: 0.7em;
+    letter-spacing: 0.12em;
+    color: #8aa0ff;
+    text-shadow: 0 0 8px rgba(79, 108, 255, 0.6);
+}
+
+.ps2-player-time {
+    font-size: 0.68em;
+    color: #4a5a99;
+    letter-spacing: 0.08em;
+}
+
+.ps2-scrubbar {
+    margin-bottom: 14px;
+    padding: 6px 0;
+    cursor: pointer;
+}
+
+.ps2-track {
+    position: relative;
+    height: 3px;
+    background: rgba(79, 108, 255, 0.15);
+    border-radius: 2px;
+}
+
+.ps2-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 0%;
+    background: linear-gradient(90deg, #2a3aff, #8aa0ff);
+    border-radius: 2px;
+    box-shadow: 0 0 6px rgba(138, 160, 255, 0.6);
+    transition: width 0.1s linear;
+}
+
+.ps2-head {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border: 2px solid #8aa0ff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(138, 160, 255, 0.9);
+    transition: left 0.1s linear;
+}
+
+.ps2-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ps2-btn-ctrl {
+    background: rgba(79, 108, 255, 0.1);
+    border: 1px solid rgba(79, 108, 255, 0.4);
+    border-radius: 6px;
+    color: #8aa0ff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85em;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ps2-btn-ctrl:hover {
+    background: rgba(79, 108, 255, 0.25);
+    border-color: #8aa0ff;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(79, 108, 255, 0.4);
+}
+
+.ps2-btn-play {
+    width: 44px;
+    height: 44px;
+    font-size: 1em;
+    background: rgba(79, 108, 255, 0.2);
+    border-color: #8aa0ff;
+    box-shadow: 0 0 10px rgba(79, 108, 255, 0.2);
+}
+
+.ps2-btn-play:hover {
+    box-shadow: 0 0 18px rgba(79, 108, 255, 0.6);
+}
+
+.ps2-vol {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.ps2-vol-icon {
+    font-size: 0.75em;
+    color: #4a5a99;
+}
+
+.ps2-vol-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 80px;
+    height: 3px;
+    background: rgba(79, 108, 255, 0.2);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+}
+
+.ps2-vol-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #8aa0ff;
+    border: 1px solid #fff;
+    box-shadow: 0 0 6px rgba(138, 160, 255, 0.8);
+    cursor: pointer;
+}
+
+.ps2-vol-slider::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #8aa0ff;
+    border: 1px solid #fff;
+    box-shadow: 0 0 6px rgba(138, 160, 255, 0.8);
+    cursor: pointer;
 }
