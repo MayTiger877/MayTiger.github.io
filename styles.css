@@ -240,6 +240,7 @@ header {
 .menu-list {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 12px;
     margin-top: 20px;
     max-width: 680px;
@@ -250,6 +251,8 @@ header {
     align-items: center;
     gap: 18px;
     padding: 14px 18px;
+    height: 110px;           /* fixed height — all items same size */
+    width: 450px;
     border: 1px solid rgba(79, 108, 255, 0.3);
     border-radius: 10px;
     cursor: pointer;
@@ -257,6 +260,15 @@ header {
     background: rgba(0, 0, 60, 0.3);
     text-decoration: none;
     color: inherit;
+    box-sizing: border-box;
+}
+
+.menu-list-item .item-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;   /* crops to fit without distorting */
+    border-radius: 8px;
+    flex-shrink: 0;      /* won't shrink if text is long */
 }
 
 .menu-list-item:hover {
