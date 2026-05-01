@@ -99,30 +99,267 @@
 </section>
 
 <!-- ===================== PLUGIN: BALLPIT ===================== -->
-<section id="plugin-ballpit" class="plugin-page">
+<section id="plugin-ballpit" class="plugin-page scrollable-page">
     <div class="back-btn" onclick="navigate('plugins')">← Back</div>
-    <h2>BallPit</h2>
-    <p class="tech-tags">JUCE &nbsp;·&nbsp; VST3</p>
-    <p>A MIDI plugin that celebrates the chaos and unpredictability of one of kids most favorite/hated place to play — the ball pit. Each hit between a ball and the pit walls, or between two balls will generate a different and customizable output.</p>
-    <video class="plugin-video" controls preload="metadata">
-        <source src="videos\BallPit_showcase.mp4" type="video/mp4">
-    </video>
-    <div class="download-row">
-        <a href="plugins/BallPit-Windows.vst3.zip" download class="download-btn">Download — Windows</a>
-        <a href="plugins/BallPit-Mac.vst3.zip"     download class="download-btn">Download — Mac</a>
+    <div class="proj-content">
+
+        <!-- HERO -->
+        <div class="proj-hero">
+            <div class="proj-hero-text">
+                <p class="tech-tags">C++ &nbsp;·&nbsp; JUCE &nbsp;·&nbsp; VST3 &nbsp;·&nbsp; MIDI</p>
+                <h2>BallPit</h2>
+                <p class="proj-hero-sub">A physics-based MIDI generator where bouncing balls trigger notes. Each collision with a wall or another ball fires a customizable MIDI event — controlled chaos by design.</p>
+                <a href="https://github.com/MayTiger877/BallPit" target="_blank" class="proj-github-btn">View on GitHub →</a>
+            </div>
+            <img src="images/BallPit.png" class="proj-hero-img">
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <!-- OVERVIEW -->
+        <div class="proj-section">
+            <h3 class="proj-section-title">Overview</h3>
+            <p>BallPit is a MIDI plugin inspired by the unpredictable, chaotic energy of a real ball pit. Balls bounce around a 2D pit and generate MIDI notes every time they collide with the pit walls or with each other. The scale, key, rhythm, and behavior of every ball is fully customizable — making it a generative composition tool as much as it is a performance instrument.</p>
+            <p>Built entirely in C++ using the JUCE framework, BallPit ships as a VST3 plugin with a CI/CD pipeline on GitHub Actions for automated builds on both Windows and Mac.</p>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <!-- SHOWCASE VIDEO -->
+        <div class="proj-section">
+            <h3 class="proj-section-title">Showcase</h3>
+            <video class="plugin-video" controls preload="metadata" style="width:100%;max-width:680px;border-radius:10px;margin-top:0.5rem;">
+                <source src="videos/BallPit_showcase.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <!-- SCREENSHOT -->
+        <div class="proj-section">
+            <h3 class="proj-section-title">Interface</h3>
+            <img src="https://github.com/MayTiger877/BallPit/raw/main/Screenshot_1.png" class="proj-spec-img" style="border-radius:8px;border:1px solid rgba(79,108,255,0.2);" onerror="this.style.display='none'">
+            <img src="images/BallPit.png" class="proj-spec-img" style="border-radius:8px;border:1px solid rgba(79,108,255,0.2);margin-top:0.5rem;" onerror="this.style.display='none'">
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <!-- FEATURES -->
+        <div class="proj-section">
+            <h3 class="proj-section-title">Features</h3>
+            <div class="proj-cards">
+                <div class="proj-card">
+                    <div class="proj-card-icon">🎵</div>
+                    <h4>Scale &amp; Key Control</h4>
+                    <p>Set the root note, key/scale, and note range. Notes are spread across the pit edges and triggered on collision.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">⚙️</div>
+                    <h4>Two Movement Modes</h4>
+                    <p>Chaos mode: freely set speed and direction per ball. Tempo mode: speed synced to DAW tempo on both X and Y axes independently.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">🎲</div>
+                    <h4>Probability &amp; Variation</h4>
+                    <p>Per-note probability controls the odds each note fires. Volume variation adds organic randomness to note velocity.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">🔁</div>
+                    <h4>Per-Ball Delay Tail</h4>
+                    <p>Each ball has its own delay section with repeats, feedback, timing, and note transposition — turning one collision into a rhythm.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">📐</div>
+                    <h4>Snap to Grid</h4>
+                    <p>Option to snap balls to a 1/8-interval grid on the pit, giving tighter rhythmic control over starting positions.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">🎛️</div>
+                    <h4>Quantization</h4>
+                    <p>Global quantization with adjustable size and percentage — dial in how strictly notes align to the grid.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <!-- PARAMETERS -->
+        <div class="proj-section">
+            <h3 class="proj-section-title">Parameter Reference</h3>
+
+            <h4 class="proj-sub-title">Edge</h4>
+            <div class="proj-metrics">
+                <div class="proj-metric"><div class="proj-metric-name">Phase</div><div class="proj-metric-desc">Starting point of the different notes on the edge.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Numerator</div><div class="proj-metric-desc">Number of note divisions spread on the edge.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Type</div><div class="proj-metric-desc">The order of chosen notes upon the edge.</div></div>
+            </div>
+
+            <h4 class="proj-sub-title" style="margin-top:1.5rem;">Scale</h4>
+            <div class="proj-metrics">
+                <div class="proj-metric"><div class="proj-metric-name">Key</div><div class="proj-metric-desc">The scale/mode used for note generation.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Range</div><div class="proj-metric-desc">Number of notes from the root that can be spread on the edge.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Root Note</div><div class="proj-metric-desc">Sets the base note from which the scale is built.</div></div>
+            </div>
+
+            <h4 class="proj-sub-title" style="margin-top:1.5rem;">Per-Ball Settings</h4>
+            <div class="proj-metrics">
+                <div class="proj-metric"><div class="proj-metric-name">Position</div><div class="proj-metric-desc">Starting X/Y coordinates of the ball on the pit.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Radius</div><div class="proj-metric-desc">Ball size — also subtly affects note volume output.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Speed/Dir</div><div class="proj-metric-desc">Speed and direction in Chaos mode.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">SpeedX/Y</div><div class="proj-metric-desc">Tempo-synced speed per axis in Tempo mode, with direction arrows.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Delay</div><div class="proj-metric-desc">Per-ball delay tail: repeats, feedback, timing, and note movement.</div></div>
+            </div>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <!-- TECH STACK -->
+        <div class="proj-section">
+            <h3 class="proj-section-title">Tech Stack</h3>
+            <div class="proj-tags-big">
+                <span class="proj-tag">C++</span>
+                <span class="proj-tag">JUCE</span>
+                <span class="proj-tag">VST3</span>
+                <span class="proj-tag">MIDI</span>
+                <span class="proj-tag">CMake</span>
+                <span class="proj-tag">GitHub Actions</span>
+                <span class="proj-tag">Physics Simulation</span>
+            </div>
+            <div class="download-row" style="margin-top:1.5rem;">
+                <a href="plugins/BallPit-Windows.vst3.zip" download class="download-btn">Download — Windows</a>
+                <a href="plugins/BallPit-Mac.vst3.zip" download class="download-btn">Download — Mac</a>
+            </div>
+        </div>
+
+        <div style="height:80px;"></div>
     </div>
 </section>
 
 <!-- ===================== PLUGIN: EXODUS DELAY ===================== -->
-<section id="plugin-exodus" class="plugin-page">
+<section id="plugin-exodus" class="plugin-page scrollable-page">
     <div class="back-btn" onclick="navigate('plugins')">← Back</div>
-    <h2>Exodus Delay</h2>
-    <p class="tech-tags">DSP &nbsp;·&nbsp; VST3</p>
-    <p>A Delay effect plugin that gives each delay repeat its own character. Every delay line instance can have a different mix level of modifiers &amp; effects.</p>
-    <img src="images\Exodus.png" class="item-bigimg">
-    <div class="download-row">
-        <a href="plugins/ExodusDelay-Windows.vst3.zip" download class="download-btn">Download — Windows</a>
-        <a href="plugins/ExodusDelay-Mac.vst3.zip"     download class="download-btn">Download — Mac</a>
+    <div class="proj-content">
+
+        <!-- HERO -->
+        <div class="proj-hero">
+            <div class="proj-hero-text">
+                <p class="tech-tags">C++ &nbsp;·&nbsp; JUCE &nbsp;·&nbsp; DSP &nbsp;·&nbsp; VST3</p>
+                <h2>Exodus Delay</h2>
+                <p class="proj-hero-sub">A delay plugin where every repeat has its own character. Each delay line instance runs its own independent chain of effects — Gain, Pan, Distortion, Phaser, and Reverb — making every echo unique.</p>
+                <a href="https://github.com/MayTiger877/Exodus_delay" target="_blank" class="proj-github-btn">View on GitHub →</a>
+            </div>
+            <img src="images/Exodus.png" class="proj-hero-img">
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <!-- OVERVIEW -->
+        <div class="proj-section">
+            <h3 class="proj-section-title">Overview</h3>
+            <p>Most delay plugins treat every repeat the same — the signal feeds back at a fixed level and decays uniformly. Exodus Delay breaks that model: each delay repeat is its own instance with its own FX chain. You can have the first repeat dry, the second distorted and panned left, the third filtered through a phaser, and the fourth drowned in reverb.</p>
+            <p>The result is a delay that evolves — rhythmically and texturally — across its repeats. Built in C++ with JUCE, targeting VST3 and AU formats with a CI/CD pipeline for automated cross-platform builds.</p>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <!-- SCREENSHOT -->
+        <div class="proj-section">
+            <h3 class="proj-section-title">Interface</h3>
+            <img src="https://github.com/MayTiger877/Exodus_delay/raw/main/Screenshot_1.png" class="proj-spec-img" style="border-radius:8px;border:1px solid rgba(79,108,255,0.2);" onerror="this.style.display='none'">
+            <img src="images/Exodus.png" class="proj-spec-img" style="border-radius:8px;border:1px solid rgba(79,108,255,0.2);margin-top:0.5rem;" onerror="this.style.display='none'">
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <!-- FEATURES -->
+        <div class="proj-section">
+            <h3 class="proj-section-title">Features</h3>
+            <div class="proj-cards">
+                <div class="proj-card">
+                    <div class="proj-card-icon">🔗</div>
+                    <h4>Per-Repeat FX Chain</h4>
+                    <p>Each delay line instance has its own independent effects chain — Gain, Pan, Distortion, Phaser, and Reverb — all fully customizable.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">🎚️</div>
+                    <h4>Gain &amp; Pan</h4>
+                    <p>Control the volume and stereo position of each individual repeat independently from the others.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">⚡</div>
+                    <h4>Distortion</h4>
+                    <p>Per-repeat waveshaping distortion — add grit and harmonic saturation to specific echoes while keeping others clean.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">🌀</div>
+                    <h4>Phaser</h4>
+                    <p>Phase modulation on individual delay lines for sweeping, swirling echoes with their own movement and character.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">🌊</div>
+                    <h4>Reverb</h4>
+                    <p>Apply reverb per delay repeat — send specific echoes into space while keeping others tight and dry.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">⏱️</div>
+                    <h4>General Delay Settings</h4>
+                    <p>Full control over global delay time, feedback, wet/dry mix, and sync to DAW tempo.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <!-- HOW IT WORKS -->
+        <div class="proj-section">
+            <h3 class="proj-section-title">How It Works</h3>
+            <p>Exodus routes audio through a sequencer of delay taps. Each tap reads from the delay buffer at its designated time offset and passes its output through its own DSP chain before being summed into the output. This means the plugin is not just a standard feedback delay — it is closer to a programmable multi-tap delay with per-tap signal processing.</p>
+            <div class="proj-pipeline">
+                <div class="proj-pipe-step">
+                    <div class="proj-pipe-label">Input</div>
+                    <div class="proj-pipe-desc">Dry Signal</div>
+                </div>
+                <div class="proj-pipe-arrow">→</div>
+                <div class="proj-pipe-step highlight-blue">
+                    <div class="proj-pipe-label">Delay Buffer</div>
+                    <div class="proj-pipe-desc">Write &amp; Read Taps</div>
+                </div>
+                <div class="proj-pipe-arrow">→</div>
+                <div class="proj-pipe-step highlight-green">
+                    <div class="proj-pipe-label">Per-Tap FX</div>
+                    <div class="proj-pipe-desc">Gain · Pan · Dist<br><small>Phaser · Reverb</small></div>
+                </div>
+                <div class="proj-pipe-arrow">→</div>
+                <div class="proj-pipe-step">
+                    <div class="proj-pipe-label">Output</div>
+                    <div class="proj-pipe-desc">Mixed Wet + Dry</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <!-- TECH STACK -->
+        <div class="proj-section">
+            <h3 class="proj-section-title">Tech Stack</h3>
+            <div class="proj-tags-big">
+                <span class="proj-tag">C++</span>
+                <span class="proj-tag">JUCE</span>
+                <span class="proj-tag">DSP</span>
+                <span class="proj-tag">VST3</span>
+                <span class="proj-tag">CMake</span>
+                <span class="proj-tag">GitHub Actions</span>
+                <span class="proj-tag">Multi-tap Delay</span>
+                <span class="proj-tag">Waveshaping</span>
+                <span class="proj-tag">Phaser</span>
+            </div>
+            <div class="download-row" style="margin-top:1.5rem;">
+                <a href="plugins/ExodusDelay-Windows.vst3.zip" download class="download-btn">Download — Windows</a>
+                <a href="plugins/ExodusDelay-Mac.vst3.zip" download class="download-btn">Download — Mac</a>
+            </div>
+        </div>
+
+        <div style="height:80px;"></div>
     </div>
 </section>
 
