@@ -6,7 +6,6 @@
 <title>Portfolio</title>
 <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
 <div id="start-screen">
@@ -31,7 +30,7 @@
     <div class="menu">
         <header>
             <!-- <h1>May Tiger</h1> -->
-            <a href="https://www.fontspace.com/category/dope"><img src="https://see.fontimg.com/api/rf5/wP29/M2MxYjI3NTI0NjIxNDY5MDliZTcyNTQ4OGZlM2U4ZGMudHRm/TWF5IFRpZ2Vy/orena.png?r=fs&h=71&w=1250&fg=CFD8FF&bg=0A0F2C&tb=1&s=57" alt="Dope fonts"></a>
+            <a href="https://www.fontspace.com/category/dope"><img src="https://see.fontimg.com/api/rf5/wP29/M2MxYjI3NTI0NjIxNDY5MDliZTcyNTQ4OGZlM2U4ZGMudHRm/TWF5IFRpZ2Vy/orena.png?r=fs&h=71&w=1250&fg=CFD8FF&bg=0A0F2C&tb=1&s=57" alt="May Tiger" class="header-title-img"></a>
         </header>
         <a id="btn-about">About</a>
         <a id="btn-projects">Projects</a>
@@ -42,148 +41,320 @@
 
 <!-- ===================== ABOUT ===================== -->
 <section id="about" class="about">
-    <div class="back-btn" onclick="navigate('home')">← Back</div>
+    <div class="back-btn" onclick="navigate('home')">&#8592; Back</div>
     <img src="images/myself.png" class="item-bigimg">
     <h2>About</h2>
-    <!-- <p>Software engineer with a strong foundation in C++, real-time systems, and problem-solving across different domains. I enjoy building things from the ground up—whether it's interactive tools, system-level components, or creative applications. While I have a particular interest in audio and DSP, I approach development more generally, focusing on performance, clean design, and intuitive user experiences. I like exploring ideas that sit between engineering and creativity, and turning them into working, tangible systems.</p> -->
-    <p>Software engineer and a music producer, with the passion of building cool and creative stuff. I enjoy working on ideas that sit somewhere between engineering and creativity, and turning them into something real. I have a solid background in C++, real-time systems, and problem solving across different areas. I like to solve complex and challenging problems, whether thats interactive tools, low-level systems, or more creative projects. With a big love for music, I'm deeply interested in audio programming and DSP, focusing on performance, clean design, and making things feel good to use.</p>
+    <p>Software engineer and a music producer, with the passion of building cool and creative stuff. I enjoy working on ideas that sit somewhere between engineering and creativity, and turning them into something real. I have a solid background in C++, real-time systems, and problem solving across different areas. I like to solve complex and challenging problems, whether thats interactive tools, low-level systems, or more creative projects. With a big love for music, I am deeply interested in audio programming and DSP, focusing on performance, clean design, and making things feel good to use.</p>
 </section>
 
 <!-- ===================== PROJECTS MENU ===================== -->
 <section id="projects" class="projects">
-    <div class="back-btn" onclick="navigate('home')">← Back</div>
+    <div class="back-btn" onclick="navigate('home')">&#8592; Back</div>
     <h2>Projects</h2>
     <div class="menu-list">
         <a class="menu-list-item" onclick="navigate('project-dereverb')">
-            <img src="images\AiProj_Thumb.png" class="item-img">
+            <img src="images/AiProj_Thumb.png" class="item-img">
             <div class="menu-list-text">
                 <h3>Deep Learning De-Reverberation Tool</h3>
-                <p>Python &nbsp;·&nbsp; PyTorch &nbsp;·&nbsp; DSP</p>
+                <p>Python &nbsp;&#183;&nbsp; PyTorch &nbsp;&#183;&nbsp; DSP</p>
             </div>
-            <span class="arrow">›</span>
+            <span class="arrow">&#8250;</span>
         </a>
     </div>
 </section>
 
 <!-- ===================== PROJECT: DEREVERB ===================== -->
-<section id="project-dereverb" class="project-page">
-    <div class="back-btn" onclick="navigate('projects')">← Back</div>
-    <h2>Deep Learning De-Reverberation Tool</h2>
-    <p class="tech-tags">Python &nbsp;·&nbsp; PyTorch &nbsp;·&nbsp; DSP</p>
-    <img src="images\AiProj_Thumb.png" class="item-bigimg">
-    <p>Neural network system for removing reverberation and enhancing speech clarity.</p>
+<section id="project-dereverb" class="project-page scrollable-page">
+    <div class="back-btn" onclick="navigate('projects')">&#8592; Back</div>
+    <div class="proj-content">
+
+        <div class="proj-hero">
+            <div class="proj-hero-text">
+                <p class="tech-tags">Python &nbsp;&#183;&nbsp; PyTorch &nbsp;&#183;&nbsp; DSP &nbsp;&#183;&nbsp; BSc Project</p>
+                <h2>Deep Learning<br>De-Reverberation Tool</h2>
+                <p class="proj-hero-sub">A neural audio enhancement system that removes reverberation and background noise from speech signals using a dual U-Net architecture trained end-to-end on spectrograms.</p>
+                <a href="https://github.com/MayTiger877/AIProject" target="_blank" class="proj-github-btn">View on GitHub &#8594;</a>
+            </div>
+            <img src="images/AiProj_Thumb.png" class="proj-hero-img">
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Overview</h3>
+            <p>When speech is recorded in real environments, two kinds of degradation pile up simultaneously: reverberation (acoustic reflections from walls and surfaces that smear and blur the signal) and background noise (ambient sound layered on top). Both destroy speech intelligibility and make downstream tasks like speech recognition or speaker identification fail.</p>
+            <p>This project tackles both problems in a single trained pipeline by combining two specialist neural networks, one dedicated to each artifact, and chaining them in the order that empirically works best.</p>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">My Contribution</h3>
+            <p>Built on top of the open-source Neural-Speech-Dereverberation codebase by Leon and Tobar. My work focused on:</p>
+            <div class="proj-cards">
+                <div class="proj-card">
+                    <div class="proj-card-icon">&#9881;</div>
+                    <h4>Pipeline and Data Handling</h4>
+                    <p>Redesigned the training orchestrator and data pipeline to support dual-model chaining, custom dataset loading, and SLURM-based HPC batch submission.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">&#129504;</div>
+                    <h4>Model Modifications</h4>
+                    <p>Modified individual functions within the LS-UNET (dereverberation) and standard U-Net (denoising) architectures to accept chained spectrogram inputs and share a common output format.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">&#128300;</div>
+                    <h4>Hyperparameter Tuning</h4>
+                    <p>Ran multiple rounds of hyperparameter search across learning rate, batch size, and model depth until results were satisfying both by MSE metric and by ear.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">&#128202;</div>
+                    <h4>Evaluation Suite</h4>
+                    <p>Integrated five objective speech quality metrics to quantitatively evaluate models at every stage of the pipeline across pre-training and fine-tuning.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Architecture</h3>
+            <p>The system runs two networks in sequence, operating on mel-spectrograms of the input signal. The frequency range is focused on 20 to 8300 Hz, the range relevant for speech intelligibility.</p>
+            <div class="proj-pipeline">
+                <div class="proj-pipe-step">
+                    <div class="proj-pipe-label">Input</div>
+                    <div class="proj-pipe-desc">Noisy + Reverberant Speech</div>
+                </div>
+                <div class="proj-pipe-arrow">&#8594;</div>
+                <div class="proj-pipe-step highlight-blue">
+                    <div class="proj-pipe-label">Stage 1</div>
+                    <div class="proj-pipe-desc">LS-UNET<br><small>Dereverberation</small></div>
+                </div>
+                <div class="proj-pipe-arrow">&#8594;</div>
+                <div class="proj-pipe-step highlight-green">
+                    <div class="proj-pipe-label">Stage 2</div>
+                    <div class="proj-pipe-desc">U-Net<br><small>Denoising</small></div>
+                </div>
+                <div class="proj-pipe-arrow">&#8594;</div>
+                <div class="proj-pipe-step">
+                    <div class="proj-pipe-label">Output</div>
+                    <div class="proj-pipe-desc">Clean Speech</div>
+                </div>
+            </div>
+            <p class="proj-note">Ordering matters: dereverberation before denoising consistently outperformed the reverse. Simple concatenation was used to combine the two models into the final architecture.</p>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Results</h3>
+
+            <h4 class="proj-sub-title">Stage 1 -- Dereverberation (LS-UNET)</h4>
+            <p>Pre-trained on reverberant speech to remove room reflections. The spectrograms show the model successfully tightening the smeared signal back toward the clean reference.</p>
+            <div class="proj-spec-row">
+                <div class="proj-spec-item">
+                    <div class="proj-spec-label">Original Signal</div>
+                    <img src="images/spec_original.png" class="proj-spec-img" onerror="this.style.display='none'">
+                </div>
+                <div class="proj-spec-item">
+                    <div class="proj-spec-label">Reverberant Input</div>
+                    <img src="images/spec_reverb.png" class="proj-spec-img" onerror="this.style.display='none'">
+                </div>
+                <div class="proj-spec-item highlight-result">
+                    <div class="proj-spec-label">Dereverberated Output</div>
+                    <img src="images/spec_dereverb.png" class="proj-spec-img" onerror="this.style.display='none'">
+                </div>
+            </div>
+
+            <h4 class="proj-sub-title" style="margin-top:2rem;">Stage 2 -- Denoising (U-Net)</h4>
+            <p>A second U-Net pre-trained separately to suppress background noise via spectrogram segmentation. Applied after dereverberation in the final combined model.</p>
+            <div class="proj-spec-row">
+                <div class="proj-spec-item">
+                    <div class="proj-spec-label">Noisy Input</div>
+                    <img src="images/spec_noisy.png" class="proj-spec-img" onerror="this.style.display='none'">
+                </div>
+                <div class="proj-spec-item highlight-result">
+                    <div class="proj-spec-label">Denoised Output</div>
+                    <img src="images/spec_denoised.png" class="proj-spec-img" onerror="this.style.display='none'">
+                </div>
+            </div>
+
+            <h4 class="proj-sub-title" style="margin-top:2rem;">Final Combined Model</h4>
+            <p>The two pre-trained models were concatenated and fine-tuned together on fully degraded (noisy and reverberant) speech. After hyperparameter tuning, the pipeline produces a significantly cleaner signal both objectively and perceptually.</p>
+            <div class="proj-spec-row">
+                <div class="proj-spec-item">
+                    <div class="proj-spec-label">Noisy + Reverberant Input</div>
+                    <img src="images/spec_combined_in.png" class="proj-spec-img" onerror="this.style.display='none'">
+                </div>
+                <div class="proj-spec-item highlight-result">
+                    <div class="proj-spec-label">Final Enhanced Output</div>
+                    <img src="images/spec_combined_out.png" class="proj-spec-img" onerror="this.style.display='none'">
+                </div>
+            </div>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Evaluation Metrics</h3>
+            <p>Five objective metrics were tracked throughout all stages to measure enhancement quality beyond just MSE loss:</p>
+            <div class="proj-metrics">
+                <div class="proj-metric">
+                    <div class="proj-metric-name">STOI</div>
+                    <div class="proj-metric-full">Short-Term Objective Intelligibility</div>
+                    <div class="proj-metric-desc">Measures how intelligible enhanced speech is to a human listener. Correlates well with subjective listening tests.</div>
+                </div>
+                <div class="proj-metric">
+                    <div class="proj-metric-name">CD</div>
+                    <div class="proj-metric-full">Cepstral Distance</div>
+                    <div class="proj-metric-desc">Distance between cepstral coefficients of clean and enhanced speech. Lower is better.</div>
+                </div>
+                <div class="proj-metric">
+                    <div class="proj-metric-name">LLR</div>
+                    <div class="proj-metric-full">Log-Likelihood Ratio</div>
+                    <div class="proj-metric-desc">Spectral distortion measure based on LPC analysis. Sensitive to spectral shape changes.</div>
+                </div>
+                <div class="proj-metric">
+                    <div class="proj-metric-name">fwSNRseg</div>
+                    <div class="proj-metric-full">Frequency-Weighted Segmental SNR</div>
+                    <div class="proj-metric-desc">SNR computed per segment and weighted by frequency importance to human hearing.</div>
+                </div>
+                <div class="proj-metric">
+                    <div class="proj-metric-name">SRMR</div>
+                    <div class="proj-metric-full">Speech-to-Reverberation Modulation Energy Ratio</div>
+                    <div class="proj-metric-desc">Directly measures reverberation level. Primary indicator of dereverberation quality.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Tech Stack</h3>
+            <div class="proj-tags-big">
+                <span class="proj-tag">Python</span>
+                <span class="proj-tag">PyTorch</span>
+                <span class="proj-tag">Librosa</span>
+                <span class="proj-tag">NumPy</span>
+                <span class="proj-tag">U-Net</span>
+                <span class="proj-tag">LS-UNET</span>
+                <span class="proj-tag">SLURM / HPC</span>
+                <span class="proj-tag">Mel Spectrogram</span>
+                <span class="proj-tag">DSP</span>
+            </div>
+            <a href="https://github.com/MayTiger877/AIProject" target="_blank" class="proj-github-btn" style="margin-top:1.5rem;display:inline-block;">View Full Repository &#8594;</a>
+        </div>
+
+        <div style="height:80px;"></div>
+    </div>
 </section>
 
 <!-- ===================== PLUGINS MENU ===================== -->
 <section id="plugins" class="plugins">
-    <div class="back-btn" onclick="navigate('home')">← Back</div>
+    <div class="back-btn" onclick="navigate('home')">&#8592; Back</div>
     <h2>Plugins</h2>
     <div class="menu-list">
         <a class="menu-list-item" onclick="navigate('plugin-ballpit')">
-            <img src="images\BallPit.png" class="item-img">
+            <img src="images/BallPit.png" class="item-img">
             <div class="menu-list-text">
                 <h3>BallPit</h3>
-                <p>JUCE &nbsp;·&nbsp; VST3</p>
+                <p>JUCE &nbsp;&#183;&nbsp; VST3</p>
             </div>
-            <span class="arrow">›</span>
+            <span class="arrow">&#8250;</span>
         </a>
         <a class="menu-list-item" onclick="navigate('plugin-exodus')">
-            <img src="images\Exodus.png" class="item-img">
+            <img src="images/Exodus.png" class="item-img">
             <div class="menu-list-text">
                 <h3>Exodus Delay</h3>
-                <p>DSP &nbsp;·&nbsp; VST3</p>
+                <p>DSP &nbsp;&#183;&nbsp; VST3</p>
             </div>
-            <span class="arrow">›</span>
+            <span class="arrow">&#8250;</span>
         </a>
     </div>
 </section>
 
 <!-- ===================== PLUGIN: BALLPIT ===================== -->
 <section id="plugin-ballpit" class="plugin-page scrollable-page">
-    <div class="back-btn" onclick="navigate('plugins')">← Back</div>
+    <div class="back-btn" onclick="navigate('plugins')">&#8592; Back</div>
     <div class="proj-content">
 
-        <!-- HERO -->
         <div class="proj-hero">
             <div class="proj-hero-text">
-                <p class="tech-tags">C++ &nbsp;·&nbsp; JUCE &nbsp;·&nbsp; VST3 &nbsp;·&nbsp; MIDI</p>
+                <p class="tech-tags">C++ &nbsp;&#183;&nbsp; JUCE &nbsp;&#183;&nbsp; VST3 &nbsp;&#183;&nbsp; MIDI</p>
                 <h2>BallPit</h2>
-                <p class="proj-hero-sub">A physics-based MIDI generator where bouncing balls trigger notes. Each collision with a wall or another ball fires a customizable MIDI event — controlled chaos by design.</p>
-                <a href="https://github.com/MayTiger877/BallPit" target="_blank" class="proj-github-btn">View on GitHub →</a>
+                <p class="proj-hero-sub">A physics-based MIDI generator where bouncing balls trigger notes. Each collision with a wall or another ball fires a customizable MIDI event, controlled chaos by design.</p>
+                <a href="https://github.com/MayTiger877/BallPit" target="_blank" class="proj-github-btn">View on GitHub &#8594;</a>
             </div>
             <img src="images/BallPit.png" class="proj-hero-img">
         </div>
 
         <div class="proj-divider"></div>
 
-        <!-- OVERVIEW -->
         <div class="proj-section">
             <h3 class="proj-section-title">Overview</h3>
-            <p>BallPit is a MIDI plugin inspired by the unpredictable, chaotic energy of a real ball pit. Balls bounce around a 2D pit and generate MIDI notes every time they collide with the pit walls or with each other. The scale, key, rhythm, and behavior of every ball is fully customizable — making it a generative composition tool as much as it is a performance instrument.</p>
+            <p>BallPit is a MIDI plugin inspired by the unpredictable, chaotic energy of a real ball pit. Balls bounce around a 2D pit and generate MIDI notes every time they collide with the pit walls or with each other. The scale, key, rhythm, and behavior of every ball is fully customizable, making it a generative composition tool as much as it is a performance instrument.</p>
             <p>Built entirely in C++ using the JUCE framework, BallPit ships as a VST3 plugin with a CI/CD pipeline on GitHub Actions for automated builds on both Windows and Mac.</p>
         </div>
 
         <div class="proj-divider"></div>
 
-        <!-- SHOWCASE VIDEO -->
         <div class="proj-section">
             <h3 class="proj-section-title">Showcase</h3>
-            <video class="plugin-video" controls preload="metadata" style="width:100%;max-width:680px;border-radius:10px;margin-top:0.5rem;">
+            <!-- <video class="plugin-video" controls preload="metadata" style="width:100%;max-width:680px;border-radius:10px;margin-top:0.5rem;">
+                <source src="videos/BallPit_showcase.mp4" type="video/mp4">
+            </video> -->
+             <video class="plugin-video" controls preload="metadata" playsinline style="width:100%;max-width:680px;border-radius:10px;margin-top:0.5rem;">
                 <source src="videos/BallPit_showcase.mp4" type="video/mp4">
             </video>
         </div>
 
         <div class="proj-divider"></div>
 
-        <!-- SCREENSHOT -->
         <div class="proj-section">
             <h3 class="proj-section-title">Interface</h3>
-            <img src="https://github.com/MayTiger877/BallPit/raw/main/Screenshot_1.png" class="proj-spec-img" style="border-radius:8px;border:1px solid rgba(79,108,255,0.2);" onerror="this.style.display='none'">
-            <img src="images/BallPit.png" class="proj-spec-img" style="border-radius:8px;border:1px solid rgba(79,108,255,0.2);margin-top:0.5rem;" onerror="this.style.display='none'">
+            <img src="https://github.com/MayTiger877/BallPit/raw/main/Screenshot_1.png" class="proj-spec-img" style="border-radius:8px;border:1px solid rgba(79,108,255,0.2);" onerror="this.src='images/BallPit.png'">
         </div>
 
         <div class="proj-divider"></div>
 
-        <!-- FEATURES -->
         <div class="proj-section">
             <h3 class="proj-section-title">Features</h3>
             <div class="proj-cards">
                 <div class="proj-card">
-                    <div class="proj-card-icon">🎵</div>
-                    <h4>Scale &amp; Key Control</h4>
+                    <div class="proj-card-icon">&#127925;</div>
+                    <h4>Scale and Key Control</h4>
                     <p>Set the root note, key/scale, and note range. Notes are spread across the pit edges and triggered on collision.</p>
                 </div>
                 <div class="proj-card">
-                    <div class="proj-card-icon">⚙️</div>
+                    <div class="proj-card-icon">&#9881;</div>
                     <h4>Two Movement Modes</h4>
                     <p>Chaos mode: freely set speed and direction per ball. Tempo mode: speed synced to DAW tempo on both X and Y axes independently.</p>
                 </div>
                 <div class="proj-card">
-                    <div class="proj-card-icon">🎲</div>
-                    <h4>Probability &amp; Variation</h4>
+                    <div class="proj-card-icon">&#127922;</div>
+                    <h4>Probability and Variation</h4>
                     <p>Per-note probability controls the odds each note fires. Volume variation adds organic randomness to note velocity.</p>
                 </div>
                 <div class="proj-card">
-                    <div class="proj-card-icon">🔁</div>
+                    <div class="proj-card-icon">&#128257;</div>
                     <h4>Per-Ball Delay Tail</h4>
-                    <p>Each ball has its own delay section with repeats, feedback, timing, and note transposition — turning one collision into a rhythm.</p>
+                    <p>Each ball has its own delay section with repeats, feedback, timing, and note transposition, turning one collision into a rhythm.</p>
                 </div>
                 <div class="proj-card">
-                    <div class="proj-card-icon">📐</div>
+                    <div class="proj-card-icon">&#128208;</div>
                     <h4>Snap to Grid</h4>
                     <p>Option to snap balls to a 1/8-interval grid on the pit, giving tighter rhythmic control over starting positions.</p>
                 </div>
                 <div class="proj-card">
-                    <div class="proj-card-icon">🎛️</div>
+                    <div class="proj-card-icon">&#127931;</div>
                     <h4>Quantization</h4>
-                    <p>Global quantization with adjustable size and percentage — dial in how strictly notes align to the grid.</p>
+                    <p>Global quantization with adjustable size and percentage. Dial in how strictly notes align to the grid.</p>
                 </div>
             </div>
         </div>
 
         <div class="proj-divider"></div>
 
-        <!-- PARAMETERS -->
         <div class="proj-section">
             <h3 class="proj-section-title">Parameter Reference</h3>
 
@@ -204,7 +375,7 @@
             <h4 class="proj-sub-title" style="margin-top:1.5rem;">Per-Ball Settings</h4>
             <div class="proj-metrics">
                 <div class="proj-metric"><div class="proj-metric-name">Position</div><div class="proj-metric-desc">Starting X/Y coordinates of the ball on the pit.</div></div>
-                <div class="proj-metric"><div class="proj-metric-name">Radius</div><div class="proj-metric-desc">Ball size — also subtly affects note volume output.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Radius</div><div class="proj-metric-desc">Ball size, also subtly affects note volume output.</div></div>
                 <div class="proj-metric"><div class="proj-metric-name">Speed/Dir</div><div class="proj-metric-desc">Speed and direction in Chaos mode.</div></div>
                 <div class="proj-metric"><div class="proj-metric-name">SpeedX/Y</div><div class="proj-metric-desc">Tempo-synced speed per axis in Tempo mode, with direction arrows.</div></div>
                 <div class="proj-metric"><div class="proj-metric-name">Delay</div><div class="proj-metric-desc">Per-ball delay tail: repeats, feedback, timing, and note movement.</div></div>
@@ -213,7 +384,6 @@
 
         <div class="proj-divider"></div>
 
-        <!-- TECH STACK -->
         <div class="proj-section">
             <h3 class="proj-section-title">Tech Stack</h3>
             <div class="proj-tags-big">
@@ -226,8 +396,8 @@
                 <span class="proj-tag">Physics Simulation</span>
             </div>
             <div class="download-row" style="margin-top:1.5rem;">
-                <a href="plugins/BallPit-Windows.vst3.zip" download class="download-btn">Download — Windows</a>
-                <a href="plugins/BallPit-Mac.vst3.zip" download class="download-btn">Download — Mac</a>
+                <a href="plugins/BallPit-Windows.vst3.zip" download class="download-btn">Download Windows</a>
+                <a href="plugins/BallPit-Mac.vst3.zip" download class="download-btn">Download Mac</a>
             </div>
         </div>
 
@@ -237,71 +407,66 @@
 
 <!-- ===================== PLUGIN: EXODUS DELAY ===================== -->
 <section id="plugin-exodus" class="plugin-page scrollable-page">
-    <div class="back-btn" onclick="navigate('plugins')">← Back</div>
+    <div class="back-btn" onclick="navigate('plugins')">&#8592; Back</div>
     <div class="proj-content">
 
-        <!-- HERO -->
         <div class="proj-hero">
             <div class="proj-hero-text">
-                <p class="tech-tags">C++ &nbsp;·&nbsp; JUCE &nbsp;·&nbsp; DSP &nbsp;·&nbsp; VST3</p>
+                <p class="tech-tags">C++ &nbsp;&#183;&nbsp; JUCE &nbsp;&#183;&nbsp; DSP &nbsp;&#183;&nbsp; VST3</p>
                 <h2>Exodus Delay</h2>
-                <p class="proj-hero-sub">A delay plugin where every repeat has its own character. Each delay line instance runs its own independent chain of effects — Gain, Pan, Distortion, Phaser, and Reverb — making every echo unique.</p>
-                <a href="https://github.com/MayTiger877/Exodus_delay" target="_blank" class="proj-github-btn">View on GitHub →</a>
+                <p class="proj-hero-sub">A delay plugin where every repeat has its own character. Each delay line instance runs its own independent chain of effects, Gain, Pan, Distortion, Phaser, and Reverb, making every echo unique.</p>
+                <a href="https://github.com/MayTiger877/Exodus_delay" target="_blank" class="proj-github-btn">View on GitHub &#8594;</a>
             </div>
             <img src="images/Exodus.png" class="proj-hero-img">
         </div>
 
         <div class="proj-divider"></div>
 
-        <!-- OVERVIEW -->
         <div class="proj-section">
             <h3 class="proj-section-title">Overview</h3>
-            <p>Most delay plugins treat every repeat the same — the signal feeds back at a fixed level and decays uniformly. Exodus Delay breaks that model: each delay repeat is its own instance with its own FX chain. You can have the first repeat dry, the second distorted and panned left, the third filtered through a phaser, and the fourth drowned in reverb.</p>
-            <p>The result is a delay that evolves — rhythmically and texturally — across its repeats. Built in C++ with JUCE, targeting VST3 and AU formats with a CI/CD pipeline for automated cross-platform builds.</p>
+            <p>Most delay plugins treat every repeat the same: the signal feeds back at a fixed level and decays uniformly. Exodus Delay breaks that model. Each delay repeat is its own instance with its own FX chain. You can have the first repeat dry, the second distorted and panned left, the third filtered through a phaser, and the fourth drowned in reverb.</p>
+            <p>The result is a delay that evolves, rhythmically and texturally, across its repeats. Built in C++ with JUCE, targeting VST3 and AU formats with a CI/CD pipeline for automated cross-platform builds.</p>
         </div>
 
         <div class="proj-divider"></div>
 
-        <!-- SCREENSHOT -->
         <div class="proj-section">
             <h3 class="proj-section-title">Interface</h3>
-            <img src="https://github.com/MayTiger877/Exodus_delay/raw/main/Screenshot_1.png" class="proj-spec-img" style="border-radius:8px;border:1px solid rgba(79,108,255,0.2);" onerror="this.style.display='none'">
-            <img src="images/Exodus.png" class="proj-spec-img" style="border-radius:8px;border:1px solid rgba(79,108,255,0.2);margin-top:0.5rem;" onerror="this.style.display='none'">
+            <img src="https://github.com/MayTiger877/Exodus_delay/raw/main/Screenshot_1.png" class="proj-spec-img" style="border-radius:8px;border:1px solid rgba(79,108,255,0.2);" onerror="this.src='images/Exodus.png'">
         </div>
 
         <div class="proj-divider"></div>
 
-        <!-- FEATURES -->
         <div class="proj-section">
             <h3 class="proj-section-title">Features</h3>
             <div class="proj-cards">
                 <div class="proj-card">
-                    <div class="proj-card-icon">🔗</div>
+                    <div class="proj-card-icon">&#128279;</div>
                     <h4>Per-Repeat FX Chain</h4>
-                    <p>Each delay line instance has its own independent effects chain — Gain, Pan, Distortion, Phaser, and Reverb — all fully customizable.</p>
+                    <p>Each delay line instance has its own independent effects chain: Gain, Pan, Distortion, Phaser, and Reverb, all fully customizable.</p>
                 </div>
                 <div class="proj-card">
-                    <div class="proj-card-icon">🎚️</div>
-                    <h4>Gain &amp; Pan</h4>
+                    <div class="proj-card-icon">&#127906;</div>
+                    <h4>Gain and Pan</h4>
                     <p>Control the volume and stereo position of each individual repeat independently from the others.</p>
                 </div>
                 <div class="proj-card">
-                    <div class="proj-card-icon">⚡</div>
+                    <div class="proj-card-icon">&#9889;</div>
                     <h4>Distortion</h4>
-                    <p>Per-repeat waveshaping distortion — add grit and harmonic saturation to specific echoes while keeping others clean.</p>
+                    <p>Per-repeat waveshaping distortion. Add grit and harmonic saturation to specific echoes while keeping others clean.</p>
                 </div>
                 <div class="proj-card">
-                    <div class="proj-card-icon">🌀</div>
+                    <div class="proj-card-icon">&#127744;</div>
                     <h4>Phaser</h4>
                     <p>Phase modulation on individual delay lines for sweeping, swirling echoes with their own movement and character.</p>
                 </div>
                 <div class="proj-card">
-                    <div class="proj-card-icon">🌊</div>
+                    <div class="proj-card-icon">&#127754;</div>
                     <h4>Reverb</h4>
-                    <p>Apply reverb per delay repeat — send specific echoes into space while keeping others tight and dry.</p>
+                    <p>Apply reverb per delay repeat. Send specific echoes into space while keeping others tight and dry.</p>
                 </div>
                 <div class="proj-card">
-                    <div class="proj-card-icon">⏱️</div>
+                    <div class="proj-card-icon">&#9201;</div>
                     <h4>General Delay Settings</h4>
                     <p>Full control over global delay time, feedback, wet/dry mix, and sync to DAW tempo.</p>
                 </div>
@@ -310,26 +475,25 @@
 
         <div class="proj-divider"></div>
 
-        <!-- HOW IT WORKS -->
         <div class="proj-section">
             <h3 class="proj-section-title">How It Works</h3>
-            <p>Exodus routes audio through a sequencer of delay taps. Each tap reads from the delay buffer at its designated time offset and passes its output through its own DSP chain before being summed into the output. This means the plugin is not just a standard feedback delay — it is closer to a programmable multi-tap delay with per-tap signal processing.</p>
+            <p>Exodus routes audio through a sequencer of delay taps. Each tap reads from the delay buffer at its designated time offset and passes its output through its own DSP chain before being summed into the output. This means the plugin is not just a standard feedback delay. It is closer to a programmable multi-tap delay with per-tap signal processing.</p>
             <div class="proj-pipeline">
                 <div class="proj-pipe-step">
                     <div class="proj-pipe-label">Input</div>
                     <div class="proj-pipe-desc">Dry Signal</div>
                 </div>
-                <div class="proj-pipe-arrow">→</div>
+                <div class="proj-pipe-arrow">&#8594;</div>
                 <div class="proj-pipe-step highlight-blue">
                     <div class="proj-pipe-label">Delay Buffer</div>
-                    <div class="proj-pipe-desc">Write &amp; Read Taps</div>
+                    <div class="proj-pipe-desc">Write and Read Taps</div>
                 </div>
-                <div class="proj-pipe-arrow">→</div>
+                <div class="proj-pipe-arrow">&#8594;</div>
                 <div class="proj-pipe-step highlight-green">
                     <div class="proj-pipe-label">Per-Tap FX</div>
                     <div class="proj-pipe-desc">Gain · Pan · Dist<br><small>Phaser · Reverb</small></div>
                 </div>
-                <div class="proj-pipe-arrow">→</div>
+                <div class="proj-pipe-arrow">&#8594;</div>
                 <div class="proj-pipe-step">
                     <div class="proj-pipe-label">Output</div>
                     <div class="proj-pipe-desc">Mixed Wet + Dry</div>
@@ -339,7 +503,6 @@
 
         <div class="proj-divider"></div>
 
-        <!-- TECH STACK -->
         <div class="proj-section">
             <h3 class="proj-section-title">Tech Stack</h3>
             <div class="proj-tags-big">
@@ -354,8 +517,8 @@
                 <span class="proj-tag">Phaser</span>
             </div>
             <div class="download-row" style="margin-top:1.5rem;">
-                <a href="plugins/ExodusDelay-Windows.vst3.zip" download class="download-btn">Download — Windows</a>
-                <a href="plugins/ExodusDelay-Mac.vst3.zip" download class="download-btn">Download — Mac</a>
+                <a href="plugins/ExodusDelay-Windows.vst3.zip" download class="download-btn">Download Windows</a>
+                <a href="plugins/ExodusDelay-Mac.vst3.zip" download class="download-btn">Download Mac</a>
             </div>
         </div>
 
@@ -365,18 +528,44 @@
 
 <!-- ===================== MUSIC ===================== -->
 <section id="music" class="music">
-    <div class="back-btn" onclick="navigate('home')">← Back</div>
+    <div class="back-btn" onclick="navigate('home')">&#8592; Back</div>
     <h2>Music</h2>
     <p>Making music is a long time passion of mine. I like to explore all that inspires me, regardless of boundaries like genres and styles.
         I have a lot of fun experimenting with sound design and production techniques, and I like to use my plugins in my music as well.
         Made an EP and another one is on the way!
     </p>
     <h4>Heres a sneak peek:</h4>
-    <audio id="sneakAudio" controls preload="auto">
-        <source src="sounds\Album_Sneak.wav" type="audio/wav">
-        <source src="sounds\Album_Sneak.wav" type="audio/x-wav">
-        Your browser does not support this audio format.
+
+    <audio id="sneakAudio" preload="auto">
+        <source src="sounds/Album_Sneak.wav" type="audio/wav">
+        <source src="sounds/Album_Sneak.wav" type="audio/x-wav">
     </audio>
+
+    <div class="ps2-player">
+        <div class="ps2-player-top">
+            <span class="ps2-player-label">ALBUM_SNEAK.WAV</span>
+            <span class="ps2-player-time">
+                <span id="player-current">0:00</span> / <span id="player-total">0:00</span>
+            </span>
+        </div>
+        <div class="ps2-scrubbar" id="player-scrubbar">
+            <div class="ps2-track">
+                <div class="ps2-fill" id="player-fill"></div>
+                <div class="ps2-head" id="player-head"></div>
+            </div>
+        </div>
+        <div class="ps2-controls">
+            <button class="ps2-btn-ctrl" id="player-rewind">&#171;</button>
+            <button class="ps2-btn-ctrl ps2-btn-play" id="player-play">&#9654;</button>
+            <button class="ps2-btn-ctrl" id="player-forward">&#187;</button>
+            <div class="ps2-vol">
+                <span class="ps2-vol-icon">&#9834;</span>
+                <input type="range" class="ps2-vol-slider" id="player-volume" min="0" max="1" step="0.01" value="0.8">
+            </div>
+        </div>
+        <div class="ps2-scanlines"></div>
+    </div>
+
     <p>Links:</p>
     <div class="music-links">
         <a href="https://open.spotify.com/artist/5udSlZfAN8HddZBbEHK4Il?si=rpyazRRiSm6aUcB9KPIsoA" target="_blank">
