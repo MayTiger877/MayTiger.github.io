@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music | May Tiger</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section id="music" class="music active">
+    <div class="back-btn" onclick="goTo('index.html')">&#8592; Back</div>
+    <div class="music-hero">
+        <h1>Music</h1>
+        <p>Producer &nbsp;&#183;&nbsp; Sound Designer &nbsp;&#183;&nbsp; Audio Programmer</p>
+        <h2>Music</h2>
+        <p>Making music is a long time passion of mine. I like to explore all that inspires me, regardless of boundaries like genres and styles.
+            I have a lot of fun experimenting with sound design and production techniques, and I like to use my plugins in my music as well.
+            Made an EP and another one is on the way!
+        </p>
+        <h4>Heres a sneak peek:</h4>
+        
+        <audio id="sneakAudio" preload="auto">
+            <source src="sounds/Album_Sneak.wav" type="audio/wav">
+            <source src="sounds/Album_Sneak.wav" type="audio/x-wav">
+        </audio>
+        
+        <div class="ps2-player">
+            <div class="ps2-player-top">
+                <span class="ps2-player-label">ALBUM_SNEAK.WAV</span>
+                <span class="ps2-player-time">
+                    <span id="player-current">0:00</span> / <span id="player-total">0:00</span>
+                </span>
+            </div>
+            <div class="ps2-scrubbar" id="player-scrubbar">
+                <div class="ps2-track">
+                    <div class="ps2-fill" id="player-fill"></div>
+                    <div class="ps2-head" id="player-head"></div>
+                </div>
+            </div>
+            <div class="ps2-controls">
+                <button class="ps2-btn-ctrl" id="player-rewind">&#171;</button>
+                <button class="ps2-btn-ctrl ps2-btn-play" id="player-play">&#9654;</button>
+                <button class="ps2-btn-ctrl" id="player-forward">&#187;</button>
+                <div class="ps2-vol">
+                    <span class="ps2-vol-icon">&#9834;</span>
+                    <input type="range" class="ps2-vol-slider" id="player-volume" min="0" max="1" step="0.01" value="0.5">
+                </div>
+            </div>
+            <div class="ps2-scanlines"></div>
+        </div>
+        
+    </div>
+        <p>Links:</p>
+    <div class="music-links">
+        <a href="https://open.spotify.com/artist/5udSlZfAN8HddZBbEHK4Il?si=rpyazRRiSm6aUcB9KPIsoA" target="_blank">
+            <img src="images/Spotify_Logo.png" class="music-icon_spotify">
+        </a>
+        <a href="https://soundcloud.com/dogomen11?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">
+            <img src="images/SoundCloud_Logo.png" class="music-icon_soundcloud">
+        </a>
+    </div>
+</section>
+
+<script src="scripts.js"></script>
+</body>
+</html>

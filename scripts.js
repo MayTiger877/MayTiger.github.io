@@ -1,3 +1,36 @@
+// ---------- NAVIGATION ----------
+// Simple page navigation - replaces the old section-switching system
+function goTo(url)
+{
+    playSound();
+    // Small delay so the nav sound plays before the page changes
+    setTimeout(() => { window.location.href = url; }, 120);
+}
+
+// ---------- SOUND ----------
+function playSound()
+{
+    const s = document.getElementById('navSound');
+    if (s)
+    {
+        s.currentTime = 0;
+        s.volume = 0.4;
+        s.play().catch(() => {});
+    }
+}
+
+// ---------- VIDEO / BGMUSIC SYNC ----------
+function setupVideoAudioSync()
+{
+    const video   = document.querySelector('.plugin-video');
+    const bgMusic = document.getElementById('bgMusic');
+    if (!video || !bgMusic) return;
+
+    video.addEventListener('play',  () => bgMusic.pause());
+    video.addEventListener('pause', () => bgMusic.play().catch(() => {}));
+    video.addEventListener('ended', () => bgMusic.play().catch(() => {}));
+}
+
 // ---------- PS2 AUDIO PLAYER ----------
 function setupPlayer()
 {
@@ -28,12 +61,12 @@ function setupPlayer()
         if (audio.paused)
         {
             audio.play().catch(() => {});
-            playBtn.textContent = '⏸';
+            playBtn.textContent = '\u23F8';
         }
         else
         {
             audio.pause();
-            playBtn.textContent = '▶';
+            playBtn.textContent = '\u25B6';
         }
     });
 
@@ -68,7 +101,7 @@ function setupPlayer()
 
     audio.addEventListener('ended', () =>
     {
-        playBtn.textContent = '▶';
+        playBtn.textContent = '\u25B6';
         fill.style.width = '0%';
         head.style.left  = '0%';
         current.textContent = '0:00';
@@ -82,103 +115,10 @@ function setupPlayer()
         audio.currentTime = pct * audio.duration;
     });
 }
-const menuItems = ['about', 'projects', 'plugins', 'music'];
-let menuIndex = 0;
-let started = false;
-
-// ---------- SOUND ----------
-function playSound()
-{
-    const s = document.getElementById('navSound');
-    if (s)
-    {
-        s.currentTime = 0;
-        s.volume = 0.4;
-        s.play().catch(() => {});
-    }
-}
-
-// ---------- NAVIGATION ----------
-function showSection(id)
-{
-    document.querySelectorAll('section').forEach(sec =>
-        sec.classList.remove('active')
-    );
-    document.getElementById(id).classList.add('active');
-    window.scrollTo(0, 0);
-}
-
-function navigate(id)
-{
-    // Pause music preview when leaving the music page
-    const sneak = document.getElementById('sneakAudio');
-    if (sneak) sneak.pause();
-
-    playSound();
-    showSection(id);
-}
-
-// ---------- MENU UI ----------
-function updateMenu()
-{
-    menuItems.forEach((id, i) =>
-    {
-        const el = document.getElementById('btn-' + id);
-        if (!el) return;
-        if (i === menuIndex)
-            el.classList.add('active');
-        else
-            el.classList.remove('active');
-    });
-}
-
-// ---------- CLICK HANDLERS ----------
-function setupClicks()
-{
-    document.getElementById('btn-about').addEventListener('click',    () => navigate('about'));
-    document.getElementById('btn-projects').addEventListener('click', () => navigate('projects'));
-    document.getElementById('btn-plugins').addEventListener('click',  () => navigate('plugins'));
-    document.getElementById('btn-music').addEventListener('click',    () => navigate('music'));
-}
-
-// ---------- VIDEO / BGMUSIC SYNC ----------
-function setupVideoAudioSync()
-{
-    const video   = document.querySelector('.plugin-video');
-    const bgMusic = document.getElementById('bgMusic');
-    if (!video || !bgMusic) return;
-
-    video.addEventListener('play',  () => bgMusic.pause());
-    video.addEventListener('pause', () => bgMusic.play().catch(() => {}));
-    video.addEventListener('ended', () => bgMusic.play().catch(() => {}));
-}
-
-// ---------- KEYBOARD ----------
-document.addEventListener('keydown', (e) =>
-{
-    if (!started) return;
-    const isMenu = document.getElementById('home').classList.contains('active');
-    if (!isMenu) return;
-
-    if (e.key === 'ArrowDown')
-    {
-        menuIndex = (menuIndex + 1) % menuItems.length;
-        updateMenu();
-        playSound();
-    }
-    if (e.key === 'ArrowUp')
-    {
-        menuIndex = (menuIndex - 1 + menuItems.length) % menuItems.length;
-        updateMenu();
-        playSound();
-    }
-    if (e.key === 'Enter')
-    {
-        navigate(menuItems[menuIndex]);
-    }
-});
 
 // ---------- LOADER ----------
+let started = false;
+
 document.addEventListener('DOMContentLoaded', () =>
 {
     const startScreen = document.getElementById('start-screen');
@@ -187,14 +127,38 @@ document.addEventListener('DOMContentLoaded', () =>
     const bgMusic     = document.getElementById('bgMusic');
     const progress    = document.querySelector('.progress-fill');
 
-    setupClicks();
-    updateMenu();
     setupVideoAudioSync();
     setupPlayer();
 
+    // Only show start screen on the home page
+    const isHome = window.location.pathname.endsWith('intro.html')
+                || window.location.pathname === '/'
+                || window.location.pathname.endsWith('/');
+
+    if (!isHome)
+    {
+        // On inner pages: skip start screen, just start bg music immediately
+        if (startScreen) startScreen.style.display = 'none';
+        if (loader)      loader.style.display = 'none';
+
+        // Resume bg music on first click (browser autoplay policy)
+        document.addEventListener('click', () =>
+        {
+            if (bgMusic && bgMusic.paused)
+            {
+                bgMusic.volume = 0.4;
+                bgMusic.play().catch(() => {});
+            }
+        }, { once: true });
+
+        return;
+    }
+
+    // Home page: show start screen and loader as before
     function startExperience()
     {
         if (started) return;
+        
         started = true;
 
         startScreen.style.display = 'none';

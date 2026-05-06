@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De-Reverberation Tool | May Tiger</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+<section id="project-dereverb" class="project-page scrollable-page active">
+    <div class="back-btn" onclick="goTo('projects.html')">&#8592; Back</div>
+    <div class="proj-content">
+
+        <div class="proj-hero">
+            <div class="proj-hero-text">
+                <p class="tech-tags">Python &nbsp;&#183;&nbsp; PyTorch &nbsp;&#183;&nbsp; DSP &nbsp;&#183;&nbsp; BSc Project</p>
+                <h2>Deep Learning<br>De-Reverberation Tool</h2>
+                <p class="proj-hero-sub">A neural audio enhancement system that removes reverberation and background noise from speech signals using a dual U-Net architecture trained end-to-end on spectrograms.</p>
+                <a href="https://github.com/MayTiger877/AIProject" target="_blank" class="proj-github-btn">View on GitHub &#8594;</a>
+            </div>
+            <img src="images/AiProj_Thumb.png" class="proj-hero-img">
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Overview</h3>
+            <p>When speech is recorded in real environments, two kinds of degradation pile up simultaneously: reverberation (acoustic reflections from walls and surfaces that smear and blur the signal) and background noise (ambient sound layered on top). Both destroy speech intelligibility and make downstream tasks like speech recognition or speaker identification fail.</p>
+            <p>This project tackles both problems in a single trained pipeline by combining two specialist neural networks, one dedicated to each artifact, and chaining them in the order that empirically works best.</p>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">My Contribution</h3>
+            <p>Built on top of the open-source Neural-Speech-Dereverberation codebase by Leon and Tobar. My work focused on:</p>
+            <div class="proj-cards">
+                <div class="proj-card">
+                    <div class="proj-card-icon">&#9881;</div>
+                    <h4>Pipeline and Data Handling</h4>
+                    <p>Redesigned the training orchestrator and data pipeline to support dual-model chaining, custom dataset loading, and SLURM-based HPC batch submission.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">&#129504;</div>
+                    <h4>Model Modifications</h4>
+                    <p>Modified individual functions within the LS-UNET (dereverberation) and standard U-Net (denoising) architectures to accept chained spectrogram inputs and share a common output format.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">&#128300;</div>
+                    <h4>Hyperparameter Tuning</h4>
+                    <p>Ran multiple rounds of hyperparameter search across learning rate, batch size, and model depth until results were satisfying both by MSE metric and by ear.</p>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-card-icon">&#128202;</div>
+                    <h4>Evaluation Suite</h4>
+                    <p>Integrated five objective speech quality metrics to quantitatively evaluate models at every stage of the pipeline across pre-training and fine-tuning.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Architecture</h3>
+            <p>The system runs two networks in sequence, operating on mel-spectrograms of the input signal. The frequency range is focused on 20 to 8300 Hz, the range relevant for speech intelligibility.</p>
+            <div class="proj-pipeline">
+                <div class="proj-pipe-step">
+                    <div class="proj-pipe-label">Input</div>
+                    <div class="proj-pipe-desc">Noisy + Reverberant Speech</div>
+                </div>
+                <div class="proj-pipe-arrow">&#8594;</div>
+                <div class="proj-pipe-step highlight-blue">
+                    <div class="proj-pipe-label">Stage 1</div>
+                    <div class="proj-pipe-desc">LS-UNET<br><small>Dereverberation</small></div>
+                </div>
+                <div class="proj-pipe-arrow">&#8594;</div>
+                <div class="proj-pipe-step highlight-green">
+                    <div class="proj-pipe-label">Stage 2</div>
+                    <div class="proj-pipe-desc">U-Net<br><small>Denoising</small></div>
+                </div>
+                <div class="proj-pipe-arrow">&#8594;</div>
+                <div class="proj-pipe-step">
+                    <div class="proj-pipe-label">Output</div>
+                    <div class="proj-pipe-desc">Clean Speech</div>
+                </div>
+            </div>
+            <p class="proj-note">Ordering matters: dereverberation before denoising consistently outperformed the reverse. Simple concatenation was used to combine the two models into the final architecture.</p>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Results</h3>
+            <h4 class="proj-sub-title">Stage 1 -- Dereverberation (LS-UNET)</h4>
+            <p>Pre-trained on reverberant speech to remove room reflections. The spectrograms show the model successfully tightening the smeared signal back toward the clean reference.</p>
+            <div class="proj-spec-row">
+                <div class="proj-spec-item">
+                    <div class="proj-spec-label">Original Signal</div>
+                    <img src="images/spec_original.png" class="proj-spec-img" onerror="this.style.display='none'">
+                </div>
+                <div class="proj-spec-item">
+                    <div class="proj-spec-label">Reverberant Input</div>
+                    <img src="images/spec_reverb.png" class="proj-spec-img" onerror="this.style.display='none'">
+                </div>
+                <div class="proj-spec-item highlight-result">
+                    <div class="proj-spec-label">Dereverberated Output</div>
+                    <img src="images/spec_dereverb.png" class="proj-spec-img" onerror="this.style.display='none'">
+                </div>
+            </div>
+            <h4 class="proj-sub-title" style="margin-top:2rem;">Stage 2 -- Denoising (U-Net)</h4>
+            <p>A second U-Net pre-trained separately to suppress background noise via spectrogram segmentation. Applied after dereverberation in the final combined model.</p>
+            <div class="proj-spec-row">
+                <div class="proj-spec-item">
+                    <div class="proj-spec-label">Noisy Input</div>
+                    <img src="images/spec_noisy.png" class="proj-spec-img" onerror="this.style.display='none'">
+                </div>
+                <div class="proj-spec-item highlight-result">
+                    <div class="proj-spec-label">Denoised Output</div>
+                    <img src="images/spec_denoised.png" class="proj-spec-img" onerror="this.style.display='none'">
+                </div>
+            </div>
+            <h4 class="proj-sub-title" style="margin-top:2rem;">Final Combined Model</h4>
+            <p>The two pre-trained models were concatenated and fine-tuned together on fully degraded speech. After hyperparameter tuning, the pipeline produces a significantly cleaner signal both objectively and perceptually.</p>
+            <div class="proj-spec-row">
+                <div class="proj-spec-item">
+                    <div class="proj-spec-label">Noisy + Reverberant Input</div>
+                    <img src="images/spec_combined_in.png" class="proj-spec-img" onerror="this.style.display='none'">
+                </div>
+                <div class="proj-spec-item highlight-result">
+                    <div class="proj-spec-label">Final Enhanced Output</div>
+                    <img src="images/spec_combined_out.png" class="proj-spec-img" onerror="this.style.display='none'">
+                </div>
+            </div>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Evaluation Metrics</h3>
+            <p>Five objective metrics were tracked throughout all stages to measure enhancement quality beyond just MSE loss:</p>
+            <div class="proj-metrics">
+                <div class="proj-metric"><div class="proj-metric-name">STOI</div><div class="proj-metric-full">Short-Term Objective Intelligibility</div><div class="proj-metric-desc">Measures how intelligible enhanced speech is to a human listener. Correlates well with subjective listening tests.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">CD</div><div class="proj-metric-full">Cepstral Distance</div><div class="proj-metric-desc">Distance between cepstral coefficients of clean and enhanced speech. Lower is better.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">LLR</div><div class="proj-metric-full">Log-Likelihood Ratio</div><div class="proj-metric-desc">Spectral distortion measure based on LPC analysis. Sensitive to spectral shape changes.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">fwSNRseg</div><div class="proj-metric-full">Frequency-Weighted Segmental SNR</div><div class="proj-metric-desc">SNR computed per segment and weighted by frequency importance to human hearing.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">SRMR</div><div class="proj-metric-full">Speech-to-Reverberation Modulation Energy Ratio</div><div class="proj-metric-desc">Directly measures reverberation level. Primary indicator of dereverberation quality.</div></div>
+            </div>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Tech Stack</h3>
+            <div class="proj-tags-big">
+                <span class="proj-tag">Python</span><span class="proj-tag">PyTorch</span><span class="proj-tag">Librosa</span>
+                <span class="proj-tag">NumPy</span><span class="proj-tag">U-Net</span><span class="proj-tag">LS-UNET</span>
+                <span class="proj-tag">SLURM / HPC</span><span class="proj-tag">Mel Spectrogram</span><span class="proj-tag">DSP</span>
+            </div>
+            <a href="https://github.com/MayTiger877/AIProject" target="_blank" class="proj-github-btn" style="margin-top:1.5rem;display:inline-block;">View Full Repository &#8594;</a>
+        </div>
+
+        <div style="height:80px;"></div>
+    </div>
+</section>
+
+<script src="scripts.js"></script>
+</body>
+</html>

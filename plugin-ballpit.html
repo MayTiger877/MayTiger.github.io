@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BallPit | May Tiger</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+<section id="plugin-ballpit" class="plugin-page scrollable-page active">
+    <div class="back-btn" onclick="goTo('plugins.html')">&#8592; Back</div>
+    <div class="proj-content">
+
+        <div class="proj-hero">
+            <div class="proj-hero-text">
+                <p class="tech-tags">C++ &nbsp;&#183;&nbsp; JUCE &nbsp;&#183;&nbsp; VST3 &nbsp;&#183;&nbsp; MIDI</p>
+                <h2>BallPit</h2>
+                <p class="proj-hero-sub">A physics-based MIDI generator where bouncing balls trigger notes. Each collision with a wall or another ball fires a customizable MIDI event, controlled chaos by design.</p>
+                <a href="https://github.com/MayTiger877/BallPit" target="_blank" class="proj-github-btn">View on GitHub &#8594;</a>
+            </div>
+            <img src="images/BallPit.png" class="proj-hero-img">
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Overview</h3>
+            <p>BallPit is a MIDI plugin inspired by the unpredictable, chaotic energy of a real ball pit. Balls bounce around a 2D pit and generate MIDI notes every time they collide with the pit walls or with each other. The scale, key, rhythm, and behavior of every ball is fully customizable, making it a generative composition tool as much as it is a performance instrument.</p>
+            <p>Built entirely in C++ using the JUCE framework, BallPit ships as a VST3 plugin with a CI/CD pipeline on GitHub Actions for automated builds on both Windows and Mac.</p>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Showcase</h3>
+            <video class="plugin-video" controls preload="metadata" playsinline style="width:100%;max-width:680px;border-radius:10px;margin-top:0.5rem;">
+                <source src="videos/BallPit_showcase.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Interface</h3>
+            <img src="https://github.com/MayTiger877/BallPit/raw/main/Screenshot_1.png" class="proj-spec-img" style="border-radius:8px;border:1px solid rgba(79,108,255,0.2);" onerror="this.src='images/BallPit.png'">
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Features</h3>
+            <div class="proj-cards">
+                <div class="proj-card"><div class="proj-card-icon">&#127925;</div><h4>Scale and Key Control</h4><p>Set the root note, key/scale, and note range. Notes are spread across the pit edges and triggered on collision.</p></div>
+                <div class="proj-card"><div class="proj-card-icon">&#9881;</div><h4>Two Movement Modes</h4><p>Chaos mode: freely set speed and direction per ball. Tempo mode: speed synced to DAW tempo on both X and Y axes independently.</p></div>
+                <div class="proj-card"><div class="proj-card-icon">&#127922;</div><h4>Probability and Variation</h4><p>Per-note probability controls the odds each note fires. Volume variation adds organic randomness to note velocity.</p></div>
+                <div class="proj-card"><div class="proj-card-icon">&#128257;</div><h4>Per-Ball Delay Tail</h4><p>Each ball has its own delay section with repeats, feedback, timing, and note transposition, turning one collision into a rhythm.</p></div>
+                <div class="proj-card"><div class="proj-card-icon">&#128208;</div><h4>Snap to Grid</h4><p>Option to snap balls to a 1/8-interval grid on the pit, giving tighter rhythmic control over starting positions.</p></div>
+                <div class="proj-card"><div class="proj-card-icon">&#127931;</div><h4>Quantization</h4><p>Global quantization with adjustable size and percentage. Dial in how strictly notes align to the grid.</p></div>
+            </div>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Parameter Reference</h3>
+            <h4 class="proj-sub-title">Edge</h4>
+            <div class="proj-metrics">
+                <div class="proj-metric"><div class="proj-metric-name">Phase</div><div class="proj-metric-desc">Starting point of the different notes on the edge.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Numerator</div><div class="proj-metric-desc">Number of note divisions spread on the edge.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Type</div><div class="proj-metric-desc">The order of chosen notes upon the edge.</div></div>
+            </div>
+            <h4 class="proj-sub-title" style="margin-top:1.5rem;">Scale</h4>
+            <div class="proj-metrics">
+                <div class="proj-metric"><div class="proj-metric-name">Key</div><div class="proj-metric-desc">The scale/mode used for note generation.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Range</div><div class="proj-metric-desc">Number of notes from the root that can be spread on the edge.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Root Note</div><div class="proj-metric-desc">Sets the base note from which the scale is built.</div></div>
+            </div>
+            <h4 class="proj-sub-title" style="margin-top:1.5rem;">Per-Ball Settings</h4>
+            <div class="proj-metrics">
+                <div class="proj-metric"><div class="proj-metric-name">Position</div><div class="proj-metric-desc">Starting X/Y coordinates of the ball on the pit.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Radius</div><div class="proj-metric-desc">Ball size, also subtly affects note volume output.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Speed/Dir</div><div class="proj-metric-desc">Speed and direction in Chaos mode.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">SpeedX/Y</div><div class="proj-metric-desc">Tempo-synced speed per axis in Tempo mode, with direction arrows.</div></div>
+                <div class="proj-metric"><div class="proj-metric-name">Delay</div><div class="proj-metric-desc">Per-ball delay tail: repeats, feedback, timing, and note movement.</div></div>
+            </div>
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Tech Stack</h3>
+            <div class="proj-tags-big">
+                <span class="proj-tag">C++</span><span class="proj-tag">JUCE</span><span class="proj-tag">VST3</span>
+                <span class="proj-tag">MIDI</span><span class="proj-tag">CMake</span><span class="proj-tag">GitHub Actions</span>
+                <span class="proj-tag">Physics Simulation</span>
+            </div>
+            <div class="download-row" style="margin-top:1.5rem;">
+                <a href="plugins/BallPit-Windows.vst3.zip" download class="download-btn">Download Windows</a>
+                <a href="plugins/BallPit-Mac.vst3.zip" download class="download-btn">Download Mac</a>
+            </div>
+        </div>
+
+        <div style="height:80px;"></div>
+    </div>
+</section>
+
+<script src="scripts.js"></script>
+</body>
+</html>
