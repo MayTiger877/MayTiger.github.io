@@ -33,8 +33,8 @@ header {
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    justify-content: center;
-
+    /* justify-content: center; */
+    margin-top: 20%;
 }
 
 .menu a {
@@ -77,6 +77,9 @@ header {
     color: #8aa0ff;
     text-decoration: none;
 }
+
+.download-btn { display: inline-block; padding: 8px 18px; border: 1px solid rgba(79,108,255,0.5); border-radius: 8px; color: #8aa0ff; text-decoration: none; font-size: 0.8rem; letter-spacing: 0.05em; transition: 0.2s; }
+.download-btn:hover { background: rgba(79,108,255,0.15); border-color: #8aa0ff; color: #fff; }
 
 /* Back button */
 .back-btn {
@@ -565,12 +568,12 @@ header {
 .proj-sub-title { font-size: 0.85rem; color: #8affc1; letter-spacing: 0.06em; margin: 1.4rem 0 0.6rem; font-weight: normal; text-transform: uppercase; }
 .proj-note { font-size: 0.78rem !important; color: #4a6a99 !important; font-style: italic; margin-top: 0.6rem !important; }
 
-.proj-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1rem; margin-top: 1rem; }
-.proj-card { background: rgba(0,0,50,0.4); border: 1px solid rgba(79,108,255,0.2); border-radius: 10px; padding: 1.1rem; transition: border-color 0.2s; }
+.proj-cards { display: grid; grid-template-columns: repeat(3, minmax(190px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.proj-card { background: rgba(0,0,50,0.4); border: 1px solid rgba(79,108,255,0.2); border-radius: 15px; padding: 0.8rem; transition: border-color 0.2s; }
 .proj-card:hover { border-color: rgba(79,108,255,0.5); }
-.proj-card-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
-.proj-card h4 { font-size: 0.8rem; color: #cfd8ff; margin-bottom: 0.4rem; font-weight: 600; }
-.proj-card p { font-size: 0.75rem !important; color: #4a6a99 !important; line-height: 1.6; margin: 0 !important; }
+.proj-card-icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
+.proj-card h4 { font-size: 1rem; color: #cfd8ff; margin-bottom: 0.4rem; font-weight: 600; }
+.proj-card p { font-size: 0.75rem !important; color: #6e9ce2 !important; line-height: 1.6; margin: 0 !important; }
 
 .proj-pipeline { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.2rem 0; }
 .proj-pipe-step { background: rgba(0,0,50,0.5); border: 1px solid rgba(79,108,255,0.2); border-radius: 8px; padding: 0.7rem 1rem; text-align: center; min-width: 100px; }

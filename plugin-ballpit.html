@@ -8,6 +8,9 @@
 </head>
 <body>
 
+<audio id="bootSound" src="sounds/Load.wav" preload="auto"></audio>
+<audio id="bgMusic"   src="sounds/BG.wav"   loop preload="auto"></audio>
+<audio id="navSound"  src="sounds/nav.wav"  preload="auto"></audio>
 
 <section id="plugin-ballpit" class="plugin-page scrollable-page active">
     <div class="back-btn" onclick="goTo('plugins.html')">&#8592; Back</div>
@@ -17,18 +20,12 @@
             <div class="proj-hero-text">
                 <p class="tech-tags">C++ &nbsp;&#183;&nbsp; JUCE &nbsp;&#183;&nbsp; VST3 &nbsp;&#183;&nbsp; MIDI</p>
                 <h2>BallPit</h2>
-                <p class="proj-hero-sub">A physics-based MIDI generator where bouncing balls trigger notes. Each collision with a wall or another ball fires a customizable MIDI event, controlled chaos by design.</p>
-                <a href="https://github.com/MayTiger877/BallPit" target="_blank" class="proj-github-btn">View on GitHub &#8594;</a>
             </div>
-            <img src="images/BallPit.png" class="proj-hero-img">
         </div>
 
-        <div class="proj-divider"></div>
-
         <div class="proj-section">
-            <h3 class="proj-section-title">Overview</h3>
             <p>BallPit is a MIDI plugin inspired by the unpredictable, chaotic energy of a real ball pit. Balls bounce around a 2D pit and generate MIDI notes every time they collide with the pit walls or with each other. The scale, key, rhythm, and behavior of every ball is fully customizable, making it a generative composition tool as much as it is a performance instrument.</p>
-            <p>Built entirely in C++ using the JUCE framework, BallPit ships as a VST3 plugin with a CI/CD pipeline on GitHub Actions for automated builds on both Windows and Mac.</p>
+            <p>Built entirely in C++ using the JUCE framework, BallPit ships as a VST3 plugin with a CI/CD pipeline on GitHub Actions for automated validation and builds on both Windows and Mac. Design using both Figma and JUCE drawing tools, optimized for performance and usability.</p>
         </div>
 
         <div class="proj-divider"></div>
@@ -63,7 +60,7 @@
 
         <div class="proj-divider"></div>
 
-        <div class="proj-section">
+        <!-- <div class="proj-section">
             <h3 class="proj-section-title">Parameter Reference</h3>
             <h4 class="proj-sub-title">Edge</h4>
             <div class="proj-metrics">
@@ -85,20 +82,21 @@
                 <div class="proj-metric"><div class="proj-metric-name">SpeedX/Y</div><div class="proj-metric-desc">Tempo-synced speed per axis in Tempo mode, with direction arrows.</div></div>
                 <div class="proj-metric"><div class="proj-metric-name">Delay</div><div class="proj-metric-desc">Per-ball delay tail: repeats, feedback, timing, and note movement.</div></div>
             </div>
-        </div>
+        </div> -->
 
-        <div class="proj-divider"></div>
 
         <div class="proj-section">
             <h3 class="proj-section-title">Tech Stack</h3>
             <div class="proj-tags-big">
-                <span class="proj-tag">C++</span><span class="proj-tag">JUCE</span><span class="proj-tag">VST3</span>
+                <span class="proj-tag">C++</span><span class="proj-tag">JUCE</span><span class="proj-tag">Figma</span>
                 <span class="proj-tag">MIDI</span><span class="proj-tag">CMake</span><span class="proj-tag">GitHub Actions</span>
                 <span class="proj-tag">Physics Simulation</span>
             </div>
+            <!-- <h3 class="proj-section-title">------------------------------------------</h3> -->
             <div class="download-row" style="margin-top:1.5rem;">
                 <a href="plugins/BallPit-Windows.vst3.zip" download class="download-btn">Download Windows</a>
                 <a href="plugins/BallPit-Mac.vst3.zip" download class="download-btn">Download Mac</a>
+                <a href="https://github.com/MayTiger877/BallPit" target="_blank" class="proj-github-btn">View on GitHub &#8594;</a>
             </div>
         </div>
 

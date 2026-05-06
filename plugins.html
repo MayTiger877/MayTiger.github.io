@@ -8,23 +8,27 @@
 </head>
 <body>
 
+<audio id="bootSound" src="sounds/Load.wav" preload="auto"></audio>
+<audio id="bgMusic"   src="sounds/BG.wav"   loop preload="auto"></audio>
+<audio id="navSound"  src="sounds/nav.wav"  preload="auto"></audio>
+
 <section id="plugins" class="plugins active">
-    <div class="back-btn" onclick="goTo('index.html')">&#8592; Back</div>
+    <div class="back-btn" onclick="goTo('menu.html')">&#8592; Back</div>
     <div class="menu-list">
         <h2>Plugins</h2>
         <a class="menu-list-item" onclick="goTo('plugin-ballpit.html')">
             <img src="images/BallPit.png" class="item-img">
             <div class="menu-list-text">
                 <h3>BallPit</h3>
-                <p>JUCE &nbsp;&#183;&nbsp; VST3</p>
+                <p>Physics based MIDI Generator &nbsp;&#183;&nbsp; VST3</p>
             </div>
             <span class="arrow">&#8250;</span>
         </a>
         <a class="menu-list-item" onclick="goTo('plugin-exodus.html')">
             <img src="images/Exodus.png" class="item-img">
             <div class="menu-list-text">
-                <h3>Exodus Delay</h3>
-                <p>DSP &nbsp;&#183;&nbsp; VST3</p>
+                <h3>Exodus</h3>
+                <p>Delay with individual effects per delay line &nbsp;&#183;&nbsp; VST3</p>
             </div>
             <span class="arrow">&#8250;</span>
         </a>

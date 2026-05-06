@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () =>
     setupPlayer();
 
     // Only show start screen on the home page
-    const isHome = window.location.pathname.endsWith('intro.html')
+    const isHome = window.location.pathname.endsWith('index.html')
                 || window.location.pathname === '/'
                 || window.location.pathname.endsWith('/');
 
