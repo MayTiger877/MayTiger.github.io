@@ -5,14 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Plugins | May Tiger</title>
 <link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
-<body>
-
-<audio id="bootSound" src="sounds/Load.wav" preload="auto"></audio>
-<audio id="bgMusic"   src="sounds/BG.wav"   loop preload="auto"></audio>
-<audio id="navSound"  src="sounds/nav.wav"  preload="auto"></audio>
+<body style="background: radial-gradient(circle at top, #0a0f2c, #000);">
 
 <section id="plugins" class="plugins active">
+    <div class="back-btn" onclick="goTo('menu.html')">&#8592; Back</div>
     <div class="menu-list">
         <h2>Plugins</h2>
         <a class="menu-list-item" onclick="goTo('plugin-ballpit.html')">
@@ -32,9 +30,8 @@
             <span class="arrow">&#8250;</span>
         </a>
     </div>
-    <div class="back-btn" onclick="goTo('menu.html')">&#8592; Back</div>
 </section>
 
-<script src="scripts.js"></script>
+<script src="page-scripts.js"></script>
 </body>
 </html>

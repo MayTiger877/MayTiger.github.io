@@ -1,6 +1,7 @@
 // ---------- NAVIGATION ----------
 function goTo(url)
 {
+    saveBgMusicTime(); // save position before leaving
     playSound();
     setTimeout(() => { window.location.href = url; }, 120);
 }
@@ -17,15 +18,35 @@ function playSound()
     }
 }
 
+// Save BGM position to sessionStorage before navigating away
+function saveBgMusicTime()
+{
+    const bgMusic = document.getElementById('bgMusic');
+    if (bgMusic && !bgMusic.paused)
+    {
+        sessionStorage.setItem('bgMusicTime', bgMusic.currentTime);
+    }
+}
+
+// Start BGM, restoring position from last page if available
 function startBgMusic()
 {
     const bgMusic = document.getElementById('bgMusic');
-    if (bgMusic && bgMusic.paused)
+    if (!bgMusic) return;
+
+    const savedTime = parseFloat(sessionStorage.getItem('bgMusicTime') || '0');
+    if (savedTime > 0)
     {
-        bgMusic.volume = 0.4;
-        bgMusic.play().catch(() => {});
+        bgMusic.currentTime = savedTime;
     }
+
+    bgMusic.volume = 0.8;
+    bgMusic.play().catch(() => {});
 }
+
+// Also save on browser back/forward or tab close
+window.addEventListener('beforeunload', saveBgMusicTime);
+window.addEventListener('pagehide',     saveBgMusicTime);
 
 // ---------- VIDEO / BGMUSIC SYNC ----------
 function setupVideoAudioSync()
@@ -127,7 +148,9 @@ document.addEventListener('DOMContentLoaded', () =>
     // ── INTRO PAGE ──────────────────────────────────────────────────
     if (isIntro)
     {
+        // Clear saved state so intro always plays fresh
         sessionStorage.removeItem('introPlayed');
+        sessionStorage.removeItem('bgMusicTime');
 
         function startExperience()
         {
@@ -171,12 +194,12 @@ document.addEventListener('DOMContentLoaded', () =>
 
     if (sessionStorage.getItem('introPlayed'))
     {
-        // Intro was played this session — start BGM right away
+        // Restore and resume BGM from where it left off
         startBgMusic();
     }
     else
     {
-        // Direct link / first visit without intro — wait for interaction
+        // Direct link without intro — start on first interaction
         document.addEventListener('click',   startBgMusic, { once: true });
         document.addEventListener('keydown', startBgMusic, { once: true });
     }

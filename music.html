@@ -5,16 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Music | May Tiger</title>
 <link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
-<body>
-
-<audio id="bootSound" src="sounds/Load.wav" preload="auto"></audio>
-<audio id="bgMusic"   src="sounds/BG.wav"   loop preload="auto"></audio>
-<audio id="navSound"  src="sounds/nav.wav"  preload="auto"></audio>
-
+<body style="background: radial-gradient(circle at top, #0a0f2c, #000);">
 
 <section id="music" class="music scrollable-page active">
-    
+    <div class="back-btn" onclick="goTo('menu.html')">&#8592; Back</div>
     <div class="music-hero">
         <h1>Music</h1>
         <p>Producer &nbsp;&#183;&nbsp; Sound Designer &nbsp;&#183;&nbsp; Audio Programmer</p>
@@ -24,11 +20,6 @@
             Made an EP and another one is on the way!
         </p>
         <h4>Heres a sneak peek:</h4>
-        
-        <audio id="sneakAudio" preload="auto">
-            <source src="sounds/Album_Sneak.wav" type="audio/wav">
-            <source src="sounds/Album_Sneak.wav" type="audio/x-wav">
-        </audio>
         
         <div class="ps2-player">
             <div class="ps2-player-top">
@@ -58,7 +49,6 @@
         <p>Links:</p>
 
     </div>
-
     <div class="music-links">
         <a href="https://open.spotify.com/artist/5udSlZfAN8HddZBbEHK4Il?si=rpyazRRiSm6aUcB9KPIsoA" target="_blank">
             <img src="images/Spotify_Logo.png" class="music-icon_spotify">
@@ -67,12 +57,8 @@
             <img src="images/SoundCloud_Logo.png" class="music-icon_soundcloud">
         </a>
     </div>
-
-    <div class="back-btn" onclick="goTo('menu.html')">&#8592; Back</div>
-    <div class="top-back-btn" onclick="goTo('menu.html')">&#8592; Back</div>
 </section>
 
-
-<script src="scripts.js"></script>
+<script src="page-scripts.js"></script>
 </body>
 </html>

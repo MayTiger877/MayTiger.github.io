@@ -3,40 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home | May Tiger</title>
-<link rel="stylesheet" href="styles.css">
+<title>May Tiger</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; overflow: hidden; }
+
+  #shell-loader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: radial-gradient(circle at top, #0a0f2c, #000);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    transition: opacity 0.4s ease;
+  }
+  #shell-loader.hidden { opacity: 0; pointer-events: none; }
+
+  #start-screen {
+    position: fixed; inset: 0; z-index: 10000;
+    background: radial-gradient(circle at top, #0a0f2c, #000);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .start-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6em; color: #8aa0ff;
+    letter-spacing: 2px; animation: blink 1s infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .loader-content { text-align: center; }
+  .loader-text {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5em; color: #8aa0ff; margin-bottom: 20px;
+  }
+  .progress-bar {
+    width: 250px; height: 6px;
+    border: 1px solid #4f6cff; border-radius: 10px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; width: 0%;
+    background: #4f6cff; box-shadow: 0 0 10px #4f6cff;
+  }
+  .progress-fill.active { animation: loadBar 0.8s linear forwards; }
+  @keyframes loadBar { from{width:0%} to{width:100%} }
+
+  /* Scanlines on loader */
+  #shell-loader::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(
+      to bottom, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px,
+      transparent 1px, transparent 3px
+    );
+    animation: scanlines 0.1s linear infinite;
+  }
+  @keyframes scanlines { from{transform:translateY(0)} to{transform:translateY(3px)} }
+
+  /* The iframe fills the whole viewport */
+  #page-frame {
+    position: fixed; inset: 0;
+    width: 100%; height: 100%;
+    border: none;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  #page-frame.visible { opacity: 1; }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+
+<!-- Start screen -->
 <div id="start-screen">
-    <div class="start-text">Press any key...</div>
-</div>
-<div id="loader">
-    <div class="loader-content">
-        <div class="loader-text">Initializing...</div>
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
-        </div>
-    </div>
+  <div class="start-text">Press any key...</div>
 </div>
 
+<!-- Loader -->
+<div id="shell-loader" style="display:none;">
+  <div class="loader-content">
+    <div class="loader-text">Initializing...</div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  </div>
+</div>
+
+<!-- Persistent audio — never reloads -->
 <audio id="bootSound" src="sounds/Load.wav" preload="auto"></audio>
 <audio id="bgMusic"   src="sounds/BG.wav"   loop preload="auto"></audio>
 <audio id="navSound"  src="sounds/nav.wav"  preload="auto"></audio>
 
-<section id="home" class="active">
-    <div class="title" href="https://www.fontspace.com/category/dope">
-        <img src="https://see.fontimg.com/api/rf5/wP29/M2MxYjI3NTI0NjIxNDY5MDliZTcyNTQ4OGZlM2U4ZGMudHRm/TWF5IFRpZ2Vy/orena.png?r=fs&h=71&w=1250&fg=CFD8FF&bg=0A0F2C&tb=1&s=57" alt="May Tiger" class="header-title-img">
-    </div>
+<!-- The iframe that swaps pages -->
+<iframe id="page-frame" src="" allowfullscreen></iframe>
 
-    <div class="menu">
-        <a id="btn-about"    onclick="goTo('about.html')">About</a>
-        <a id="btn-projects" onclick="goTo('projects.html')">Projects</a>
-        <a id="btn-plugins"  onclick="goTo('plugins.html')">Plugins</a>
-        <a id="btn-music"    onclick="goTo('music.html')">Music</a>
-    </div>
-</section>
+<script>
+const frame    = document.getElementById('page-frame');
+const loader   = document.getElementById('shell-loader');
+const startScr = document.getElementById('start-screen');
+const progress = document.getElementById('progress-fill');
+const bootSnd  = document.getElementById('bootSound');
+const bgMusic  = document.getElementById('bgMusic');
+const navSnd   = document.getElementById('navSound');
 
-<script src="scripts.js"></script>
+// ── Navigate inside the iframe ───────────────────────────────────
+function loadPage(url)
+{
+    playNavSound();
+    frame.classList.remove('visible');
+    setTimeout(() =>
+    {
+        frame.src = url;
+    }, 200);
+}
+
+frame.addEventListener('load', () =>
+{
+    frame.classList.add('visible');
+});
+
+// ── Sound helpers ────────────────────────────────────────────────
+function playNavSound()
+{
+    navSnd.currentTime = 0;
+    navSnd.volume = 0.4;
+    navSnd.play().catch(() => {});
+}
+
+function startBgMusic()
+{
+    bgMusic.volume = 0.4;
+    bgMusic.play().catch(() => {});
+}
+
+// ── Listen for navigation messages from inner pages ──────────────
+window.addEventListener('message', (e) =>
+{
+    if (e.data && e.data.type === 'navigate')
+    {
+        loadPage(e.data.url);
+    }
+    if (e.data && e.data.type === 'videoPlay')
+    {
+        bgMusic.pause();
+    }
+    if (e.data && e.data.type === 'videoPause')
+    {
+        startBgMusic();
+    }
+});
+
+// ── Intro sequence ───────────────────────────────────────────────
+let started = false;
+
+function startExperience()
+{
+    if (started) return;
+    started = true;
+
+    startScr.style.display = 'none';
+    loader.style.display = 'flex';
+
+    progress.classList.remove('active');
+    void progress.offsetWidth;
+    setTimeout(() => progress.classList.add('active'), 50);
+
+    bootSnd.volume = 0.3;
+    bootSnd.play().catch(() => {});
+
+    setTimeout(() =>
+    {
+        loader.classList.add('hidden');
+        startBgMusic();
+        loadPage('menu.html');
+    }, 800);
+}
+
+document.addEventListener('keydown', startExperience, { capture: true });
+document.addEventListener('click',   startExperience, { capture: true });
+</script>
 </body>
 </html>

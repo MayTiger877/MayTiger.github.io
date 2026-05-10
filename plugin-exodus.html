@@ -5,25 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Exodus Delay | May Tiger</title>
 <link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
-<body>
-
-<audio id="bootSound" src="sounds/Load.wav" preload="auto"></audio>
-<audio id="bgMusic"   src="sounds/BG.wav"   loop preload="auto"></audio>
-<audio id="navSound"  src="sounds/nav.wav"  preload="auto"></audio>
+<body style="background: radial-gradient(circle at top, #0a0f2c, #000);">
 
 <section id="plugin-exodus" class="plugin-page scrollable-page active">
+    <div class="back-btn" onclick="goTo('plugins.html')">&#8592; Back</div>
     <div class="proj-content">
 
         <div class="proj-hero">
             <div class="proj-hero-text">
-                <p class="tech-tags">C++ &nbsp;&#183;&nbsp; JUCE &nbsp;&#183;&nbsp; DSP &nbsp;&#183;&nbsp; DELAY</p>
+                <p class="tech-tags">C++ &nbsp;&#183;&nbsp; JUCE &nbsp;&#183;&nbsp; DSP &nbsp;&#183;&nbsp; VST3</p>
                 <h2>Exodus Delay</h2>
-                <p class="proj-hero-sub">A delay plugin where every repeat has its own character. Each delay line instance runs its own independent chain of effects, Gain, Pan, Distortion, Phaser, and Reverb, making every echo unique. 
-                    Most delay plugins treat every repeat the same: the signal feeds back at a fixed level and decays uniformly. Exodus Delay breaks that model. Each delay repeat is its own instance with its own FX chain. You can have the first repeat dry, the second distorted and panned left, the third filtered through a phaser, and the fourth drowned in reverb.
-                    The result is a delay that evolves, rhythmically and texturally, across its repeats. Built in C++ with JUCE, targeting VST3 and AU formats with a CI/CD pipeline for automated cross-platform builds.</p>
+                <p class="proj-hero-sub">A delay plugin where every repeat has its own character. Each delay line instance runs its own independent chain of effects, Gain, Pan, Distortion, Phaser, and Reverb, making every echo unique.</p>
+                <a href="https://github.com/MayTiger877/Exodus_delay" target="_blank" class="proj-github-btn">View on GitHub &#8594;</a>
             </div>
-            <!-- <img src="images/Exodus.png" class="proj-hero-img"> -->
+            <img src="images/Exodus.png" class="proj-hero-img">
+        </div>
+
+        <div class="proj-divider"></div>
+
+        <div class="proj-section">
+            <h3 class="proj-section-title">Overview</h3>
+            <p>Most delay plugins treat every repeat the same: the signal feeds back at a fixed level and decays uniformly. Exodus Delay breaks that model. Each delay repeat is its own instance with its own FX chain. You can have the first repeat dry, the second distorted and panned left, the third filtered through a phaser, and the fourth drowned in reverb.</p>
+            <p>The result is a delay that evolves, rhythmically and texturally, across its repeats. Built in C++ with JUCE, targeting VST3 and AU formats with a CI/CD pipeline for automated cross-platform builds.</p>
         </div>
 
         <div class="proj-divider"></div>
@@ -51,13 +56,13 @@
 
         <div class="proj-section">
             <h3 class="proj-section-title">How It Works</h3>
-            <!-- <p>Exodus routes audio through a sequencer of delay taps. Each tap reads from the delay buffer at its designated time offset and passes its output through its own DSP chain before being summed into the output. This means the plugin is not just a standard feedback delay. It is closer to a programmable multi-tap delay with per-tap signal processing.</p> -->
+            <p>Exodus routes audio through a sequencer of delay taps. Each tap reads from the delay buffer at its designated time offset and passes its output through its own DSP chain before being summed into the output. This means the plugin is not just a standard feedback delay. It is closer to a programmable multi-tap delay with per-tap signal processing.</p>
             <div class="proj-pipeline">
                 <div class="proj-pipe-step"><div class="proj-pipe-label">Input</div><div class="proj-pipe-desc">Dry Signal</div></div>
                 <div class="proj-pipe-arrow">&#8594;</div>
-                <div class="proj-pipe-step"><div class="proj-pipe-label">Delay Buffer</div><div class="proj-pipe-desc">Write and Read Taps</div></div>
+                <div class="proj-pipe-step highlight-blue"><div class="proj-pipe-label">Delay Buffer</div><div class="proj-pipe-desc">Write and Read Taps</div></div>
                 <div class="proj-pipe-arrow">&#8594;</div>
-                <div class="proj-pipe-step highlight-green"><div class="proj-pipe-label">Per-Tap FX</div><div class="proj-pipe-desc">Gain · Pan · Dist <br> Phaser · Reverb<br></div></div>
+                <div class="proj-pipe-step highlight-green"><div class="proj-pipe-label">Per-Tap FX</div><div class="proj-pipe-desc">Gain · Pan · Dist<br><small>Phaser · Reverb</small></div></div>
                 <div class="proj-pipe-arrow">&#8594;</div>
                 <div class="proj-pipe-step"><div class="proj-pipe-label">Output</div><div class="proj-pipe-desc">Mixed Wet + Dry</div></div>
             </div>
@@ -69,22 +74,19 @@
             <h3 class="proj-section-title">Tech Stack</h3>
             <div class="proj-tags-big">
                 <span class="proj-tag">C++</span><span class="proj-tag">JUCE</span><span class="proj-tag">DSP</span>
-                <span class="proj-tag">Figma</span><span class="proj-tag">CMake</span><span class="proj-tag">GitHub Actions</span>
+                <span class="proj-tag">VST3</span><span class="proj-tag">CMake</span><span class="proj-tag">GitHub Actions</span>
+                <span class="proj-tag">Multi-tap Delay</span><span class="proj-tag">Waveshaping</span><span class="proj-tag">Phaser</span>
             </div>
-            <h4 class="proj-section-title">Downloads and Links</h4>
             <div class="download-row" style="margin-top:1.5rem;">
                 <a href="plugins/ExodusDelay-Windows.vst3.zip" download class="download-btn">Download Windows</a>
                 <a href="plugins/ExodusDelay-Mac.vst3.zip" download class="download-btn">Download Mac</a>
-                <a href="https://github.com/MayTiger877/Exodus_delay" target="_blank" class="proj-github-btn">View on GitHub &#8594;</a>
             </div>
         </div>
 
         <div style="height:80px;"></div>
-    <div class="back-btn" onclick="goTo('plugins.html')">&#8592; Back</div>
-    <div class="top-back-btn" onclick="goTo('plugins.html')">&#8592; Back</div>
     </div>
 </section>
 
-<script src="scripts.js"></script>
+<script src="page-scripts.js"></script>
 </body>
 </html>

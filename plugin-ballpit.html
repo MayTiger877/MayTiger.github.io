@@ -5,20 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BallPit | May Tiger</title>
 <link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
-<body>
-
-<audio id="bootSound" src="sounds/Load.wav" preload="auto"></audio>
-<audio id="bgMusic"   src="sounds/BG.wav"   loop preload="auto"></audio>
-<audio id="navSound"  src="sounds/nav.wav"  preload="auto"></audio>
+<body style="background: radial-gradient(circle at top, #0a0f2c, #000);">
 
 <section id="plugin-ballpit" class="plugin-page scrollable-page active">
-    <div class="top-back-btn" onclick="goTo('plugins.html')">&#8592; Back</div>
+    <div class="back-btn" onclick="goTo('plugins.html')">&#8592; Back</div>
     <div class="proj-content">
 
         <div class="proj-hero">
             <div class="proj-hero-text">
-                <p class="tech-tags">C++ &nbsp;&#183;&nbsp; JUCE &nbsp;&#183;&nbsp; Physics Simulation &nbsp;&#183;&nbsp; MIDI</p>
+                <p class="tech-tags">C++ &nbsp;&#183;&nbsp; JUCE &nbsp;&#183;&nbsp; VST3 &nbsp;&#183;&nbsp; MIDI</p>
                 <h2>BallPit</h2>
             </div>
         </div>
@@ -90,10 +87,9 @@
             <div class="proj-tags-big">
                 <span class="proj-tag">C++</span><span class="proj-tag">JUCE</span><span class="proj-tag">Figma</span>
                 <span class="proj-tag">MIDI</span><span class="proj-tag">CMake</span><span class="proj-tag">GitHub Actions</span>
-                <!-- <span class="proj-tag">Physics Simulation</span> -->
+                <span class="proj-tag">Physics Simulation</span>
             </div>
             <!-- <h3 class="proj-section-title">------------------------------------------</h3> -->
-             <h4 class="proj-section-title">Downloads and Links</h4>
             <div class="download-row" style="margin-top:1.5rem;">
                 <a href="plugins/BallPit-Windows.vst3.zip" download class="download-btn">Download Windows</a>
                 <a href="plugins/BallPit-Mac.vst3.zip" download class="download-btn">Download Mac</a>
@@ -102,10 +98,9 @@
         </div>
 
         <div style="height:80px;"></div>
-    <div class="back-btn" onclick="goTo('plugins.html')">&#8592; Back</div>
     </div>
 </section>
 
-<script src="scripts.js"></script>
+<script src="page-scripts.js"></script>
 </body>
 </html>

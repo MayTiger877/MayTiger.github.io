@@ -94,9 +94,10 @@ title {
 
 /* Back button */
 .back-btn {
-    display: block;
-    width: fit-content;
-    margin: 40px auto 20px;
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
     padding: 10px 20px;
     border: 1px solid #4f6cff;
     border-radius: 10px;
@@ -104,36 +105,12 @@ title {
     background: rgba(0,0,50,0.5);
     transition: 0.2s;
     color: #8aa0ff;
-    text-align: center;
 }
 
 .back-btn:hover {
     color: white;
     text-shadow: 0 0 10px #4f6cff;
-    transform: scale(1.05);
-}
-
-/*upper back button */
-.top-back-btn {
-    position: absolute;
-    top: 7%;
-    right: 10%;
-    z-index: 1000;
-    width: fit-content;
-    margin: 40px auto 20px;
-    padding: 10px 20px;
-    border: 1px solid #4f6cff;
-    border-radius: 10px;
-    cursor: pointer;
-    background: rgba(0,0,50,0.5);
-    transition: 0.2s;
-    color: #8aa0ff;
-}
-
-.top-back-btn:hover {
-    color: white;
-    text-shadow: 0 0 10px #4f6cff;
-    transform: scale(1.05);
+    transform: translateX(-50%) scale(1.1);
 }
 
 /* Section colors */
@@ -226,19 +203,19 @@ title {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 10px;
-    margin-top: 5%;
-    margin-bottom: 10px;
+    gap: 20px;
+    margin-top: 40px;
+    margin-bottom: 60px;
     max-width: 680px;
     margin: 0 auto;
-    padding: 3% 24px 6px;
+    padding: 30px 24px 60px;
 }
 
 .music-links {
-    margin-top: 1%;
-    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-bottom: 25px;
     display: flex;
-    gap: 5%px;
+    gap: 15px;
     align-items: center;
     justify-content: center;
 }
@@ -251,7 +228,7 @@ title {
 }
 .music-icon_soundcloud {
     width: 200px;
-    height: 115px;
+    height: 125px;
     transition: 0.2s;
     cursor: pointer;
 }
@@ -415,7 +392,7 @@ title {
     border: 1px solid #2a3aaa;
     border-radius: 10px;
     padding: 16px 18px 14px;
-    margin: 2% 0 4%;
+    margin: 12px 0 24px;
     overflow: hidden;
     box-shadow: 0 0 24px rgba(79, 108, 255, 0.15), inset 0 1px 0 rgba(255,255,255,0.05);
 }
@@ -596,7 +573,7 @@ title {
 
 .proj-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(79,108,255,0.3), transparent); margin: 2rem 0; }
 
-.proj-section { margin-bottom: 0.5rem; align-items: center;}
+.proj-section { margin-bottom: 0.5rem; }
 .proj-section p { font-size: 0.88rem; line-height: 1.75; color: #7a99cc; margin-bottom: 1rem; }
 .proj-section-title { font-size: 1.1rem; color: #9bb1ff; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem; font-weight: normal; }
 .proj-sub-title { font-size: 0.85rem; color: #8affc1; letter-spacing: 0.06em; margin: 1.4rem 0 0.6rem; font-weight: normal; text-transform: uppercase; }
@@ -609,14 +586,14 @@ title {
 .proj-card h4 { font-size: 1rem; color: #cfd8ff; margin-bottom: 0.4rem; font-weight: 600; }
 .proj-card p { font-size: 0.75rem !important; color: #6e9ce2 !important; line-height: 1.6; margin: 0 !important; }
 
-.proj-pipeline { display: flex; align-items: center; gap: 0.2rem; flex-wrap: wrap; margin: 0.4rem 0; }
+.proj-pipeline { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.2rem 0; }
 .proj-pipe-step { background: rgba(0,0,50,0.5); border: 1px solid rgba(79,108,255,0.2); border-radius: 8px; padding: 0.7rem 1rem; text-align: center; min-width: 100px; }
 .proj-pipe-step.highlight-blue  { border-color: rgba(79,108,255,0.6);  background: rgba(79,108,255,0.1); }
 .proj-pipe-step.highlight-green { border-color: rgba(138,255,193,0.4); background: rgba(138,255,193,0.05); }
 .proj-pipe-label { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: #4a6a99; margin-bottom: 0.3rem; }
 .proj-pipe-desc { font-size: 0.78rem; color: #cfd8ff; line-height: 1.3; }
 .proj-pipe-desc small { font-size: 0.65rem; color: #4a6a99; }
-.proj-pipe-arrow { color: #2a3a7a; font-size: 1.2rem; padding : 1%;}
+.proj-pipe-arrow { color: #2a3a7a; font-size: 1.2rem; }
 
 .proj-spec-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.8rem; }
 .proj-spec-item { flex: 1; min-width: 180px; background: rgba(0,0,30,0.5); border: 1px solid rgba(79,108,255,0.15); border-radius: 8px; padding: 0.7rem; }
