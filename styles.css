@@ -34,8 +34,8 @@ header {
     align-items: center;
     gap: 20px;
     /* justify-content: center; */
-    margin-top: 20%;
-    margin-bottom: 7%;
+    margin-top: 10%;
+    margin-bottom: 27%;
 }
 
 title {
@@ -44,8 +44,8 @@ title {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
-    margin-top: 10%;
+    margin-bottom: 26%;
+    margin-top: 2%;
 }
 
 .menu a {
@@ -83,21 +83,43 @@ title {
 .download-btn {
     margin: 5px;
     padding: 6px 12px;
-    border: 2px solid #4f6cff;
-    border-radius: 8px;
+    border: 1px solid #4f6cff;
+    border-radius: 5px;
     color: #8aa0ff;
     text-decoration: none;
 }
 
-.download-btn { display: inline-block; padding: 8px 18px; border: 1px solid rgba(79,108,255,0.5); border-radius: 8px; color: #8aa0ff; text-decoration: none; font-size: 0.8rem; letter-spacing: 0.05em; transition: 0.2s; }
 .download-btn:hover { background: rgba(79,108,255,0.15); border-color: #8aa0ff; color: #fff; }
 
 /* Back button */
 .back-btn {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
+    display: block;
+    width: fit-content;
+    margin: 40px auto 20px;
+    padding: 10px 20px;
+    border: 1px solid #4f6cff;
+    border-radius: 10px;
+    cursor: pointer;
+    background: rgba(0,0,50,0.5);
+    transition: 0.2s;
+    color: #8aa0ff;
+    text-align: center;
+}
+
+.back-btn:hover {
+    color: white;
+    text-shadow: 0 0 10px #4f6cff;
+    transform: scale(1.05);
+}
+
+/*upper back button */
+.top-back-btn {
+    position: absolute;
+    top: 7%;
+    right: 10%;
+    z-index: 1000;
+    width: fit-content;
+    margin: 40px auto 20px;
     padding: 10px 20px;
     border: 1px solid #4f6cff;
     border-radius: 10px;
@@ -107,15 +129,15 @@ title {
     color: #8aa0ff;
 }
 
-.back-btn:hover {
+.top-back-btn:hover {
     color: white;
     text-shadow: 0 0 10px #4f6cff;
-    transform: translateX(-50%) scale(1.1);
+    transform: scale(1.05);
 }
 
 /* Section colors */
 .about { color: #c5bf69; }
-.projects { color: #9bb1ff; }
+.projects { color: #ffc69b; }
 .plugins { color: #8affc1; }
 .music { color: #ff9bf2; }
 
@@ -568,8 +590,55 @@ title {
 .proj-hero-sub { font-size: 0.9rem; line-height: 1.7; color: #7a99cc; margin-bottom: 1.4rem; }
 .proj-hero-img { width: 160px; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(79,108,255,0.25); flex-shrink: 0; }
 
-.proj-github-btn { display: inline-block; padding: 8px 18px; border: 1px solid rgba(79,108,255,0.5); border-radius: 8px; color: #8aa0ff; text-decoration: none; font-size: 0.8rem; letter-spacing: 0.05em; transition: 0.2s; }
-.proj-github-btn:hover { background: rgba(79,108,255,0.15); border-color: #8aa0ff; color: #fff; }
+/* .proj-github-btn { display: inline-block; padding: 8px 18px; border: 1px solid rgba(79,108,255,0.5); border-radius: 8px; color: #8aa0ff; text-decoration: none; font-size: 0.8rem; letter-spacing: 0.05em; transition: 0.2s; }
+{
+    margin: 5px;
+    padding: 6px 10px;
+    border: 1px solid #4f6cff;
+    border-radius: 5px;
+    color: #8aa0ff;
+    text-decoration: none;
+} */
+
+/* .proj-github-btn:hover { background: rgba(79,108,255,0.15); border-color: #8aa0ff; color: #fff; } */
+
+.proj-github-btn {
+    display: inline-flex;
+    align-items: center;
+    margin: 5px;
+    padding: 6px 10px;
+    border: 1px solid #4f6cff;
+    border-radius: 5px;
+    color: #8aa0ff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    transition: 0.2s;
+}
+
+.proj-github-btn::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 7px;
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238aa0ff'%3E%3Cpath d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: 0.2s;
+}
+
+.proj-github-btn:hover {
+    background: rgba(79,108,255,0.15);
+    border-color: #8aa0ff;
+    color: #fff;
+}
+
+.proj-github-btn:hover::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E");
+}
 
 .proj-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(79,108,255,0.3), transparent); margin: 2rem 0; }
 
@@ -589,6 +658,7 @@ title {
 .proj-pipeline { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin: 1.2rem 0; }
 .proj-pipe-step { background: rgba(0,0,50,0.5); border: 1px solid rgba(79,108,255,0.2); border-radius: 8px; padding: 0.7rem 1rem; text-align: center; min-width: 100px; }
 .proj-pipe-step.highlight-blue  { border-color: rgba(79,108,255,0.6);  background: rgba(79,108,255,0.1); }
+.proj-pipe-step.highlight-pink  { border-color: rgba(228, 102, 199, 0.6);  background: rgba(255,105,180,0.1); }
 .proj-pipe-step.highlight-green { border-color: rgba(138,255,193,0.4); background: rgba(138,255,193,0.05); }
 .proj-pipe-label { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: #4a6a99; margin-bottom: 0.3rem; }
 .proj-pipe-desc { font-size: 0.78rem; color: #cfd8ff; line-height: 1.3; }
