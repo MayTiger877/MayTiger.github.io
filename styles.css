@@ -748,7 +748,8 @@ title {
 .proj-github-btn {
     display: inline-flex;
     align-items: center;
-    margin: 0.3125rem;
+    margin-top: 0.3125rem;
+    margin-bottom: 0.3125rem;
     padding: 0.5rem 1rem;
     border: 1px solid #4f6cff;
     border-radius: var(--radius-sm);
