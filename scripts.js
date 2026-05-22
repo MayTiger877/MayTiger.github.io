@@ -204,3 +204,72 @@ document.addEventListener('DOMContentLoaded', () =>
         document.addEventListener('keydown', startBgMusic, { once: true });
     }
 });
+
+// // ────────────────── Carousel ────────────────────────────────────────────
+
+const options = document.querySelectorAll(".option");
+
+let currentIndex = 0;
+
+options.forEach((option, index) =>
+{
+    option.addEventListener("click", () =>
+    {
+        setActive(index);
+    });
+});
+
+// // Function to activate selected slide
+// function setActive(index)
+// {
+//     options.forEach(o => o.classList.remove("active"));
+//     options[index].classList.add("active");
+//     currentIndex = index;
+// }
+
+// // Auto slide every 3 seconds
+// setInterval(() => 
+// {
+//     currentIndex = (currentIndex + 1) % options.length;
+//     setActive(currentIndex);
+// }, 3000);
+
+let autoSlide;
+
+// Function to activate selected slide
+function setActive(index)
+{
+    options.forEach(o => o.classList.remove("active"));
+
+    options[index].classList.add("active");
+
+    currentIndex = index;
+}
+
+// Start auto slider
+function startSlider()
+{
+    autoSlide = setInterval(() =>
+    {
+        currentIndex = (currentIndex + 1) % options.length;
+
+        setActive(currentIndex);
+
+    }, 3000);
+}
+
+// Reset timer after manual click
+options.forEach((option, index) =>
+{
+    option.addEventListener("click", () =>
+    {
+        setActive(index);
+
+        clearInterval(autoSlide);
+
+        startSlider();
+    });
+});
+
+// Init slider
+startSlider();
