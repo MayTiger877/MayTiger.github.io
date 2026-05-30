@@ -58,8 +58,8 @@ title {
     flex-direction: column;
     align-items: center;
     gap: clamp(1.5rem, 2vw, 1.5rem);
-    margin-top: 10vh;
-    margin-bottom: 27vh;
+    /* margin-top: 10vh; */
+    /* margin-bottom: 27vh; */
 }
 
 .menu a {
@@ -797,7 +797,16 @@ title {
 .proj-sub-title { font-size: 0.85rem; color: #8affc1; letter-spacing: 0.06em; margin: 1.4rem 0 0.6rem; font-weight: normal; text-transform: uppercase; }
 .proj-note { font-size: 0.78rem !important; color: #4a6a99 !important; font-style: italic; margin-top: 0.6rem !important; }
 
-.proj-cards { display: grid; grid-template-columns: repeat(3, minmax(190px, 1fr)); gap: 1rem; margin-top: 1rem; }
+/* .proj-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 1rem; margin-top: 1rem; } */
+.proj-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem;}
+
+@media (max-width: 640px) {
+    .proj-cards { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 641px) and (max-width: 900px) {
+    .proj-cards { grid-template-columns: repeat(2, 1fr); }
+}
 .proj-card { background: rgba(0,0,50,0.4); border: 1px solid rgba(79,108,255,0.2); border-radius: 15px; padding: 0.8rem; transition: border-color 0.2s; }
 .proj-card:hover { border-color: rgba(79,108,255,0.5); }
 .proj-card-icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
@@ -857,7 +866,7 @@ title {
 .proj-audio { margin-top: 0.8rem; margin-left: auto; margin-right: auto; display: block; width: 100%; max-width: 30rem; border-radius: 8px; }
 
 /* ===================== RESPONSIVE HEADER TITLE ===================== */
-.header-title-img { width: min(420px, 80vw); height: auto; display: block; }
+.header-title-img { width: min(420px, 80vw); height: auto; display: block; margin-top: 7em; margin-bottom: 1.5rem; }
 
 
 /* ===================== Carousel ===================== */
