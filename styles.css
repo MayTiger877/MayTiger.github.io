@@ -21,8 +21,8 @@ body {
      /* Blues */
     --blue-primary: #4f6cff;
     --blue-light: #8aa0ff;
-    --blue-lighter: #9bb1ff;
-    --blue-text: #7a99cc;
+    --blue-lighter: #b7c0e2;
+    --blue-text: #9caecc;
     --blue-muted: #6e9ce2;
     --blue-dark: #4a6a99;
     --blue-darker: #2a3a7a;
@@ -834,11 +834,12 @@ title {
     height: 1rem;
     margin-right: 0.5rem;
     flex-shrink: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23var(--blue-light)'%3E%3Cpath d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z'/%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     transition: 0.2s;
+    color: #fff;
 }
 
 .proj-github-btn:hover {
@@ -857,7 +858,7 @@ title {
 .proj-section p { font-size: 0.88rem; line-height: 1.75; color: var(--blue-text); margin-bottom: 1rem; }
 .proj-section-title { font-size: 1.1rem; color: var(--blue-lighter); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1rem; font-weight: normal; }
 .proj-sub-title { font-size: 0.85rem; color: var(--green-accent); letter-spacing: 0.06em; margin: 1.4rem 0 0.6rem; font-weight: normal; text-transform: uppercase; }
-.proj-note { font-size: 0.78rem !important; color: var(--blue-dark) !important; font-style: italic; margin-top: 0.6rem !important; }
+.proj-note { font-size: 0.78rem !important; color: #adbdd6 !important; font-style: italic; margin-top: 0.6rem !important; }
 
 /* .proj-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 1rem; margin-top: 1rem; } */
 .proj-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem;}
@@ -920,7 +921,7 @@ title {
 /* .proj-metric:hover { border-color: rgba(79,108,255,0.4); } */
 .proj-metric-name { font-size: 0.78rem; color: var(--blue-light); letter-spacing: 0.08em; min-width: 80px; flex-shrink: 0; }
 .proj-metric-full { font-size: 0.75rem; color: var(--text-main); min-width: 220px; flex-shrink: 0; }
-.proj-metric-desc { font-size: 0.72rem; color: var(--blue-dark); line-height: 1.5; }
+.proj-metric-desc { font-size: 0.72rem; color: #adbdd6; line-height: 1.5; }
 
 .proj-tags-big { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
 .proj-tag { font-size: 0.72rem; letter-spacing: 0.07em; padding: 0.3rem 0.8rem; border-radius: 5px; background: rgba(79,108,255,0.1); border: 1px solid rgba(79,108,255,0.25); color: var(--blue-light); }
@@ -1019,7 +1020,46 @@ title {
 
 .exp-stat-label {
     font-size: 0.8rem;
-    color: #5a759e;
+    color: #bac3d1;
     letter-spacing: 0.05em;
     line-height: 1.4;
+}
+
+/* ===================== EDUCATION BADGE ===================== */
+.edu-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin: 1rem auto;
+    padding: 0.85rem 1.4rem;
+    /* background: rgba(255, 255, 255, 0.08); */
+    border: 1px solid rgba(197, 196, 124, 0.35);
+    border-radius: var(--radius-md);
+    max-width: min(38rem, 92vw);
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.edu-badge:hover {
+    background: rgba(227, 228, 231, 0.14);
+    border-color: rgba(60, 76, 156, 0.6);
+}
+
+.edu-badge-icon {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+}
+
+.edu-badge-degree {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    font-weight: 700;
+    color: #d1cb70;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.2rem;
+}
+
+.edu-badge-school {
+    font-size: 0.8rem;
+    color: #ccc894;
+    letter-spacing: 0.05em;
 }
