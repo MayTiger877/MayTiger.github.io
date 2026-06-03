@@ -255,15 +255,15 @@ title {
 
 /*upper back button */
 .top-back-btn {
-    position: absolute;
+    position: fixed;
     top: 4%;
     right: 8%;
     z-index: 1000;
     width: fit-content;
-    margin: clamp(1.5rem, 4vw, 2.5rem);
-    padding: 0.75rem 1.5rem;
+    /* margin: clamp(1.5rem, 4vw, 2.5rem); */
+    padding: 0.3rem 0.8rem;
     border: 1px solid var(--blue-primary);
-    border-radius: var(--radius-md);
+    border-radius: 0.4rem;
     cursor: pointer;
     background: rgba(0,0,50,0.5);
     transition: 0.2s;
