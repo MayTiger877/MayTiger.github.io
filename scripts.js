@@ -9,7 +9,9 @@ function goTo(url)
 // ---------- SOUND ----------
 function playSound()
 {
-    const s = document.getElementById('navSound');
+    // Play a quick sound effect on navigation by loading the file each time to allow rapid retriggering without waiting for the previous one to finish
+    const s = new Audio('sounds/nav.wav');
+    
     if (s)
     {
         s.currentTime = 0;
