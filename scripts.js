@@ -51,15 +51,16 @@ window.addEventListener('beforeunload', saveBgMusicTime);
 window.addEventListener('pagehide',     saveBgMusicTime);
 
 // ---------- VIDEO / BGMUSIC SYNC ----------
+// bgMusic lives in the parent frame (index.html), not in iframe content pages.
+// Use postMessage so the parent can pause/resume it when the video plays.
 function setupVideoAudioSync()
 {
-    const video   = document.querySelector('.plugin-video');
-    const bgMusic = document.getElementById('bgMusic');
-    if (!video || !bgMusic) return;
+    const video = document.querySelector('.plugin-video');
+    if (!video) return;
 
-    video.addEventListener('play',  () => bgMusic.pause());
-    video.addEventListener('pause', () => startBgMusic());
-    video.addEventListener('ended', () => startBgMusic());
+    video.addEventListener('play',  () => window.parent.postMessage({ type: 'videoPlay'  }, '*'));
+    video.addEventListener('pause', () => window.parent.postMessage({ type: 'videoPause' }, '*'));
+    video.addEventListener('ended', () => window.parent.postMessage({ type: 'videoPause' }, '*'));
 }
 
 // ---------- PS2 AUDIO PLAYER ----------

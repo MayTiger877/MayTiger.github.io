@@ -1262,3 +1262,76 @@ title {
 .experience .proj-card h4 {
     color: var(--section-experience);
 }
+
+/* ============================================================
+   FULL-PAGE TEXT THEMING — headings, buttons, tags, labels
+   each page's UI elements match its section accent color
+   ============================================================ */
+
+/* ── PROJECT DETAIL PAGES (orange) ── */
+.project-page .proj-hero-text h2          { color: var(--section-projects); }
+.project-page .tech-tags                  { color: var(--section-projects); opacity: 0.85; }
+.project-page .top-back-btn,
+.project-page .back-btn                   { color: var(--section-projects); border-color: rgba(255,198,155,0.35); }
+.project-page .top-back-btn:hover,
+.project-page .back-btn:hover             { text-shadow: 0 0 0.7rem var(--section-projects); }
+.project-page .download-btn,
+.project-page .proj-github-btn            { color: var(--section-projects); border-color: rgba(255,198,155,0.4); }
+.project-page .download-btn:hover,
+.project-page .proj-github-btn:hover      { background: rgba(255,198,155,0.1); border-color: var(--section-projects); }
+.project-page .proj-metric-name           { color: var(--section-projects); }
+
+/* ── PLUGIN DETAIL PAGES (mint green) ── */
+.plugin-page .proj-hero-text h2           { color: var(--section-plugins); }
+.plugin-page .tech-tags                   { color: var(--section-plugins); opacity: 0.85; }
+.plugin-page .top-back-btn,
+.plugin-page .back-btn                    { color: var(--section-plugins); border-color: rgba(138,255,193,0.35); }
+.plugin-page .top-back-btn:hover,
+.plugin-page .back-btn:hover              { text-shadow: 0 0 0.7rem var(--section-plugins); }
+.plugin-page .download-btn,
+.plugin-page .proj-github-btn             { color: var(--section-plugins); border-color: rgba(138,255,193,0.4); }
+.plugin-page .download-btn:hover,
+.plugin-page .proj-github-btn:hover       { background: rgba(138,255,193,0.1); border-color: var(--section-plugins); }
+.plugin-page .proj-metric-name            { color: var(--section-plugins); }
+
+/* ── EXPERIENCE PAGE (blue) ── */
+.experience .proj-hero-text h2            { color: var(--section-experience); }
+.experience .tech-tags                    { color: var(--section-experience); opacity: 0.85; }
+.experience .back-btn                     { color: var(--section-experience); border-color: rgba(138,160,255,0.35); }
+.experience .back-btn:hover               { text-shadow: 0 0 0.7rem var(--section-experience); }
+.experience .proj-metric-name             { color: var(--section-experience); }
+.experience .download-btn                 { color: var(--section-experience); border-color: rgba(138,160,255,0.4); }
+.experience .download-btn:hover           { background: rgba(138,160,255,0.1); border-color: var(--section-experience); }
+
+/* ── ABOUT PAGE (gold) ── */
+.about .back-btn                          { color: var(--section-about); border-color: rgba(197,191,105,0.35); }
+.about .back-btn:hover                    { text-shadow: 0 0 0.7rem var(--section-about); }
+.about .skill-tag                         { color: var(--section-about); border-color: rgba(197,191,105,0.4); background: rgba(197,191,105,0.08); }
+.about .skill-tag:hover                   { background: rgba(197,191,105,0.16); border-color: rgba(197,191,105,0.7); }
+.about .about-cta a                       { color: var(--section-about); border-bottom-color: rgba(197,191,105,0.4); }
+.about .about-cta a:hover                 { color: #fff; border-bottom-color: var(--section-about); }
+.about .download-btn                      { color: var(--section-about); border-color: rgba(197,191,105,0.4); }
+.about .download-btn:hover                { background: rgba(197,191,105,0.1); border-color: var(--section-about); }
+
+/* ── PROJECTS LIST PAGE (orange) ── */
+.projects .back-btn                       { color: var(--section-projects); border-color: rgba(255,198,155,0.35); }
+.projects .back-btn:hover                 { text-shadow: 0 0 0.7rem var(--section-projects); }
+
+/* ── PLUGINS LIST PAGE (mint green) ── */
+.plugins .back-btn                        { color: var(--section-plugins); border-color: rgba(138,255,193,0.35); }
+.plugins .back-btn:hover                  { text-shadow: 0 0 0.7rem var(--section-plugins); }
+
+/* ── MUSIC PAGE (pink) ── */
+.music .top-back-btn,
+.music .back-btn                          { color: var(--section-music); border-color: rgba(255,155,242,0.35); }
+.music .top-back-btn:hover,
+.music .back-btn:hover                    { text-shadow: 0 0 0.7rem var(--section-music); }
+.music .ps2-track-label                   { color: var(--section-music); text-shadow: 0 0 0.5rem rgba(255,155,242,0.5); }
+.music .ps2-player-time                   { color: rgba(255,155,242,0.55); }
+.music .section-label                     { color: rgba(255,155,242,0.5); }
+.music .ps2-fill                          { background: linear-gradient(90deg, #e466c7, var(--section-music)); }
+.music .ps2-head                          { border-color: var(--section-music); box-shadow: 0 0 0.5rem rgba(255,155,242,0.9); }
+.music .ps2-btn-ctrl                      { border-color: rgba(255,155,242,0.4); color: var(--section-music); }
+.music .ps2-btn-play                      { border-color: var(--section-music); background: rgba(255,155,242,0.15); box-shadow: 0 0 0.625rem rgba(255,155,242,0.2); }
+.music .ps2-btn-play:hover                { box-shadow: 0 0 1.1rem rgba(255,155,242,0.6); }
+.music .ps2-btn-ctrl:hover                { background: rgba(255,155,242,0.2); border-color: var(--section-music); color: #fff; box-shadow: 0 0 0.625rem rgba(255,155,242,0.35); }
