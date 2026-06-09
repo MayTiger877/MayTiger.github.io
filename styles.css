@@ -3,6 +3,11 @@ body {
     font-family: 'Orbitron', sans-serif;
     color: var(--text-main);
     overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='2' fill='%234f6cff' opacity='0.9'/%3E%3Cline x1='12' y1='2' x2='12' y2='8' stroke='%234f6cff' stroke-width='1.5' opacity='0.7'/%3E%3Cline x1='12' y1='16' x2='12' y2='22' stroke='%234f6cff' stroke-width='1.5' opacity='0.7'/%3E%3Cline x1='2' y1='12' x2='8' y2='12' stroke='%234f6cff' stroke-width='1.5' opacity='0.7'/%3E%3Cline x1='16' y1='12' x2='22' y2='12' stroke='%234f6cff' stroke-width='1.5' opacity='0.7'/%3E%3C/svg%3E") 12 12, crosshair;
+}
+
+a, button, [onclick], .option, .ps2-btn-ctrl, .download-btn, .proj-github-btn, .back-btn, .top-back-btn, .menu-list-item {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='3' fill='%238aa0ff' opacity='1'/%3E%3Cline x1='12' y1='2' x2='12' y2='7' stroke='%238aa0ff' stroke-width='1.5'/%3E%3Cline x1='12' y1='17' x2='12' y2='22' stroke='%238aa0ff' stroke-width='1.5'/%3E%3Cline x1='2' y1='12' x2='7' y2='12' stroke='%238aa0ff' stroke-width='1.5'/%3E%3Cline x1='17' y1='12' x2='22' y2='12' stroke='%238aa0ff' stroke-width='1.5'/%3E%3C/svg%3E") 12 12, pointer;
 }
 
 :root {
@@ -30,12 +35,13 @@ body {
     --blue-hover: #54b0cc;
 
     /* Text */
-    --text-main: #cfd8ff;
-    --text-bright: #ddeeff;
+    --text-main: #e8ecff;
+    --text-bright: #f0f4ff;
     --text-white: #ffffff;
 
     /* Section colors */
     --section-about: #c5bf69;
+    --section-experience: #8aa0ff;
     --section-projects: #ffc69b;
     --section-plugins: #8affc1;
     --section-music: #ff9bf2;
@@ -430,6 +436,7 @@ title {
     max-width: min(42.5rem, 92vw);
     margin: 0 auto;
     padding: clamp(1.5rem, 6vw, 4rem);
+    padding-bottom: 0.5rem;
 }
 
 .music-links {
@@ -476,6 +483,16 @@ title {
     max-width: min(42.5rem, 92vw);
     margin: 0 auto;
     padding: clamp(1.5rem, 6vw, 4rem);
+}
+
+.about-page h2 {
+    color: var(--section-about);
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.about-page h2 a {
+    color: var(--section-about);
 }
 
 .about-links {
@@ -870,8 +887,8 @@ title {
 @media (min-width: 641px) and (max-width: 900px) {
     .proj-cards { grid-template-columns: repeat(2, 1fr); }
 }
-.proj-card { background: rgba(0,0,50,0.4); border: 1px solid rgba(79,108,255,0.2); border-radius: 15px; padding: 0.8rem; transition: border-color 0.2s; }
-/* .proj-card:hover { border-color: rgba(79,108,255,0.5); } */
+.proj-card { background: rgba(0,0,50,0.4); border: 1px solid rgba(79,108,255,0.2); border-radius: 15px; padding: 0.8rem; transition: border-color 0.2s, transform 0.25s ease, box-shadow 0.25s ease; }
+.proj-card:hover { border-color: rgba(79,108,255,0.55); transform: translateY(-4px); box-shadow: 0 8px 24px rgba(79,108,255,0.15); }
 .proj-card-icon { font-size: 1.4rem; margin-bottom: 0.4rem; }
 .proj-card h4 { font-size: 1rem; color: var(--text-main); margin-bottom: 0.4rem; font-weight: 600; }
 .proj-card p { font-size: 0.75rem !important; color: var(--blue-muted) !important; line-height: 1.6; margin: 0 !important; }
@@ -917,13 +934,13 @@ title {
 }
 
 .proj-metrics { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 1rem; }
-.proj-metric { display: flex; align-items: baseline; gap: 1rem; background: rgba(0,0,40,0.4); border: 1px solid rgba(79,108,255,0.15); border-radius: 8px; padding: 0.8rem 1rem; transition: border-color 0.2s; }
-/* .proj-metric:hover { border-color: rgba(79,108,255,0.4); } */
+.proj-metric { display: flex; align-items: baseline; gap: 1rem; background: rgba(0,0,40,0.4); border: 1px solid rgba(79,108,255,0.15); border-radius: 8px; padding: 0.8rem 1rem; transition: border-color 0.2s, transform 0.2s ease; }
+.proj-metric:hover { border-color: rgba(79,108,255,0.4); transform: translateX(4px); }
 .proj-metric-name { font-size: 0.78rem; color: var(--blue-light); letter-spacing: 0.08em; min-width: 80px; flex-shrink: 0; }
 .proj-metric-full { font-size: 0.75rem; color: var(--text-main); min-width: 220px; flex-shrink: 0; }
 .proj-metric-desc { font-size: 0.72rem; color: #adbdd6; line-height: 1.5; }
 
-.proj-tags-big { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+.proj-tags-big { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 0.5rem; align-items: center;}
 .proj-tag { font-size: 0.72rem; letter-spacing: 0.07em; padding: 0.3rem 0.8rem; border-radius: 5px; background: rgba(79,108,255,0.1); border: 1px solid rgba(79,108,255,0.25); color: var(--blue-light); }
 
 .proj-audio { margin-top: 0.8rem; margin-left: auto; margin-right: auto; display: block; width: 100%; max-width: 30rem; border-radius: 8px; }
@@ -1038,11 +1055,11 @@ title {
     max-width: min(38rem, 92vw);
     transition: border-color 0.2s, background 0.2s;
 }
-
+/* 
 .edu-badge:hover {
     background: rgba(227, 228, 231, 0.14);
     border-color: rgba(60, 76, 156, 0.6);
-}
+} */
 
 .edu-badge-icon {
     font-size: 1.6rem;
@@ -1062,4 +1079,186 @@ title {
     font-size: 0.8rem;
     color: #ccc894;
     letter-spacing: 0.05em;
+}
+
+/* ===================== SCROLL FADE-IN ===================== */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.fade-in-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===================== MENU SECTION ACCENT COLORS ===================== */
+#btn-about    { color: var(--section-about); }
+#btn-experience { color: var(--section-experience); }
+#btn-projects { color: var(--section-projects); }
+#btn-plugins  { color: var(--section-plugins); }
+#btn-music    { color: var(--section-music); }
+
+#btn-about:hover    { color: var(--section-about);    text-shadow: 0 0 0.7rem var(--section-about); }
+#btn-experience:hover { color: var(--section-experience); text-shadow: 0 0 0.7rem var(--section-experience); }
+#btn-projects:hover { color: var(--section-projects); text-shadow: 0 0 0.7rem var(--section-projects); }
+#btn-plugins:hover  { color: var(--section-plugins);  text-shadow: 0 0 0.7rem var(--section-plugins); }
+#btn-music:hover    { color: var(--section-music);    text-shadow: 0 0 0.7rem var(--section-music); }
+
+/* ===================== IMPROVED STAT CARD HOVER ===================== */
+.exp-stat:hover {
+    border-color: rgba(79,108,255,0.5);
+    background: rgba(0,0,60,0.55);
+}
+
+/* ===================== MENU TAGLINE ===================== */
+.menu-tagline {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+    color: var(--blue-text);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* ===================== SKILLS TAGS ===================== */
+.skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    justify-content: center;
+    margin: 0.5rem 0;
+}
+.skill-tag {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    background: rgba(79,108,255,0.1);
+    border: 1px solid rgba(79,108,255,0.3);
+    color: var(--blue-light);
+    transition: background 0.2s, border-color 0.2s;
+}
+.skill-tag:hover {
+    background: rgba(79,108,255,0.2);
+    border-color: rgba(79,108,255,0.6);
+}
+
+/* ===================== SUBTLE PAGE SCANLINES ===================== */
+.scrollable-page::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(0,0,0,0.025) 3px,
+        rgba(0,0,0,0.025) 4px
+    );
+}
+
+/* ===================== ABOUT PAGE CTA ===================== */
+.about-cta {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.82rem;
+    color: var(--blue-text);
+    opacity: 0.85;
+    text-align: center;
+    max-width: min(38rem, 92vw);
+    line-height: 1.6;
+}
+.about-cta a {
+    color: var(--blue-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(138,160,255,0.4);
+    transition: color 0.2s, border-color 0.2s;
+}
+.about-cta a:hover {
+    color: #fff;
+    border-color: rgba(138,160,255,0.8);
+}
+
+/* ===================== MUSIC TRACK LABEL ===================== */
+.ps2-track-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: var(--blue-light);
+    text-shadow: 0 0 0.5rem rgba(79,108,255,0.5);
+    text-transform: uppercase;
+}
+
+/* ===================== SECTION DIVIDER LABEL ===================== */
+.section-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue-dark);
+    text-align: center;
+    margin: 0.5rem 0 1.5rem;
+}
+
+/* ===================== AUDIO VISUALIZER ===================== */
+.ps2-visualizer {
+    width: 100%;
+    height: 2.75rem;
+    display: block;
+    border-radius: 3px;
+    margin-top: 0.625rem;
+    background: transparent;
+}
+
+/* ===================== PROJECT PAGE ACCENT (orange) ===================== */
+.project-page .proj-section-title {
+    color: var(--section-projects);
+}
+.project-page .proj-card {
+    border-left: 3px solid rgba(255, 198, 155, 0.5);
+}
+.project-page .proj-card h4 {
+    color: var(--section-projects);
+}
+.project-page .proj-tag {
+    background: rgba(255, 198, 155, 0.08);
+    border-color: rgba(255, 198, 155, 0.35);
+    color: var(--section-projects);
+}
+.project-page .proj-sub-title {
+    color: var(--section-projects);
+}
+
+/* ===================== PLUGIN PAGE ACCENT (mint green) ===================== */
+.plugin-page .proj-section-title {
+    color: var(--section-plugins);
+}
+.plugin-page .proj-card {
+    border-left: 3px solid rgba(138, 255, 193, 0.5);
+}
+.plugin-page .proj-card h4 {
+    color: var(--section-plugins);
+}
+.plugin-page .proj-tag {
+    background: rgba(138, 255, 193, 0.08);
+    border-color: rgba(138, 255, 193, 0.35);
+    color: var(--section-plugins);
+}
+.plugin-page .proj-sub-title {
+    color: var(--section-plugins);
+}
+
+/* ===================== EXPERIENCE PAGE ACCENT (blue) ===================== */
+.experience .proj-section-title {
+    color: var(--section-experience);
+}
+.experience .proj-card {
+    border-left: 3px solid rgba(138, 160, 255, 0.5);
+}
+.experience .proj-card h4 {
+    color: var(--section-experience);
 }

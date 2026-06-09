@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="About May Tiger — Linux software engineer with 3 years at SolarEdge, B.Sc Computer Science from Technion, C++ audio plugin developer and music producer.">
 <title>About | May Tiger</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&family=Orbitron:wght@400..900&family=Oxanium:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body style="background: radial-gradient(circle at top, #0a0f2c, #000);">
 
@@ -17,24 +18,14 @@
 
         <div class="options">
             
-            <div class="option active" style="--optionImage: url('images/me.jpg');">
-                <div class="label">
-                    <div class="icon">
-                    </div>
-                </div> 
+            <div class="option active" style="--optionImage: url('images/me.jpg');" aria-label="Photo 1">
+                <div class="label"><div class="icon"></div></div>
             </div>
-            
-            <div class="option" style="--optionImage: url('images/me_2.png');">
-                <div class="label">
-                    <div class="icon"></div>
-                </div>
+            <div class="option" style="--optionImage: url('images/me_2.png');" aria-label="Photo 2">
+                <div class="label"><div class="icon"></div></div>
             </div>
-        
-            <div class="option" style="--optionImage: url('images/me_3.jpeg');">
-                <div class="label">
-                    <div class="icon">
-                    </div>
-                </div>
+            <div class="option" style="--optionImage: url('images/me_3.jpeg');" aria-label="Photo 3">
+                <div class="label"><div class="icon"></div></div>
             </div>
         
         </div>
@@ -46,7 +37,7 @@
             I like to solve complex and challenging problems, whether thats interactive tools, low-level systems, or more creative projects.
             With a big love for music, I am deeply interested in audio programming and DSP, focusing on performance, clean design, and making things feel good to use.
         </p>
-        
+
         <div class="edu-badge">
             <div class="edu-badge-icon">&#127891;</div>
             <div class="edu-badge-text">
@@ -54,13 +45,32 @@
                 <div class="edu-badge-school">Technion &mdash; Israel Institute of Technology &nbsp;&#183;&nbsp; 2019&ndash;2024</div>
             </div>
         </div>
-
+        
+        <a href="MayTiger_CV.pdf" download class="download-btn" style="font-family:'Poppins',sans-serif;">&#8595;&nbsp; Download CV</a>
+        
+        <h2 class="about-cta">
+            Open to new opportunities!   feel free to reach out on at: <br>  <a href="mailto:may.tiger877@gmail.com">may.tiger877@gmail.com</a> <br>or:
+        </h2>
+        
         <div class="about-links">
             <a href="https://www.linkedin.com/in/may-tiger-1b8280225" target="_blank">
-                <img src="images/linkedinCROP.png" class="about-icon_linkdin">
+                <img src="images/linkedinCROP.png" alt="LinkedIn profile" class="about-icon_linkdin">
             </a>
         </div>
-
+        
+        <div class="skills-row">
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">C</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">JUCE</span>
+            <span class="skill-tag">DSP</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">HTML / CSS</span>
+        </div>
+        
         <div class="back-btn" onclick="goTo('menu.html')">&#8592; Back</div>
     </div>
 </section>

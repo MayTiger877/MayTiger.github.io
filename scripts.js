@@ -275,3 +275,32 @@ options.forEach((option, index) =>
 
 // Init slider
 startSlider();
+
+// ---------- SCROLL FADE-IN ----------
+(function () {
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                io.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    function observeFadeTargets() {
+        const targets = document.querySelectorAll(
+            '.proj-card, .proj-metric, .exp-stat, .menu-list-item, .proj-pipe-step, .edu-badge'
+        );
+        targets.forEach((el, i) => {
+            el.classList.add('fade-in-up');
+            el.style.transitionDelay = Math.min(i * 0.06, 0.36) + 's';
+            io.observe(el);
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', observeFadeTargets);
+    } else {
+        observeFadeTargets();
+    }
+})();

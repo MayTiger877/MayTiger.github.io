@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="May Tiger's music — electronic and experimental music production. Listen to tracks on Spotify and SoundCloud. Made with FL Studio and custom-built audio plugins.">
 <title>Music | May Tiger</title>
 <link rel="stylesheet" href="styles.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@300..900&family=Orbitron:wght@400..900&family=Oxanium:wght@200..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body style="background: radial-gradient(circle at top, #0a0f2c, #000);">
 
@@ -19,8 +20,8 @@
             I have a lot of fun experimenting with sound design and production techniques, and I like to use my plugins in my music as well. I am using FL Studio as my main DAW, with a growing collection of hardware gear. I have been sharing my music online for a while now, and I am grateful for the support and feedback from listeners.
             <br>Made an EP and another one is on the way!
         </p>
-        <h4>Heres a sneak peek:</h4>
-        
+        <h4>Here's a sneak peek:</h4>
+
         <audio id="sneakAudio" preload="auto">
             <source src="sounds/Album_Sneak.wav" type="audio/wav">
             <source src="sounds/Album_Sneak.wav" type="audio/x-wav">
@@ -28,7 +29,7 @@
 
         <div class="ps2-player">
             <div class="ps2-player-top">
-                <!-- <span class="ps2-player-label">ALBUM_SNEAK.WAV</span> -->
+                <span class="ps2-track-label">Album Sneak Peek</span>
                 <span class="ps2-player-time">
                     <span id="player-current">0:00</span> / <span id="player-total">0:00</span>
                 </span>
@@ -48,23 +49,103 @@
                     <input type="range" class="ps2-vol-slider" id="player-volume" min="0" max="1" step="0.01" value="0.5">
                 </div>
             </div>
+            <canvas id="visualizer" class="ps2-visualizer"></canvas>
             <div class="ps2-scanlines"></div>
         </div>
         
-        <p>Links:</p>
+        
+        <p>Find me on:</p>
 
     </div>
     <div class="music-links">
-        <a href="https://open.spotify.com/artist/5udSlZfAN8HddZBbEHK4Il?si=rpyazRRiSm6aUcB9KPIsoA" target="_blank">
-            <img src="images/Spotify_Logo.png" class="music-icon_spotify">
+        <a href="https://open.spotify.com/artist/5udSlZfAN8HddZBbEHK4Il?si=rpyazRRiSm6aUcB9KPIsoA" target="_blank" aria-label="Listen on Spotify">
+            <img src="images/Spotify_Logo.png" alt="Spotify" class="music-icon_spotify">
         </a>
-        <a href="https://soundcloud.com/dogomen11?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">
-            <img src="images/SoundCloud_Logo.png" class="music-icon_soundcloud">
+        <a href="https://soundcloud.com/dogomen11?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank" aria-label="Listen on SoundCloud">
+            <img src="images/SoundCloud_Logo.png" alt="SoundCloud" class="music-icon_soundcloud">
         </a>
     </div>
     <div class="back-btn" onclick="goTo('menu.html')">&#8592; Back</div>
 </section>
 
 <script src="scripts.js"></script>
+<script>
+(function () {
+    const canvas = document.getElementById('visualizer');
+    if (!canvas) return;
+    const ctx2d = canvas.getContext('2d');
+    const audio = document.getElementById('sneakAudio');
+
+    let audioCtx = null, analyser = null, source = null, animId = null;
+
+    function resizeCanvas() {
+        canvas.width  = canvas.offsetWidth  || 280;
+        canvas.height = canvas.offsetHeight || 44;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function initAudioCtx() {
+        if (audioCtx) return;
+        try {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            analyser  = audioCtx.createAnalyser();
+            analyser.fftSize = 64;
+            analyser.smoothingTimeConstant = 0.6;
+            source = audioCtx.createMediaElementSource(audio);
+            source.connect(analyser);
+            analyser.connect(audioCtx.destination);
+        } catch (e) {}
+    }
+
+    // Initialise on first click so AudioContext is never suspended
+    document.addEventListener('click', initAudioCtx, { once: true });
+
+    function drawFrame() {
+        animId = requestAnimationFrame(drawFrame);
+        if (!analyser) return;
+
+        const W = canvas.width, H = canvas.height;
+        const bufLen = analyser.frequencyBinCount;
+        const data   = new Uint8Array(bufLen);
+        analyser.getByteFrequencyData(data);
+
+        ctx2d.clearRect(0, 0, W, H);
+
+        const gap  = 1;
+        const barW = Math.max(1, (W / bufLen) - gap);
+
+        for (let i = 0; i < bufLen; i++) {
+            const norm = data[i] / 255;
+            const barH = Math.max(1, norm * H);
+            const x    = i * (barW + gap);
+
+            const grad = ctx2d.createLinearGradient(x, H, x, H - barH);
+            grad.addColorStop(0, `rgba(255,155,242,${0.45 + norm * 0.55})`);
+            grad.addColorStop(1, `rgba(138,160,255,${0.7  + norm * 0.3})`);
+
+            ctx2d.shadowBlur  = norm * 14;
+            ctx2d.shadowColor = 'rgba(138,160,255,0.55)';
+            ctx2d.fillStyle   = grad;
+            ctx2d.fillRect(x, H - barH, barW, barH);
+        }
+    }
+
+    audio.addEventListener('play', () => {
+        initAudioCtx();
+        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+        if (!animId) drawFrame();
+    });
+
+    function stopViz() {
+        cancelAnimationFrame(animId);
+        animId = null;
+        ctx2d.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    audio.addEventListener('pause', stopViz);
+    audio.addEventListener('ended', stopViz);
+})();
+</script>
 </body>
 </html>
