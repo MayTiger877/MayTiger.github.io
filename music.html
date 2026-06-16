@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body style="background: radial-gradient(circle at top, #0a0f2c, #000);">
+<body style="background: #05080f;">
 
 <section id="music" class="music scrollable-page active">
     <div class="top-back-btn" onclick="goTo('menu.html')">&#8592; Back</div>
@@ -121,11 +121,11 @@
             const x    = i * (barW + gap);
 
             const grad = ctx2d.createLinearGradient(x, H, x, H - barH);
-            grad.addColorStop(0, `rgba(255,155,242,${0.45 + norm * 0.55})`);
-            grad.addColorStop(1, `rgba(138,160,255,${0.7  + norm * 0.3})`);
+            grad.addColorStop(0, `rgba(176,96,128,${0.45 + norm * 0.55})`);
+            grad.addColorStop(1, `rgba(120,104,176,${0.65 + norm * 0.35})`);
 
             ctx2d.shadowBlur  = norm * 14;
-            ctx2d.shadowColor = 'rgba(138,160,255,0.55)';
+            ctx2d.shadowColor = 'rgba(176,96,128,0.55)';
             ctx2d.fillStyle   = grad;
             ctx2d.fillRect(x, H - barH, barW, barH);
         }

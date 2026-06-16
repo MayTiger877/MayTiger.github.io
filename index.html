@@ -4,76 +4,133 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>May Tiger</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #000; overflow: hidden; }
+  body { background: #05080f; overflow: hidden; }
 
+  /* ── START SCREEN ─────────────────────────────────────── */
+  #start-screen {
+    position: fixed; inset: 0; z-index: 10000;
+    background: radial-gradient(ellipse at 30% 0%, #0d1235 0%, #05080f 60%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  #boot-wave {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  .boot-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.4rem, 8vw, 5.5rem);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    background: linear-gradient(90deg, #5a9db8 0%, #7868b0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 1;
+    min-height: 1.2em;
+  }
+
+  .boot-sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.6rem, 1.8vw, 0.85rem);
+    color: #8bbad0;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  .boot-prompt {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.78rem;
+    color: #5a9db8;
+    letter-spacing: 0.14em;
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+    margin-top: 2rem;
+    transition: opacity 0.5s ease;
+  }
+  .boot-prompt.blink {
+    animation: bootBlink 1.4s ease-in-out infinite;
+  }
+
+  @keyframes bootBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.2; }
+  }
+
+  /* Oscilloscope grid on start screen */
+  #start-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(90,157,184,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(90,157,184,0.04) 1px, transparent 1px);
+    background-size: 44px 44px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── SHELL LOADER ─────────────────────────────────────── */
   #shell-loader {
     position: fixed; inset: 0; z-index: 9999;
-    background: radial-gradient(circle at top, #0a0f2c, #000);
+    background: radial-gradient(ellipse at 30% 0%, #0d1235 0%, #05080f 60%);
     display: flex; align-items: center; justify-content: center;
     flex-direction: column;
     transition: opacity 0.4s ease;
   }
   #shell-loader.hidden { opacity: 0; pointer-events: none; }
 
-  #start-screen {
-    position: fixed; inset: 0; z-index: 10000;
-    background: radial-gradient(circle at top, #0a0f2c, #000);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .start-text {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.6em; color: #8aa0ff;
-    letter-spacing: 2px;
-    animation: blink 1s infinite, pulse-glow 2.5s ease-in-out infinite;
-  }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-  @keyframes pulse-glow {
-    0%,100% { text-shadow: 0 0 8px rgba(138,160,255,0.3); }
-    50%     { text-shadow: 0 0 28px rgba(138,160,255,0.9), 0 0 60px rgba(79,108,255,0.4); }
-  }
-  #start-screen::before {
-    content: '';
-    position: absolute;
-    width: 340px; height: 340px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(79,108,255,0.1) 0%, transparent 70%);
-    animation: ambient-pulse 3s ease-in-out infinite;
-  }
-  @keyframes ambient-pulse {
-    0%,100% { transform: scale(0.85); opacity: 0.5; }
-    50%     { transform: scale(1.25); opacity: 1; }
+  .loader-content { text-align: center; z-index: 2; }
+  .loader-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: #8bbad0;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
-  .loader-content { text-align: center; }
-  .loader-text {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.5em; color: #8aa0ff; margin-bottom: 20px;
-  }
   .progress-bar {
-    width: 250px; height: 6px;
-    border: 1px solid #4f6cff; border-radius: 10px; overflow: hidden;
+    width: 250px; height: 3px;
+    border: 1px solid rgba(90,157,184,0.3);
+    border-radius: 10px; overflow: hidden;
   }
   .progress-fill {
     height: 100%; width: 0%;
-    background: #4f6cff; box-shadow: 0 0 10px #4f6cff;
+    background: linear-gradient(90deg, #5a9db8, #7868b0);
+    box-shadow: 0 0 10px #5a9db8;
   }
   .progress-fill.active { animation: loadBar 0.8s linear forwards; }
   @keyframes loadBar { from{width:0%} to{width:100%} }
 
-  /* Scanlines on loader */
+  /* Subtle grid on loader */
   #shell-loader::after {
     content: ""; position: absolute; inset: 0; pointer-events: none;
-    background: repeating-linear-gradient(
-      to bottom, rgba(255,255,255,0.03), rgba(255,255,255,0.03) 1px,
-      transparent 1px, transparent 3px
-    );
-    animation: scanlines 0.1s linear infinite;
+    background-image:
+      linear-gradient(rgba(90,157,184,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(90,157,184,0.03) 1px, transparent 1px);
+    background-size: 44px 44px;
   }
-  @keyframes scanlines { from{transform:translateY(0)} to{transform:translateY(3px)} }
 
-  /* The iframe fills the whole viewport */
+  /* ── PAGE FRAME ───────────────────────────────────────── */
   #page-frame {
     position: fixed; inset: 0;
     width: 100%; height: 100%;
@@ -83,13 +140,15 @@
   }
   #page-frame.visible { opacity: 1; }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- Start screen -->
+<!-- Start screen — cinematic boot -->
 <div id="start-screen">
-  <div class="start-text">Press any key...</div>
+  <canvas id="boot-wave"></canvas>
+  <div class="boot-name"></div>
+  <div class="boot-sub"></div>
+  <div class="boot-prompt">[ click anywhere to enter ]</div>
 </div>
 
 <!-- Loader -->
@@ -119,61 +178,121 @@ const bootSnd  = document.getElementById('bootSound');
 const bgMusic  = document.getElementById('bgMusic');
 const navSnd   = document.getElementById('navSound');
 
-// ── Navigate inside the iframe ───────────────────────────────────
-function loadPage(url)
-{
-    playNavSound();
-    frame.classList.remove('visible');
-    setTimeout(() =>
-    {
-        frame.src = url;
-    }, 200);
+const bootCanvas = document.getElementById('boot-wave');
+const bootName   = document.querySelector('.boot-name');
+const bootSub    = document.querySelector('.boot-sub');
+const bootPrompt = document.querySelector('.boot-prompt');
+
+// ── Waveform animation ───────────────────────────────────
+let waveRAF;
+let waveT = 0;
+
+function resizeBootCanvas() {
+    bootCanvas.width  = window.innerWidth;
+    bootCanvas.height = window.innerHeight;
 }
 
-frame.addEventListener('load', () =>
-{
-    frame.classList.add('visible');
+function drawBootWave() {
+    const ctx = bootCanvas.getContext('2d');
+    const w = bootCanvas.width, h = bootCanvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    const waves = [
+        { color: 'rgba(90,157,184,0.55)',  freq: 0.010, speed: 0.8,  amp: 0.10 },
+        { color: 'rgba(120,104,176,0.35)', freq: 0.016, speed: -0.5, amp: 0.07 },
+        { color: 'rgba(90,157,184,0.20)',  freq: 0.024, speed: 1.2,  amp: 0.04 },
+    ];
+
+    waves.forEach(wave => {
+        ctx.beginPath();
+        ctx.strokeStyle = wave.color;
+        ctx.lineWidth = 1.5;
+        for (let x = 0; x <= w; x++) {
+            const y = h / 2 + Math.sin(x * wave.freq + waveT * wave.speed) * h * wave.amp;
+            x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+    });
+
+    waveT += 0.04;
+    waveRAF = requestAnimationFrame(drawBootWave);
+}
+
+// ── Typewriter ───────────────────────────────────────────
+function typeWriter(el, text, speed, onDone) {
+    let i = 0;
+    el.textContent = '';
+    function tick() {
+        if (i <= text.length) {
+            el.textContent = text.slice(0, i) + (i < text.length ? '|' : '');
+            i++;
+            setTimeout(tick, speed);
+        } else {
+            el.textContent = text;
+            if (onDone) onDone();
+        }
+    }
+    tick();
+}
+
+// ── Boot cinematic sequence ──────────────────────────────
+window.addEventListener('load', () => {
+    resizeBootCanvas();
+    window.addEventListener('resize', resizeBootCanvas);
+    drawBootWave();
+
+    setTimeout(() => {
+        typeWriter(bootName, 'MAY TIGER', 80, () => {
+            setTimeout(() => {
+                bootSub.style.opacity = '1';
+                bootSub.textContent = 'Software Engineer · Music Producer';
+                setTimeout(() => {
+                    bootPrompt.style.opacity = '1';
+                    setTimeout(() => {
+                        bootPrompt.classList.add('blink');
+                    }, 550);
+                }, 900);
+            }, 200);
+        });
+    }, 450);
 });
 
-// ── Sound helpers ────────────────────────────────────────────────
-function playNavSound()
-{
+// ── Navigate inside the iframe ───────────────────────────
+function loadPage(url) {
+    playNavSound();
+    frame.classList.remove('visible');
+    setTimeout(() => { frame.src = url; }, 200);
+}
+
+frame.addEventListener('load', () => { frame.classList.add('visible'); });
+
+// ── Sound helpers ────────────────────────────────────────
+function playNavSound() {
     navSnd.currentTime = 0;
     navSnd.volume = 0.4;
     navSnd.play().catch(() => {});
 }
 
-function startBgMusic()
-{
+function startBgMusic() {
     bgMusic.volume = 0.4;
     bgMusic.play().catch(() => {});
 }
 
-// ── Listen for navigation messages from inner pages ──────────────
-window.addEventListener('message', (e) =>
-{
-    if (e.data && e.data.type === 'navigate')
-    {
-        loadPage(e.data.url);
-    }
-    if (e.data && e.data.type === 'videoPlay')
-    {
-        bgMusic.pause();
-    }
-    if (e.data && e.data.type === 'videoPause')
-    {
-        startBgMusic();
-    }
+// ── Listen for navigation messages from inner pages ──────
+window.addEventListener('message', (e) => {
+    if (e.data && e.data.type === 'navigate') { loadPage(e.data.url); }
+    if (e.data && e.data.type === 'videoPlay') { bgMusic.pause(); }
+    if (e.data && e.data.type === 'videoPause') { startBgMusic(); }
 });
 
-// ── Intro sequence ───────────────────────────────────────────────
+// ── Intro sequence ───────────────────────────────────────
 let started = false;
 
-function startExperience()
-{
+function startExperience() {
     if (started) return;
     started = true;
 
+    cancelAnimationFrame(waveRAF);
     startScr.style.display = 'none';
     loader.style.display = 'flex';
 
@@ -184,8 +303,7 @@ function startExperience()
     bootSnd.volume = 0.3;
     bootSnd.play().catch(() => {});
 
-    setTimeout(() =>
-    {
+    setTimeout(() => {
         loader.classList.add('hidden');
         startBgMusic();
         loadPage('menu.html');
